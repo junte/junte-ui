@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { setDate, setMonth, setYear } from 'date-fns';
-import { CalendarComponent, Period, TabComponent, UI } from 'junte-ui';
+import { CalendarComponent, Period, TabsComponent, UI } from 'junte-ui';
 import { combineLatest } from 'rxjs';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -30,7 +30,7 @@ export class CalendarTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/calendar';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1824%3A3416';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   period: Period;
   month: Date;
@@ -59,7 +59,7 @@ export class CalendarTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
 
     combineLatest([this.yearControl.valueChanges, this.monthControl.valueChanges])
       .subscribe(([year, month]) => this.month = setDate(setMonth(setYear(new Date(), year), month), 1));

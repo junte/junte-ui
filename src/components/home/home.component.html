@@ -1,13 +1,13 @@
 <jnt-lp-layout>
 
-  <jnt-lp-header>
+  <jnt-lp-header #header>
     <ng-template #headerLogoTemplate>
       <form data-logo [formGroup]="themeForm">
         <img [src]="'assets/images/logo-lp' + (themeControl.value ? '-light' : '-dark') + '.svg'" alt="logo">
         <input type="checkbox" formControlName="theme">
       </form>
     </ng-template>
-    <jnt-menu data-menu [spacing]="ui.gutter.large">
+    <jnt-menu data-menu [gutter]="ui.gutter.large">
       <jnt-menu-item title="Handbook"
                      i18n-title="@@label.handbook"
                      [icon]="localUi.icons.top.documentation"
@@ -19,13 +19,13 @@
         [link]="['team']">
       </jnt-menu-item>
       <jnt-menu-item
-        [analytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
+        [appAnalytics]="{ type: analyticsType.goal, goal: 'GitLab' }"
         [icon]="ui.icons.gitlab"
         [title]="'GitLab'"
         link="https://gitlab.com/junte/junte-ui">
       </jnt-menu-item>
       <jnt-menu-item
-        [analytics]="{ type: analyticsType.goal, goal: 'npm' }"
+        [appAnalytics]="{ type: analyticsType.goal, goal: 'npm' }"
         [icon]="localUi.icons.top.npm"
         [title]="'NPM'"
         link="https://www.npmjs.com/package/@junte/ui">
@@ -33,7 +33,8 @@
     </jnt-menu>
   </jnt-lp-header>
 
-  <jnt-lp-slide about [height]="breakpoint.current === point.mobile ? ui.height.default : ui.height.screen">
+  <jnt-lp-slide about [header]="header"
+                [height]="breakpoint.current === point.mobile ? ui.height.default : ui.height.screen">
     <div *jntMinFor="ui.breakpoint.tablet" top>
       <ng-container *jntMinFor="ui.breakpoint.desktop">
         <svg wave width="900" height="482" viewBox="0 0 900 482" xmlns="http://www.w3.org/2000/svg">
@@ -533,7 +534,7 @@
 
             <p data-web-apps>Made with love for making beautiful WEB apps!</p>
             <jnt-menu [style]="ui.menu.style.tags"
-                      [spacing]="ui.gutter.normal">
+                      [gutter]="ui.gutter.normal">
               <jnt-menu-item title="Stable"
                              [active]="current == version.stable"
                              [link]="'https://www.junte-ui.com'">

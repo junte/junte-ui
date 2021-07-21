@@ -15,11 +15,12 @@ $tab-marker-height: 4px;
         background: transparent,
         height: null,
         padding: $jnt-gutter-small $jnt-gutter-normal,
+        overflow: true,
         orphan: (
           color: $jnt-primary-text-color,
           hover: (
             color: $jnt-primary-text-color,
-            background-color: $jnt-highlight-background
+            background-color: $jnt-secondary-background
           )
         ),
         color: $jnt-primary-text-color,
@@ -42,7 +43,7 @@ $tab-marker-height: 4px;
         ),
         hover: (
           color: $jnt-primary-light-color,
-          background-color: $jnt-highlight-background
+          background-color: $jnt-secondary-background
         ),
         active: (
           underline: true,
@@ -53,6 +54,7 @@ $tab-marker-height: 4px;
           divider: (
             display: false,
             divider-width: null,
+            divider-height: null,
             divider-corner: null,
             divider-color: null
           )
@@ -66,15 +68,25 @@ $tab-marker-height: 4px;
             color: $jnt-primary-light-color,
             corner: 19px,
             border: 1px solid $jnt-white-color,
+            background: null,
+            badge: (
+              margin-left: $jnt-gutter-small,
+              color: null,
+              background: null
+            ),
             active: (
               underline: false,
               color: $jnt-white-color,
               background-color: $jnt-primary-light-color,
-              border-color: $jnt-primary-light-color
+              border-color: $jnt-primary-light-color,
+              badge: (
+                color: null,
+                background: null
+              )
             ),
             hover: (
               color: null,
-              background-color: $jnt-secondary-dark-color,
+              background-color: $jnt-highlight-background,
               border-color: null
             )
           )
@@ -108,7 +120,7 @@ $tab-marker-height: 4px;
         ),
         hover: (
           color: null,
-          background-color: $jnt-highlight-background
+          background-color: $jnt-secondary-background
         ),
         active: (
           underline: false,
@@ -118,6 +130,7 @@ $tab-marker-height: 4px;
           divider: (
             display: false,
             divider-width: null,
+            divider-height: null,
             divider-corner: null,
             divider-color: null
           )
@@ -167,14 +180,15 @@ $tab-marker-height: 4px;
               text-transform: map-get($title, text-transform),
               font-weight: map-get($title, font-weight),
               color: map-get($title, color),
-              padding: map-get($title, padding)
+              padding: map-get($title, padding),
+              overflow: map-get($title, overflow)
             ));
 
             @if map-has-key($title, active) {
               $active: map-get($title, active);
               @include jnt-link((
                 outlines: (
-                  transparent: (
+                  'transparent': (
                     active: (
                       underline: map-get($active, underline),
                       background-color: map-get($active, background-color),
@@ -189,11 +203,12 @@ $tab-marker-height: 4px;
                 $divider: map-get($active, divider);
                 @include jnt-link((
                   outlines: (
-                    transparent: (
+                    'transparent': (
                       active: (
                         divider: (
                           display: map-get($divider, display),
                           divider-width: map-get($divider, divider-width),
+                          divider-height: map-get($divider, divider-height),
                           divider-corner: map-get($divider, divider-corner),
                           divider-color: map-get($divider, divider-color)
                         )
@@ -208,7 +223,7 @@ $tab-marker-height: 4px;
               $orphan: map-get($title, orphan);
               @include jnt-link((
                 outlines: (
-                  transparent: (
+                  'transparent': (
                     orphan: (
                       color: map-get($orphan, color)
                     )
@@ -221,7 +236,7 @@ $tab-marker-height: 4px;
                 &[data-active=false] {
                   @include jnt-link((
                     outlines: (
-                      transparent: (
+                      'transparent': (
                         orphan: (
                           hover: (
                             color: map-get($hover, color),
@@ -265,7 +280,7 @@ $tab-marker-height: 4px;
               &[data-active=false] {
                 @include jnt-link((
                   outlines: (
-                    transparent: (
+                    'transparent': (
                       hover: (
                         color: map-get($hover, color),
                         background-color: map-get($hover, background-color)
@@ -294,12 +309,6 @@ $tab-marker-height: 4px;
                 background-color: map-get($opened, background);
               }
             }
-
-            [data-spinner] {
-              @if $declare {
-                margin-right: $jnt-gutter-tiny;
-              }
-            }
           }
         }
       }
@@ -307,7 +316,7 @@ $tab-marker-height: 4px;
 
     &[data-style='tabs'] {
       @if $declare {
-        border-bottom: 2px solid $jnt-secondary-color;
+        border-bottom: 2px solid $jnt-secondary-background;
       }
 
       #{$wrapper} [data-link] {
@@ -318,31 +327,16 @@ $tab-marker-height: 4px;
             color: $jnt-primary-text-color
           ), '&');
 
-          &:after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            border-radius: 5px;
-            background-color: transparent;
-          }
-
           &:hover {
             @include jnt-link((
               color: $jnt-primary-light-color
             ), '&');
-
-            &:after {
-              background-color: $jnt-secondary-dark-color;
-            }
           }
 
           &[data-active='true'] {
             @include jnt-link((
               outlines: (
-                transparent: (
+                'transparent': (
                   active: (
                     underline: false,
                     color: $jnt-primary-light-color
@@ -350,10 +344,6 @@ $tab-marker-height: 4px;
                 )
               )
             ), '&');
-
-            &:after {
-              background-color: $jnt-primary-light-color;
-            }
           }
         }
       }
@@ -371,36 +361,65 @@ $tab-marker-height: 4px;
                 padding: map-get($tags, padding),
                 color: map-get($tags, color),
                 border: map-get($tags, border),
-                corner: map-get($tags, corner)
+                corner: map-get($tags, corner),
+                background: map-get($tags, background),
+                focus: (
+                  outline: 0
+                )
               ), '&');
-              &[data-active='true'] {
-                @if map-has-key($tags, active) {
-                  $active: map-get($tags, active);
+              @if map-has-key($tags, badge) {
+                $badge: map-get($tags, badge);
+                @include jnt-link((
+                  badge: (
+                    margin-left: map-get($badge, margin-left),
+                    color: map-get($badge, color),
+                    background: map-get($badge, background)
+                  ),
+                ), '&');
+              }
+              @if map-has-key($tags, active) {
+                $active: map-get($tags, active);
+                @include jnt-link((
+                  outlines: (
+                    'transparent': (
+                      active: (
+                        underline: map-get($active, underline),
+                        color: map-get($active, color),
+                        background-color: map-get($active, background-color),
+                        border-color: map-get($active, border-color)
+                      )
+                    )
+                  )
+                ), '&');
+                @if map-has-key($active, badge) {
+                  $badge: map-get($active, badge);
                   @include jnt-link((
                     outlines: (
-                      transparent: (
+                      'transparent': (
                         active: (
-                          underline: map-get($active, underline),
-                          color: map-get($active, color),
-                          background-color: map-get($active, background-color),
-                          border-color: map-get($active, border-color)
+                          badge: (
+                            color: if(map-get($badge, color), map-get($badge, color) !important, null),
+                            background: if(map-get($badge, background), map-get($badge, background) !important, null)
+                          )
                         )
                       )
                     )
                   ), '&');
                 }
               }
-              &[data-active='false']:hover {
-                @if map-has-key($tags, hover) {
-                  $hover: map-get($tags, hover);
-                  @include jnt-link((
-                    hover: (
-                      color: map-get($hover, color),
-                      background-color: map-get($hover, background-color),
-                      border-color: map-get($hover, border-color)
+              @if map-has-key($tags, hover) {
+                $hover: map-get($tags, hover);
+                @include jnt-link((
+                  outlines: (
+                    'transparent': (
+                      hover: (
+                        color: map-get($hover, color),
+                        background-color: map-get($hover, background-color),
+                        border-color: map-get($hover, border-color)
+                      )
                     )
-                  ), '&');
-                }
+                  )
+                ), '&');
               }
             }
           }
@@ -438,9 +457,6 @@ $tab-marker-height: 4px;
 
         [data-link] {
           width: 100%;
-          @include jnt-link((
-            overflow: true
-          ), '&');
         }
       }
     }
@@ -509,7 +525,7 @@ $tab-marker-height: 4px;
             [data-item] [data-link] {
               @include jnt-link((
                 outlines: (
-                  transparent: (
+                  'transparent': (
                     padding: map-get($item, padding)
                   )
                 )
@@ -539,7 +555,7 @@ $tab-marker-height: 4px;
             corner: map-get($item, corner),
             font-size: map-get($item, font-size),
             outlines: (
-              transparent: (
+              'transparent': (
                 padding: map-get($item, padding),
                 color: map-get($item, color)
               )
@@ -559,7 +575,7 @@ $tab-marker-height: 4px;
             $hover: map-get($item, hover);
             @include jnt-link((
               outlines: (
-                transparent: (
+                'transparent': (
                   hover: (
                     background-color: map-get($hover, background-color),
                     color: map-get($hover, color)
@@ -588,7 +604,7 @@ $tab-marker-height: 4px;
             $active: map-get($item, active);
             @include jnt-link((
               outlines: (
-                transparent: (
+                'transparent': (
                   active: (
                     underline: map-get($active, underline),
                     background-color: map-get($active, background-color),
@@ -603,11 +619,12 @@ $tab-marker-height: 4px;
               $divider: map-get($active, divider);
               @include jnt-link((
                 outlines: (
-                  transparent: (
+                  'transparent': (
                     active: (
                       divider: (
                         display: map-get($divider, display),
                         divider-width: map-get($divider, divider-width),
+                        divider-height: map-get($divider, divider-height),
                         divider-corner: map-get($divider, divider-corner),
                         divider-color: map-get($divider, divider-color)
                       )

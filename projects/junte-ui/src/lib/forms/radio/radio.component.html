@@ -1,11 +1,12 @@
+<ng-template #labelDefaultTemplate>
+  <label *ngIf="label">{{label}}</label>
+</ng-template>
+
 <ng-container [formGroup]="form">
   <input formControlName="radio" type="radio" [attr.custom]="!!labelTemplate">
   <div data-switch><span data-indicator *ngIf="radioControl.value"
                          [@scale]="animate"></span></div>
-  <ng-template #labelDefaultTemplate>
-    <label *ngIf="label">{{label}}</label>
-  </ng-template>
-  <div label>
+  <div data-label>
     <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>
   </div>
 </ng-container>

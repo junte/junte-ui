@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { UI } from 'junte-ui';
+import { TabsComponent, UI } from 'junte-ui';
 import { CircleBarComponent } from 'junte-ui';
 import { BarIndicatorComponent } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -22,7 +21,7 @@ export class CircleBarTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/tree/master/projects/junte-ui/src/lib/components/dynamic/circlebar';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1751%3A6554';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   likesControl = this.fb.control(50);
   powerControl = this.fb.control(60);
@@ -45,7 +44,7 @@ export class CircleBarTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

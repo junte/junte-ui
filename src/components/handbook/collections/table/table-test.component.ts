@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { serialize } from '@junte/serialize-ts';
-import { TabComponent, TableColumnComponent, TableComponent, UI } from 'junte-ui';
+import { TableColumnDirective, TableComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { TableSections, TableState, TableStateUpdate } from './data/table-data.types';
@@ -19,13 +19,13 @@ export class TableTestComponent implements OnInit {
   ui = UI;
   localUi = LocalUI;
   sections = TableSections;
-  types = {table: TableComponent, column: TableColumnComponent};
+  types = {table: TableComponent, column: TableColumnDirective};
   handbook = HANDBOOK;
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/collections/table';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1270%3A541';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   searchControl = this.fb.control(true);
   reloadControl = this.fb.control(true);
@@ -59,7 +59,7 @@ export class TableTestComponent implements OnInit {
     });
 
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   save(state: TableStateUpdate) {

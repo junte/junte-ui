@@ -13,7 +13,7 @@ const HEROES_ARRAY = Object.values(HEROES);
 
 const HEROES_DATA = [];
 for (let i = 0; i < 150; i++) {
-  let k = Math.floor(Math.random() * (10 - 0) + 0);
+  const k = Math.floor(Math.random() * (10 - 0) + 0);
   HEROES_DATA.push({
     id: i + 1,
     hero: HEROES_ARRAY[k].name,

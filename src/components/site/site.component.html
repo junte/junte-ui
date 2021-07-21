@@ -7,12 +7,12 @@
       </a>
     </ng-template>
 
-    <jnt-menu #headerTopMenu [spacing]="ui.gutter.normal">
+    <jnt-menu #headerTopMenu [gutter]="ui.gutter.normal">
       <jnt-menu-item title="Handbook"
                      i18n-title="@@label.handbook"
                      [icon]="localUi.icons.top.documentation"
                      [matching]="ui.matching.wildcard"
-                     [link]="['/handbook']">
+                     [link]="['/handbook/home']">
       </jnt-menu-item>
       <jnt-menu-item title="Team"
                      i18n-title="@@label.team"
@@ -37,7 +37,7 @@
       <jnt-stack [orientation]="ui.orientation.horizontal"
                  [align]="ui.align.center">
         <form [formGroup]="themeForm">
-          <jnt-theme-switcher [analytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
+          <jnt-theme-switcher [appAnalytics]="{ type: analyticsType.goal, goal: 'themeChange' }"
                               formControlName="theme"></jnt-theme-switcher>
         </form>
         <app-select-lang></app-select-lang>
@@ -46,7 +46,7 @@
   </jnt-app-header>
 
   <jnt-app-aside #aside>
-    <jnt-menu [spacing]="ui.gutter.none">
+    <jnt-menu [gutter]="ui.gutter.none">
       <jnt-menu-item title="Home"
                      i18n-title="@@label.home"
                      [link]="['/handbook/home']"
@@ -62,8 +62,10 @@
 
       <jnt-menu-item title="Layout"
                      i18n-title="@@label.layout"
+                     [link]="['/handbook/layout']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.layout">
-        <jnt-badge [value]="(handbook.layout.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.layout.components | keyvalue).length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Stack"
                              i18n-title="@@label.stack"
@@ -110,8 +112,11 @@
 
       <jnt-menu-item title="Navigation"
                      i18n-title="@@label.navigation"
+                     [link]="['/handbook/navigation']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.navigation">
-        <jnt-badge [value]="(handbook.navigation.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.navigation.components | keyvalue).length"
+                   [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Link"
                              i18n-title="@@label.link"
@@ -142,8 +147,10 @@
 
       <jnt-menu-item title="Elements"
                      i18n-title="@@label.ui_elements"
+                     [link]="['/handbook/ui-elements']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.elements">
-        <jnt-badge [value]="(handbook.elements.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.elements.components | keyvalue).length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Icon"
                              i18n-title="@@label.icon"
@@ -174,8 +181,10 @@
 
       <jnt-menu-item title="Forms"
                      i18n-title="@@label.forms"
+                     [link]="['/handbook/forms']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.forms">
-        <jnt-badge [value]="(handbook.forms.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.forms.components | keyvalue).length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Button"
                              i18n-title="@@label.button"
@@ -242,8 +251,11 @@
 
       <jnt-menu-item title="Collections"
                      i18n-title="@@label.collections"
+                     [link]="['/handbook/collections']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.collections">
-        <jnt-badge [value]="(handbook.collections.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.collections.components | keyvalue).length"
+                   [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Gantt"
                              i18n-title="@@label.gantt"
@@ -262,8 +274,10 @@
 
       <jnt-menu-item title="Overlays"
                      i18n-title="@@label.overlays"
+                     [link]="['/handbook/overlays']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.overlays">
-        <jnt-badge [value]="(handbook.overlays.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.overlays.components | keyvalue).length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Modal"
                              i18n-title="@@label.modal"
@@ -280,8 +294,11 @@
 
       <jnt-menu-item title="Dynamic Data"
                      i18n-title="@@label.dynamic_data"
+                     [link]="['/handbook/dynamic-data']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.dynamic">
-        <jnt-badge [value]="(handbook.dynamic_data.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.dynamic_data.components | keyvalue).length"
+                   [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Progress bar"
                              i18n-title="@@label.progress_bar"
@@ -308,8 +325,10 @@
 
       <jnt-menu-item title="Other"
                      i18n-title="@@label.other"
+                     [link]="['/handbook/other']"
+                     [matching]="ui.matching.wildcard"
                      [icon]="localUi.icons.other">
-        <jnt-badge [value]="(handbook.other.components | keyvalue).length" [color]="ui.color.secondary"></jnt-badge>
+        <jnt-badge [value]="(handbook.other.components | keyvalue).length" [color]="ui.color.paleNavy"></jnt-badge>
         <jnt-sub-menu>
           <jnt-sub-menu-item title="Animations"
                              i18n-title="@@label.animations"
@@ -349,7 +368,8 @@
   </jnt-app-aside>
 
   <jnt-app-content [aside]="aside">
-    <jnt-breadcrumb [aside]="aside"></jnt-breadcrumb>
+    <jnt-breadcrumbs [aside]="aside" [features]="[]"></jnt-breadcrumbs>
+    <jnt-app-page-meta></jnt-app-page-meta>
     <jnt-app-body>
       <router-outlet></router-outlet>
     </jnt-app-body>

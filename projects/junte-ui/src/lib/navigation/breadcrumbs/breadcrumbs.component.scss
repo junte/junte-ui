@@ -1,13 +1,14 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
 @import 'jnt-hosts';
+@import 'jnt-utils';
 @import 'elements/icon/icon';
 @import 'layout/responsive/responsive';
 
 @mixin jnt-breadcrumbs($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
-    padding: 0 0 0 $jnt-gutter-normal,
+    padding: 0 $jnt-gutter-normal 0 $jnt-gutter-normal,
     margin: $jnt-gutter-small 0 $jnt-gutter-small 0,
     breadcrumb: (
       max-width: null,
@@ -38,10 +39,26 @@
   #{if($context, $context, $jnt-breadcrumbs-host)} {
     @if $declare {
       display: flex;
-      align-items: center;
+      position: relative;
     }
     padding: map-get($vars, padding);
     margin: map-get($vars, margin);
+
+    [data-breadcrumb]:last-of-type {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &[data-wrap='nowrap'] {
+      [data-breadcrumbs] {
+        @include jnt-no-scrollbar();
+        overflow: auto;
+      }
+
+      [data-right-fader] {
+        display: block;
+      }
+    }
 
     @include max-for-tablet() {
       &[data-with-aside='true'] {
@@ -51,40 +68,68 @@
           padding-left: calc(#{$app-aside-burger-width} + #{$jnt-gutter-normal});
         }
       }
+
+      &[data-wrap='nowrap'] {
+        [data-breadcrumbs] {
+          overflow: auto;
+
+          @include jnt-no-scrollbar();
+        }
+
+        [data-right-fader] {
+          display: block;
+        }
+      }
     }
   }
 
-  #{$context} #{$wrapper} a {
-    @if $declare {
-      text-decoration: none;
-      user-select: none;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+  [data-right-fader] {
+    display: none;
+    position: absolute;
+    background: linear-gradient(90deg, hsla(0, 0%, 92.2%, 0) 0, #ebebeb);
+    height: 100%;
+    width: 15%;
+    top: 0;
+    right: 0;
+  }
 
-      &[data-disabled='true'], &:last-of-type {
-        pointer-events: none;
-        cursor: default;
-      }
-    }
-
+  #{$context} #{$wrapper} [data-breadcrumb] {
     @if map-has-key($vars, breadcrumb) {
       $breadcrumb: map-get($vars, breadcrumb);
-      max-width: map-get($breadcrumb, max-width);
-      font-size: map-get($breadcrumb, font-size);
-      color: map-get($breadcrumb, color);
-
-      @if map-has-key($breadcrumb, hover) {
-        $hover: map-get($breadcrumb, hover);
-        &:hover {
-          color: map-get($hover, color);
-        }
-      }
 
       @if map-has-key($breadcrumb, last) {
         $last: map-get($breadcrumb, last);
         &:last-of-type {
-          color: map-get($last, color);
+          a {
+            color: map-get($last, color);
+          }
+        }
+      }
+
+      a {
+        @if $declare {
+          display: block;
+          text-decoration: none;
+          user-select: none;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          &[data-disabled='true'] {
+            pointer-events: none;
+            cursor: default;
+          }
+        }
+
+        max-width: map-get($breadcrumb, max-width);
+        font-size: map-get($breadcrumb, font-size);
+        color: map-get($breadcrumb, color);
+
+        @if map-has-key($breadcrumb, hover) {
+          $hover: map-get($breadcrumb, hover);
+          &:hover {
+            color: map-get($hover, color);
+          }
         }
       }
     }

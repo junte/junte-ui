@@ -1,4 +1,3 @@
-import { Context } from './context';
 import { GanttTypes } from '../../collections/gantt/enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
@@ -7,17 +6,19 @@ import { SelectMode } from '../../forms/select/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';
 import { PagerMode } from '../../navigation/pager/enums';
+import { ModalClosedReason, ModalScheme } from '../../overlays/modal/modal.enums';
 import { Behaviour } from './behaviour';
 import { Breakpoint } from './breakpoint';
 import { Color } from './color';
+import { Context } from './context';
 import { Feature } from './feature';
 import { Fit } from './fit';
 import { FlexAlign, FlexDirection, FlexJustify, FlexWrap } from './flex';
 import { Gutter } from './gutter';
 import { Height } from './height';
+import { IconModifier } from './icon-modifier';
 import { icons } from './icons';
 import { Key, Modifier } from './keyboard';
-import { IconModifier } from './icon-modifier';
 import { Orientation } from './orientation';
 import { Outline } from './outline';
 import { Placement } from './placement';
@@ -27,52 +28,56 @@ import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
 import { Stroke } from './stroke';
-import { MenuStyle } from './style';
+import { MenuStyle, SwitchStyle } from './style';
 import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { Triggers } from './triggers';
 import { UrlMatching } from './url';
 import { Validator } from './validator';
+import { ViewportType } from './viewport';
 import { Width } from './width';
 
-export class UI {
-  static gutter = Gutter;
-  static theme = Theme;
-  static scheme = Scheme;
-  static size = Size;
-  static stroke = Stroke;
-  static outline = Outline;
-  static position = Position;
-  static breakpoint = Breakpoint;
-  static behaviour = Behaviour;
-  static shape = Shape;
-  static orientation = Orientation;
-  static width = Width;
-  static height = Height;
-  static color = Color;
-  static icons = icons;
-  static matching = UrlMatching;
-  static feature = Feature;
-  static state = State;
-  static fit = Fit;
-  static target = LinkTarget;
-  static align = FlexAlign;
-  static justify = FlexJustify;
-  static direction = FlexDirection;
-  static wrap = FlexWrap;
-  static validator = Validator;
-  static placement = Placement;
-  static trigger = Triggers;
-  static context = Context;
-  static text = {align: TextAlign, transform: TextTransform};
-  static datePicker = {type: DatePickerType};
-  static skeleton = {type: SkeletonType};
-  static pager = {mode: PagerMode};
-  static input = {type: InputType, scheme: InputScheme, autocomplete: InputAutocomplete};
-  static select = {mode: SelectMode};
-  static button = {type: ButtonType};
-  static gantt = {type: GanttTypes};
-  static menu = {style: MenuStyle};
-  static keyboard = {key: Key, modifier: Modifier};
-  static icon = {modifier: IconModifier};
-}
+export const UI = {
+  gutter: Gutter,
+  theme: Theme,
+  scheme: Scheme,
+  size: Size,
+  stroke: Stroke,
+  outline: Outline,
+  position: Position,
+  breakpoint: Breakpoint,
+  behaviour: Behaviour,
+  shape: Shape,
+  orientation: Orientation,
+  width: Width,
+  height: Height,
+  color: Color,
+  icons: icons,
+  matching: UrlMatching,
+  feature: Feature,
+  state: State,
+  fit: Fit,
+  target: LinkTarget,
+  align: FlexAlign,
+  justify: FlexJustify,
+  direction: FlexDirection,
+  wrap: FlexWrap,
+  validator: Validator,
+  placement: Placement,
+  trigger: Triggers,
+  context: Context,
+  text: {align: TextAlign, transform: TextTransform},
+  datePicker: {type: DatePickerType},
+  skeleton: {type: SkeletonType},
+  pager: {mode: PagerMode},
+  input: {type: InputType, scheme: InputScheme, autocomplete: InputAutocomplete},
+  select: {mode: SelectMode, autocomplete: InputAutocomplete},
+  button: {type: ButtonType},
+  gantt: {type: GanttTypes},
+  menu: {style: MenuStyle},
+  keyboard: {key: Key, modifier: Modifier},
+  icon: {modifier: IconModifier},
+  switch: {style: SwitchStyle},
+  modal: {scheme: ModalScheme, closedReason: ModalClosedReason},
+  viewport: {type: ViewportType}
+};

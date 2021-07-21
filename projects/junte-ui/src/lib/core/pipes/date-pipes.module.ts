@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormatDistancePipe } from './date/format-distance.pipe';
 import { GetYearPipe } from './date/get-year.pipe';
 import { AddMonthsPipe } from './date/add-months.pipe';
 import { AddYearsPipe } from './date/add-years.pipe';
@@ -34,6 +35,7 @@ import { WeekdayNamePipe } from './date/weekday-name.pipe';
   declarations: [
     FormatPipe,
     DifferenceInCalendarDaysPipe,
+    FormatDistancePipe,
     StartOfDayPipe,
     StartOfMonthPipe,
     StartOfYearPipe,
@@ -65,6 +67,7 @@ import { WeekdayNamePipe } from './date/weekday-name.pipe';
   exports: [
     FormatPipe,
     DifferenceInCalendarDaysPipe,
+    FormatDistancePipe,
     StartOfDayPipe,
     StartOfMonthPipe,
     StartOfYearPipe,

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabComponent, UI } from 'junte-ui';
+import { AvatarComponent, AvatarsGroupComponent, AvatarsListComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from '../../../../enums/local-ui';
 
@@ -30,7 +30,7 @@ export class AvatarTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/avatar';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=791%3A0';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   sizeControl = this.fb.control(null);
   shapeControl = this.fb.control(null);
@@ -49,7 +49,7 @@ export class AvatarTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { Orientation } from '../../core/enums/orientation';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
@@ -5,7 +6,15 @@ import { UI } from '../../core/enums/ui';
 
 @Component({
   selector: 'jnt-collapsible',
-  templateUrl: './collapsible.encapsulated.html'
+  templateUrl: './collapsible.encapsulated.html',
+  animations: [
+    trigger('rotate', [
+        state('open', style({transform: 'rotate(180deg)'})),
+        state('close', style({transform: 'rotate(90deg)'})),
+        transition('open <=> close', [animate('.3s ease-in-out')]),
+      ]
+    )
+  ]
 })
 export class CollapsibleComponent {
 
@@ -35,6 +44,7 @@ export class CollapsibleComponent {
     type: 'boolean',
     default: 'false'
   })
+  @HostBinding('attr.data-opened')
   @Input()
   opened = false;
 

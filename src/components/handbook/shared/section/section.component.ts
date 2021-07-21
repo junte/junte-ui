@@ -17,7 +17,7 @@ export class SectionComponent {
 
   originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return 0;
-  };
+  }
 
   constructor(public router: Router,
               public route: ActivatedRoute) {

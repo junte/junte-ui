@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DatePickerComponent, TabComponent, UI } from 'junte-ui';
+import { DatePickerComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -20,7 +20,7 @@ export class DatePickerTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/date-picker';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=7455%3A19';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   typeControl = this.fb.control(false);
   disableControl = this.fb.control(false);
@@ -48,7 +48,7 @@ export class DatePickerTestComponent implements OnInit {
         : this.flightDateControl.enable({emitEvent: false}));
 
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

@@ -39,7 +39,7 @@
       </p>
     </div>
 
-    <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tabs #tabs [features]="[ui.feature.adapted]">
 
       <jnt-tab title="Preview"
                i18n-title="@@label.preview"
@@ -117,15 +117,19 @@
                     <jnt-menu #headerTopMenu *ngIf="menuControl.value">
                       <jnt-menu-item title="Home"
                                      i18n-title="@@label.home"
+                                     [link]="['handbook/home']"
                                      [icon]="ui.icons.home"></jnt-menu-item>
                       <jnt-menu-item title="My network"
                                      i18n-title="@@label.my_network"
+                                     [link]="['handbook/home']"
                                      [icon]="localUi.icons.network"></jnt-menu-item>
                       <jnt-menu-item title="Jobs"
                                      i18n-title="@@label.jobs"
+                                     [link]="['handbook/home']"
                                      [icon]="localUi.icons.jobs"></jnt-menu-item>
                       <jnt-menu-item title="Messages"
                                      i18n-title="@@label.messages"
+                                     [link]="['handbook/home']"
                                      [icon]="ui.icons.messages"></jnt-menu-item>
                     </jnt-menu>
 
@@ -169,15 +173,15 @@
                                     (selected)="hide()">
                             <jnt-menu-item title="Profile"
                                            i18n-title="@@label.profile"
-                                           [link]="['/components/layout/stack']"
+                                           [link]="['/components/site/stack']"
                                            [icon]="ui.icons.profile"></jnt-menu-item>
                             <jnt-menu-item title="Settings"
                                            i18n-title="@@label.settings"
-                                           [link]="['/components/layout/application']"
+                                           [link]="['/components/site/application']"
                                            [icon]="ui.icons.animated.settings"></jnt-menu-item>
                             <jnt-menu-item title="Logout"
                                            i18n-title="@@label.logout"
-                                           [link]="['/components/layout/grid']"
+                                           [link]="['/components/site/grid']"
                                            [icon]="ui.icons.home"></jnt-menu-item>
                           </jnt-menu>
                         </ng-template>
@@ -188,7 +192,7 @@
                   <ng-template #withoutAsideTemplate let-aside="aside">
                     <jnt-app-content [aside]="aside">
                       <jnt-app-body>
-                        <jnt-breadcrumb *ngIf="breadcrumbsControl.value" [aside]="aside"></jnt-breadcrumb>
+                        <jnt-breadcrumbs *ngIf="breadcrumbsControl.value" [aside]="aside"></jnt-breadcrumbs>
                         <jnt-container>
                           <jnt-app-page-header *ngIf="pageHeaderControl.value"
                                                [icon]="localUi.icons.layout"
@@ -226,7 +230,7 @@
                       </ng-template>
 
                       <jnt-menu [orientation]="ui.orientation.vertical"
-                                [spacing]="ui.size.small">
+                                [gutter]="ui.size.small">
                         <jnt-menu-item title="General"
                                        i18n-title="@@label.general"
                                        [icon]="localUi.icons.general">
@@ -264,7 +268,7 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab #code title="Code"
+      <jnt-tab title="Code"
                i18n-title="@@label.code"
                [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
@@ -352,7 +356,7 @@
                               </ng-template>
                               <ng-template #userbarMenuTemplate let-hide="hide">
                                 <jnt-menu [orientation]="ui.orientation.vertical"
-                                          [spacing]="ui.gutter.small"
+                                          [gutter]="ui.gutter.small"
                                           (selected)="hide()">
                                   <jnt-menu-item title="Profile"
                                                  [icon]="ui.icons.profile"
@@ -390,7 +394,7 @@
                             </jnt-stack>
 
                             <jnt-menu [orientation]="ui.orientation.vertical"
-                                      [spacing]="ui.size.small">
+                                      [gutter]="ui.size.small">
                               <jnt-menu-item title="General" [icon]="localUi.icons.general">
                                 <jnt-sub-menu>
                                   <jnt-sub-menu-item title="About"></jnt-sub-menu-item>

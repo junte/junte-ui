@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TimerComponent, TabComponent, UI } from 'junte-ui';
+import { TimerComponent, UI, TabsComponent } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -26,8 +26,7 @@ export class TimerTestComponent implements OnInit {
   @ViewChild('timer')
   timer: TimerComponent;
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   startControl = this.fb.control(new Date);
   endControl = this.fb.control(new Date);
@@ -44,7 +43,7 @@ export class TimerTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

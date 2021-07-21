@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { FilterComponent, TabComponent, UI } from 'junte-ui';
+import { FilterComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK, Hero, Abilities, Sources, Universes } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -52,7 +52,8 @@ export class FilterTestComponent implements OnInit {
     icon: this.iconControl,
   });
 
-  filteredControl = new FormControl([Hero.batman, Hero.ironman, Hero.spiderman, Hero.wolverine, Hero.superman, Hero.captainAmerica, Hero.wonder, Hero.thanos, Hero.hulk]);
+  filteredControl = new FormControl([Hero.batman, Hero.ironman, Hero.spiderman, Hero.wolverine,
+    Hero.superman, Hero.captainAmerica, Hero.wonder, Hero.thanos, Hero.hulk]);
   abilitiesControl = new FormControl(null);
   sourcesControl = new FormControl(null);
   universesControl = new FormControl(null);
@@ -64,7 +65,7 @@ export class FilterTestComponent implements OnInit {
     universes: this.universesControl
   });
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder) {
   }
@@ -79,7 +80,7 @@ export class FilterTestComponent implements OnInit {
         {emitEvent: false});
     });
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

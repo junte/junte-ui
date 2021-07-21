@@ -33,7 +33,7 @@ import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { Period } from './types';
 import { today } from './utils';
-import { WeekMetricComponent } from './week/week-metric.component';
+import { WeekMetricDirective } from './week/week-metric.directive';
 
 const WEEKS_DISPLAYED = 6;
 const DAYS_IN_WEEK = 7;
@@ -84,8 +84,8 @@ export class CalendarComponent implements ControlValueAccessor, OnInit {
   @Input()
   features: Feature[] = [];
 
-  @ContentChildren(WeekMetricComponent)
-  metrics: QueryList<WeekMetricComponent>;
+  @ContentChildren(WeekMetricDirective)
+  metrics: QueryList<WeekMetricDirective>;
 
   @ContentChild('calendarDayTemplate')
   dayTemplate: TemplateRef<any>;

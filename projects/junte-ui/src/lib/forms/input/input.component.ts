@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -31,6 +32,7 @@ const DEFAULT_NUMBER = 0;
 @Component({
   selector: 'jnt-input',
   templateUrl: './input.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -244,6 +246,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (!!mask) {
       this.form.setValue(this.masking(this.inputControl.value || ''));
     }
+
+    this.cd.markForCheck();
   }
 
   get mask() {
@@ -285,12 +289,15 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.inputControl.valueChanges.subscribe(value =>
-      this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null));
+    this.inputControl.valueChanges.subscribe(value => {
+      this.onChange(!!value ? (this.type === InputType.number ? +value : value) : null);
+      this.cd.markForCheck();
+    });
 
     this.formattedControl.valueChanges.pipe(
       distinctUntilChanged(),
@@ -310,6 +317,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       if (cleared.input !== this.inputControl.value || cleared.formatted !== this.formattedControl.value) {
         this.form.setValue(cleared);
       }
+      this.cd.markForCheck();
     });
   }
 
@@ -335,6 +343,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     const text = event.clipboardData.getData('text');
     const data = this.masking(text);
     this.form.setValue(data);
+    this.cd.markForCheck();
   }
 
   keydownMask(event: KeyboardEvent) {
@@ -355,6 +364,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (data !== undefined) {
       this.form.setValue(data);
     }
+
+    this.cd.markForCheck();
   }
 
   keydown(event: KeyboardEvent) {
@@ -366,6 +377,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     if (event.key === Key.enter) {
       event.preventDefault();
     }
+    this.cd.markForCheck();
   }
 
   keyup() {
@@ -385,14 +397,18 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       }
       this.inputControl.setValue(value);
     }
+
+    this.cd.markForCheck();
   }
 
   writeValue(value) {
     this.form.patchValue(!!this.mask ? this.masking(value) : {input: value}, {emitEvent: false});
+    this.cd.markForCheck();
   }
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    this.cd.markForCheck();
   }
 
   setNumber(step: number) {
@@ -404,11 +420,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       number = this.min !== undefined && this.min !== null ? Math.max(number, this.min) : number;
       this.inputControl.setValue(number);
     }
+
+    this.cd.markForCheck();
   }
 
   clear(event: MouseEvent) {
     this.inputControl.setValue(null);
     this.formattedControl.setValue(this.mask);
+    this.cd.markForCheck();
     event.stopPropagation();
   }
 
@@ -429,6 +448,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   copy() {
     this.copied = true;
-    setTimeout(() => this.copied = false, 2100);
+    this.cd.markForCheck();
+    setTimeout(() => {
+      this.copied = false;
+      this.cd.markForCheck();
+    }, 2100);
   }
 }

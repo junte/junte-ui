@@ -5,7 +5,7 @@ import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { TimelineItemComponent } from './item/timeline-item.component';
+import { TimelineItemDirective } from './item/timeline-item.directive';
 import { TimelineComponent } from './timeline.component';
 
 @NgModule({
@@ -20,14 +20,14 @@ import { TimelineComponent } from './timeline.component';
   ],
   declarations: [
     TimelineComponent,
-    TimelineItemComponent
+    TimelineItemDirective
   ],
   entryComponents: [
     TimelineComponent
   ],
   exports: [
     TimelineComponent,
-    TimelineItemComponent
+    TimelineItemDirective
   ]
 })
 export class TimelineModule {

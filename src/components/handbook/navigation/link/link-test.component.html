@@ -37,7 +37,7 @@
       </p>
     </div>
 
-    <jnt-tabs [features]="[ui.feature.adapted]">
+    <jnt-tabs #tabs [features]="[ui.feature.adapted]">
 
       <jnt-tab title="Preview"
                i18n-title="@@label.preview"
@@ -76,7 +76,8 @@
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
                       </jnt-link>
-                      который должен наследовать размер шрифта и высоту строки абзаца, поэтому мы должны написать здесь несколько длинных
+                      который должен наследовать размер шрифта и высоту строки абзаца, поэтому мы должны написать здесь
+                      несколько длинных
                       текст, и мы верим, что это возможно!
                     </ng-container>
                   </p>
@@ -88,7 +89,7 @@
                                         position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null"
                                 [disabled]="disabledControl.value"
                                 [target]="targetControl.value"
-                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['./', {param: 1}]"
+                                [source]="sourceControl.value == sourceType.external ? 'https://google.com' : ['handbook/navigation/menu', {param: 1}]"
                                 title="Link here"
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
@@ -108,7 +109,8 @@
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>
                       </jnt-link>
-                      поскольку SVG не использует высоту строки для выравнивания рядом с текстом, поэтому мы должны написать здесь несколько длинных
+                      поскольку SVG не использует высоту строки для выравнивания рядом с текстом, поэтому мы должны
+                      написать здесь несколько длинных
                       текст, и мы верим, что это возможно!
                     </ng-container>
                   </p>
@@ -122,7 +124,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="outline"
-                                    i18n="@@label.outline">Outline</jnt-form-label>
+                                    i18n="@@label.outline">Outline
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="outline"
                                   placeholder="Transparent"
@@ -163,7 +166,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="source"
-                                    i18n="@@label.source">Source</jnt-form-label>
+                                    i18n="@@label.source">Source
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="source"
                                   placeholder="None"
@@ -183,7 +187,8 @@
 
                   <jnt-form-item>
                     <jnt-form-label for="target"
-                                    i18n="@@label.target">Target</jnt-form-label>
+                                    i18n="@@label.target">Target
+                    </jnt-form-label>
                     <jnt-form-control>
                       <jnt-select formControlName="target"
                                   placeholder="Self"
@@ -241,9 +246,9 @@
         </ng-template>
       </jnt-tab>
 
-      <jnt-tab #code title="Code"
-             i18n-title="@@label.code"
-             [icon]="localUi.icons.code">
+      <jnt-tab title="Code"
+               i18n-title="@@label.code"
+               [icon]="localUi.icons.code">
         <ng-template #tabContentTemplate>
           <jnt-accordion [active]="1">
             <jnt-accordion-section title="How to start"

@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs [features]="[ui.feature.adapted]">
+  <jnt-tabs #tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
@@ -83,7 +83,7 @@
                 <jnt-form-item>
                   <jnt-form-label for="color" i18n="@@label.background_color">Background color</jnt-form-label>
                   <jnt-form-control>
-                    <jnt-color-picker formControlName="color"></jnt-color-picker>
+                    <app-color-picker formControlName="color"></app-color-picker>
                   </jnt-form-control>
                 </jnt-form-item>
 
@@ -125,7 +125,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>

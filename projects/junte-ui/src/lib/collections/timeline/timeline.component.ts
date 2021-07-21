@@ -1,6 +1,6 @@
 import { Component, ContentChildren, HostBinding, QueryList } from '@angular/core';
 import { UI } from '../../core/enums/ui';
-import { TimelineItemComponent } from './item/timeline-item.component';
+import { TimelineItemDirective } from './item/timeline-item.directive';
 
 @Component({
   selector: 'jnt-timeline',
@@ -12,7 +12,7 @@ export class TimelineComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-timeline-host';
 
-  @ContentChildren(TimelineItemComponent)
-  items: QueryList<TimelineItemComponent>;
+  @ContentChildren(TimelineItemDirective)
+  items: QueryList<TimelineItemDirective>;
 
 }

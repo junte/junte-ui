@@ -23,7 +23,7 @@ import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
 import { I18N_PROVIDERS } from '../../core/i18n/providers';
 import { PopoverComponent } from '../../overlays/popover/popover.component';
-import { TableColumnComponent } from './table-column';
+import { TableColumnDirective } from './table-column.directive';
 import { DefaultSearchFilter } from './types';
 
 const FIRST = 10;
@@ -86,8 +86,8 @@ export class TableComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Output()
   reloaded = new EventEmitter<any>();
 
-  @ContentChildren(TableColumnComponent)
-  columns: QueryList<TableColumnComponent>;
+  @ContentChildren(TableColumnDirective)
+  columns: QueryList<TableColumnDirective>;
 
   @ContentApi({
     selector: '#tableRowActionsTemplate',

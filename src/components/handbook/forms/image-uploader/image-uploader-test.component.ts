@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ImageUploaderComponent, TabComponent, UI, UploadImageData } from 'junte-ui';
-import { of } from 'rxjs';
+import { CropperPosition, ImageUploaderComponent, TabsComponent, UI, UploadImageData } from 'junte-ui';
+import { combineLatest, of } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -10,22 +11,32 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './image-uploader-test.component.html',
   styleUrls: ['./image-uploader-test.component.scss']
 })
-export class ImageUploaderTestComponent {
+export class ImageUploaderTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
   types = {imageUploader: ImageUploaderComponent};
   handbook = HANDBOOK;
   avatar: UploadImageData;
+  area = new CropperPosition();
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-uploader';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   shapeControl = this.fb.control(UI.shape.circle);
-
+  minControl = this.fb.control(0.01);
+  maxControl = this.fb.control(5);
+  stepControl = this.fb.control(0.01);
+  areaWidthControl = this.fb.control(200);
+  areaHeightControl = this.fb.control(200);
   builder = this.fb.group({
-    shape: this.shapeControl
+    shape: this.shapeControl,
+    min: this.minControl,
+    max: this.maxControl,
+    step: this.stepControl,
+    areaWidth: this.areaWidthControl,
+    areaHeight: this.areaHeightControl
   });
 
   avatarControl = this.fb.control(null);
@@ -38,7 +49,12 @@ export class ImageUploaderTestComponent {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
+
+    combineLatest([
+      this.areaWidthControl.valueChanges.pipe(startWith(200)),
+      this.areaHeightControl.valueChanges.pipe(startWith(200))
+    ]).subscribe(([width, height]) => this.area = {...this.area, width, height});
   }
 
   uploadAvatar() {

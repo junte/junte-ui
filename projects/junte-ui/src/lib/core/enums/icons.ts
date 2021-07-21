@@ -29,6 +29,7 @@ export const icons = {
   reload: 'reload:svg:default:main|stroked',
   cut: 'cut:svg:default:main|stroked',
   move: 'move:svg:default:main|stroked',
+  drag: 'drag:svg:default:main|filled',
   close: 'close:svg:default:main|stroked',
   closeSmall: 'close-small:svg:default:main|stroked',
   expand: 'expand:svg:default:main|stroked',
@@ -75,6 +76,10 @@ export const icons = {
   // programming
   code: 'code:svg:default:other|stroked',
   bug: 'bug:svg:default:other|stroked',
+  junte: 'junte:svg:default:other',
+  junteCircle: 'junte-circle:svg:default:other',
+  junteStroke: 'junte-stroke:svg:default:other|stroked',
+  junteStrokeCircle: 'junte-circle-stroke:svg:default:other|stroked',
   // social
   like: 'like:svg:default:other|stroked',
   dislike: 'dislike:svg:default:other|stroked',

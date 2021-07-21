@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PictureComponent, TabComponent, UI } from 'junte-ui';
+import { PictureComponent, TabsComponent, UI } from 'junte-ui';
 import { Fit } from 'projects/junte-ui/src/lib/core/enums/fit';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
@@ -26,7 +26,7 @@ export class PictureTestComponent implements OnInit {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/elements/picture';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   imageControl = this.fb.control(true);
   iconControl = this.fb.control(false);
@@ -51,7 +51,7 @@ export class PictureTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

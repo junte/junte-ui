@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
-import { Breakpoint, BreakpointService, moveFromRight, UI } from 'junte-ui';
+import { ActivatedRoute } from '@angular/router';
+import { BreakpointService, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { AnalyticsType } from 'src/enums/analyticsType';
 import { LocalUI } from 'src/enums/local-ui';
@@ -13,17 +13,16 @@ export enum Theme {
 
 @Component({
   selector: 'app-documentation',
-  templateUrl: './handbook.component.html',
-  styleUrls: ['./handbook.component.scss'],
-  animations: [moveFromRight]
+  templateUrl: './site.component.html',
+  styleUrls: ['./site.component.scss']
 })
-export class HandbookComponent implements OnInit {
+export class SiteComponent implements OnInit {
 
-  handbook = HANDBOOK;
-  analyticsType = AnalyticsType;
   ui = UI;
   localUi = LocalUI;
   theme = Theme;
+  handbook = HANDBOOK;
+  analyticsType = AnalyticsType;
 
   loading = false;
   themeControl = new FormControl(localStorage.theme || Theme.light);
@@ -32,6 +31,7 @@ export class HandbookComponent implements OnInit {
   });
 
   constructor(private builder: FormBuilder,
+              private route: ActivatedRoute,
               private breakpoint: BreakpointService) {
   }
 
@@ -45,7 +45,8 @@ export class HandbookComponent implements OnInit {
     });
   }
 
-  animate(outlet: RouterOutlet) {
-    return this.breakpoint.current === Breakpoint.mobile && outlet?.activatedRouteData?.animation;
+  hello() {
+    console.log(this.route);
   }
+
 }

@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   forwardRef,
@@ -40,7 +41,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
   ui = UI;
 
   @HostBinding('attr.host')
-  readonly host = 'jnt-checkbox-group-host';
+  readonly host = 'jnt-switch-group-host';
 
   private _orientation: Orientation = Orientation.vertical;
   private _spacing: Gutter = Gutter.small;
@@ -145,7 +146,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
 
   constructor(private fb: FormBuilder,
               private breakpoint: BreakpointService,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              private cd: ChangeDetectorRef) {
   }
 
   ngAfterViewInit() {
@@ -175,6 +177,7 @@ export class CheckboxGroupComponent implements ControlValueAccessor, AfterViewIn
           });
         }
       });
+      this.cd.detectChanges();
     }
   }
 

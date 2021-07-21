@@ -5,6 +5,7 @@ import { IconModule } from '../../elements/icon/icon.module';
 import { SelectModule } from '../../forms/select/select.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PagerComponent } from './pager.component';
+import { FormatLinkPipe } from './pipes';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { PagerComponent } from './pager.component';
     SelectModule
   ],
   declarations: [
-    PagerComponent
+    PagerComponent,
+    FormatLinkPipe
   ],
   entryComponents: [
     PagerComponent

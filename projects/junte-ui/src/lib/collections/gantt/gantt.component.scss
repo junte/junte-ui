@@ -17,7 +17,7 @@
         background-color: $jnt-primary-color
       ),
       weekend: (
-        background-color: $jnt-secondary-dark-color
+        background-color: $jnt-highlight-background
       )
     ),
     title: (
@@ -83,6 +83,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        button {
+          @include button-default();
+        }
       }
     }
   }

@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs [features]="[ui.feature.adapted]">
+  <jnt-tabs #tabs [features]="[ui.feature.adapted]">
 
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -84,7 +84,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
@@ -182,7 +182,7 @@
         <ng-container *ngIf="actionsControl.value">
           <![CDATA[
           <ng-template #tableRowActionsTemplate let-row="row" let-hide="hide">
-            <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.size.small">
+            <jnt-menu [orientation]="ui.orientation.vertical" [gutter]="ui.size.small">
               <jnt-menu-item title="Edit" (click)="hide()"></jnt-menu-item>
               <jnt-menu-item title="Delete" (click)="hide()"></jnt-menu-item>
             </jnt-menu>

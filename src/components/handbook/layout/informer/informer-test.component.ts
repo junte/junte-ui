@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { InformerComponent, TabComponent, UI } from 'junte-ui';
+import { InformerComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
@@ -27,7 +27,7 @@ export class InformerTestComponent implements OnInit {
   @ViewChild('page', {read: ElementRef, static: false})
   backdrop: ElementRef<HTMLElement>;
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   contentControl = this.fb.control(null);
   placementControl = this.fb.control(null);
@@ -42,7 +42,7 @@ export class InformerTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   add() {

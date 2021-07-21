@@ -7,4 +7,5 @@ import { Component, HostBinding } from '@angular/core';
 export class LpFooterComponent {
 
   @HostBinding('attr.host') readonly host = 'jnt-lp-footer-host';
+
 }

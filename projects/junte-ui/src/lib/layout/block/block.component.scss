@@ -31,7 +31,8 @@
     title: (
       color: $jnt-primary-color,
       font-weight: $jnt-font-weight-bold,
-      font-size: 18px
+      font-size: 18px,
+      text-align: center
     ),
     overlay: (
       background-color: rgba($jnt-primary-background, 0.75),
@@ -146,8 +147,7 @@
 
     [data-title] {
       @if $declare {
-        text-align: center;
-        border-bottom: 1px solid $jnt-secondary-color;
+        border-bottom: 1px solid $jnt-secondary-background;
       }
       @if map-has-key($vars, header) {
         $header: map-get($vars, header);
@@ -159,6 +159,7 @@
         color: map-get($title, color);
         font-weight: map-get($title, font-weight);
         font-size: map-get($title, font-size);
+        text-align: map-get($title, text-align);
       }
     }
 

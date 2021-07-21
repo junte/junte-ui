@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { PopoverModule } from '../../overlays/popover/popover.module';
 import { LinkModule } from '../link/link.module';
-import { MenuItemComponent } from './menu-item.component';
+import { MenuItemDirective } from './menu-item.directive';
 import { MenuComponent } from './menu.component';
-import { SubMenuItemComponent } from './sub-menu/sub-menu-item.component';
-import { SubMenuComponent } from './sub-menu/sub-menu.component';
+import { SubMenuItemDirective } from './sub-menu/sub-menu-item.directive';
+import { SubMenuDirective } from './sub-menu/sub-menu.directive';
 
 @NgModule({
   imports: [
@@ -19,23 +20,23 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     StackModule,
     BadgeModule,
     SpinnerModule,
-    PopoverModule
+    PopoverModule,
+    ArrayPipesModule
   ],
   exports: [
     MenuComponent,
-    MenuItemComponent,
-    SubMenuComponent,
-    SubMenuItemComponent
+    MenuItemDirective,
+    SubMenuDirective,
+    SubMenuItemDirective
   ],
   entryComponents: [
-    MenuComponent,
-    MenuItemComponent
+    MenuComponent
   ],
   declarations: [
     MenuComponent,
-    MenuItemComponent,
-    SubMenuComponent,
-    SubMenuItemComponent
+    MenuItemDirective,
+    SubMenuDirective,
+    SubMenuItemDirective
   ],
 })
 export class MenuModule {

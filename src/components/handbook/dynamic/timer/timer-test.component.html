@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs playground>
+  <jnt-tabs #tabs playground>
 
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -101,7 +101,7 @@
         </jnt-row>
       </ng-template>
     </jnt-tab>
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>

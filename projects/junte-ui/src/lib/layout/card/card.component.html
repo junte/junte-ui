@@ -7,19 +7,26 @@
 </ng-template>
 
 <jnt-stack data-card
-           [attr.tabindex]="(features | includes : ui.feature.clickable) ? 1 : null"
+           [attr.data-focused]="focused"
            [orientation]="ui.orientation.horizontal"
            [gutter]="ui.gutter.none"
            [align]="ui.align.stretch">
-  <div data-line *ngIf="color" [style.background-color]="color"></div>
+  <div data-line *ngIf="!!color" [style.background-color]="color"></div>
+
+  <div data-drag *ngIf="!!dragTemplate">
+    <ng-container *ngTemplateOutlet="dragTemplate;context: {icon: ui.icons.drag}"></ng-container>
+  </div>
 
   <jnt-stack data-main [align]="ui.align.stretch">
     <div *ngIf="!!headerTemplate" data-header>
       <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
     </div>
     <jnt-stack data-body
+               [attr.tabindex]="(features | includes : ui.feature.clickable) ? 1 : null"
                [align]="ui.align.stretch"
-               [orientation]="(features | includes : ui.feature.adapted) && mobile ? ui.orientation.vertical : ui.orientation.horizontal"
+               [orientation]="((features | includes : ui.feature.adapted) && mobile) || orientation === ui.orientation.vertical ? ui.orientation.vertical : ui.orientation.horizontal"
+               (focusin)="focused = true"
+               (focusout)="focused = false"
                (click)="!!features && features.includes(ui.feature.clickable) ? selected.emit() : null">
       <div data-picture *ngIf="!!picture && picture.position === ui.position.left">
         <ng-container *ngIf="!!picture.template; else cardImageTemplate">
@@ -49,18 +56,16 @@
 
 </jnt-stack>
 
-<jnt-button *ngIf="!!cardActionsTemplate"
+<button *ngIf="!!cardActionsTemplate"
             data-action
-            [scheme]="ui.scheme.secondary"
-            [size]="ui.size.small"
-            [icon]="ui.icons.actions"
             (attached)="popover = $event"
             [jntPopover]="{
               contentTemplate: dropdownTemplate,
               position: ui.position.right,
               trigger: ui.trigger.click
             }">
-</jnt-button>
+  <jnt-icon [icon]="ui.icons.actions"></jnt-icon>
+</button>
 
 <ng-template #dropdownTemplate>
   <ng-container *ngTemplateOutlet="cardActionsTemplate; context: {hide: hideActions.bind(this)}"></ng-container>

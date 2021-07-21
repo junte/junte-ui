@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs [features]="[ui.feature.adapted]">
+  <jnt-tabs #tabs [features]="[ui.feature.adapted]">
 
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
@@ -35,7 +35,7 @@
             <app-browser-preview>
               <ng-template #document>
                 <jnt-menu [orientation]="orientationControl.value"
-                          [spacing]="spacingControl.value"
+                          [gutter]="spacingControl.value"
                           [style]="styleControl.value"
                           [collapsed]="collapsedControl.value">
                   <jnt-menu-item [icon]="iconsControl.value ? ui.icons.calendar : null"
@@ -71,12 +71,13 @@
 
                   </jnt-menu-item>
 
-                  <jnt-menu-item [link]="['/handbook/navigation/menu']"
+                  <jnt-menu-item title="Home"
+                                 i18n-title="@@label.home"
+                                 [link]="['/handbook/navigation/menu']"
+                                 [fragment]="'test'"
                                  [loading]="loadingControl.value"
                                  [icon]="iconsControl.value ? ui.icons.home : null"
-                                 [disabled]="disabledControl.value"
-                                 title="Home"
-                                 i18n-title="@@label.home">
+                                 [disabled]="disabledControl.value">
                     <jnt-badge *ngIf="badgesControl.value" [value]=5 [color]="ui.color.blue100"></jnt-badge>
                   </jnt-menu-item>
 
@@ -216,7 +217,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
@@ -248,7 +249,7 @@
                   </ng-container>
                   <ng-container *ngIf="spacingControl.value">
                     <![CDATA[
-                    [spacing]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
+                    [gutter]="ui.gutter.]]>{{spacingControl.value}}<![CDATA["]]>
                   </ng-container>
                   <ng-container *ngIf="collapsedControl.value">
                     <![CDATA[

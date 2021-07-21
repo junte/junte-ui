@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/f
 import { UI } from 'junte-ui';
 
 @Component({
-  selector: 'jnt-color-picker',
+  selector: 'app-color-picker',
   templateUrl: './color-picker.component.html',
   styleUrls: ['./color-picker.component.scss'],
   providers: [

@@ -14,8 +14,8 @@
       </jnt-stack>
     </button>
     <jnt-stack [align]="ui.align.stretch">
-      <ng-container *ngIf="!!contentTemplate">
-        <ng-container *ngTemplateOutlet="contentTemplate;
+      <ng-container *ngIf="!!headerTemplate">
+        <ng-container *ngTemplateOutlet="headerTemplate;
         context: {
           collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet,
           toggle: toggle.bind(this)
@@ -27,7 +27,7 @@
                 [orientation]="ui.orientation.vertical"
                 [collapsed]="collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet"
                 [placement]="ui.placement.fixed"
-                [spacing]="menu.spacing"
+                [gutter]="menu.gutter"
                 (selected)="toggle()">
         <jnt-menu-item *ngFor="let item of menu.items"
                        [title]="item.title"
@@ -60,6 +60,14 @@
           </jnt-sub-menu>
         </jnt-menu-item>
       </jnt-menu>
+      <ng-container *ngIf="!!footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate;
+        context: {
+          collapsed: collapsed && breakpoint.current !== ui.breakpoint.mobile && breakpoint.current !== ui.breakpoint.tablet,
+          toggle: toggle.bind(this)
+        }">
+        </ng-container>
+      </ng-container>
     </jnt-stack>
   </div>
 </div>

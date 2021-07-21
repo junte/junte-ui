@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SkeletonModule } from '../../layout/skeleton/skeleton.module';
 import { ColorPipesModule } from '../../core/pipes/color-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
-import { ChartIndicatorComponent } from './chart-indicator';
+import { ChartIndicatorDirective } from './chart-indicator.directive';
 import { ChartComponent } from './chart.component';
 import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
 
@@ -16,17 +16,16 @@ import { PercentToNumberPipe, SumIndicatorsPipe } from './pipes';
   ],
   exports: [
     ChartComponent,
-    ChartIndicatorComponent
+    ChartIndicatorDirective
   ],
   declarations: [
     ChartComponent,
-    ChartIndicatorComponent,
+    ChartIndicatorDirective,
     PercentToNumberPipe,
     SumIndicatorsPipe
   ],
   entryComponents: [
-    ChartComponent,
-    ChartIndicatorComponent
+    ChartComponent
   ]
 })
 export class ChartModule {

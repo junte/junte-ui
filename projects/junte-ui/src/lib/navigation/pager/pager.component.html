@@ -14,7 +14,7 @@
     <jnt-icon [icon]="ui.icons.chevronLeft"></jnt-icon>
   </a>
   <a *ngFor="let page of pages"
-     [attr.data-href]="'?page=' + page"
+     [attr.data-href]="link | formatLinkPipe:page"
      (click)="setPage(page)"
      [attr.data-active]="page === selectedPage"
      tabindex="0">{{page}}</a>

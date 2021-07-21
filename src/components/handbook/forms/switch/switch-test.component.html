@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs [features]="[ui.feature.adapted]">
+  <jnt-tabs #tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
@@ -35,9 +35,59 @@
             <app-browser-preview>
               <ng-template #document>
                 <form [formGroup]="form">
-                  <jnt-stack [align]="ui.align.stretch">
+                  <ng-template #groupTemplate>
+                    <jnt-stack [orientation]="(colsControl.value <= 1 && breakpoint.current !== ui.breakpoint.mobile)
+                      ? ui.orientation.horizontal : ui.orientation.vertical"
+                               [wrap]="ui.wrap.wrap"
+                               [gutter]="ui.gutter.big"
+                               [align]="ui.align.stretch">
+                      <jnt-form-control name="hero">
+                        <jnt-switch-group formControlName="hero"
+                                          [cols]="colsControl.value"
+                                          [align]="alignControl.value"
+                                          [size]="sizeControl.value">
+                          <jnt-switch *ngFor="let hero of heroes | keyvalue: originalOrder | slice:0:6"
+                                      [label]="!labelControl.value ? hero.value.name : null"
+                                      [value]="hero.value.code">
+                            <ng-template #switchLabelTemplate *ngIf="labelControl.value">
+                              <jnt-stack [orientation]="ui.orientation.horizontal" data-custom
+                                         [align]="ui.align.center"
+                                         [justify]="ui.justify.between">
+                                <jnt-stack [orientation]="ui.orientation.horizontal"
+                                           [gutter]="ui.gutter.small"
+                                           [align]="ui.align.center">
+                                  <jnt-avatar [image]="hero.value.avatar" [size]="ui.size.tiny"></jnt-avatar>
+                                  <span data-hero i18n="{{hero.value.i18n}}">{{hero.value.name}}</span>
+                                </jnt-stack>
+                                <jnt-label data-universe [label]="hero.value.universe.name"
+                                           [color]="hero.value.universe.color"></jnt-label>
+                              </jnt-stack>
+                            </ng-template>
+                          </jnt-switch>
+                        </jnt-switch-group>
+
+                        <jnt-form-message [validator]="ui.validator.required"
+                                          i18n="@@label.please_select_any_hero">
+                          Please select any hero
+                        </jnt-form-message>
+                      </jnt-form-control>
+                      <jnt-stack *ngIf="heroControl.value?.length" [align]="ui.align.center">
+                        <jnt-avatars-list [size]="breakpoint.current !== ui.breakpoint.mobile
+                          ? ui.size.large : ui.size.normal" [max]="6">
+                          <ng-container *ngFor="let code of heroControl.value">
+                            <jnt-avatar [size]="ui.size.large"
+                                        [image]="heroes[code].avatar"></jnt-avatar>
+                          </ng-container>
+                        </jnt-avatars-list>
+                      </jnt-stack>
+                    </jnt-stack>
+                  </ng-template>
+
+                  <jnt-stack *ngIf="typeControl.value === switchType.single else groupTemplate"
+                             [align]="ui.align.stretch">
                     <jnt-switch formControlName="switch"
                                 [size]="sizeControl.value"
+                                [align]="alignControl.value"
                                 [label]="'Are you happy?'"
                                 [icons]="iconsControl.value ? {on: ui.icons.smile, off: ui.icons.sad} : null"
                                 [tags]="tagsControl.value ? {on: 'Yes', off: 'No'} : null">
@@ -72,6 +122,22 @@
               <jnt-stack [align]="ui.align.stretch">
 
                 <jnt-form-item>
+                  <jnt-form-label for="type"
+                                  i18n="@@label.type">Type
+                  </jnt-form-label>
+                  <jnt-form-control name="type">
+                    <jnt-switcher formControlName="type" [orientation]="ui.orientation.horizontal">
+                      <jnt-switcher-option label="Single"
+                                           [value]="switchType.single">
+                      </jnt-switcher-option>
+                      <jnt-switcher-option label="Group"
+                                           [value]="switchType.group">
+                      </jnt-switcher-option>
+                    </jnt-switcher>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
                   <jnt-form-label for="size"
                                   i18n="@@label.size">Size
                   </jnt-form-label>
@@ -96,6 +162,35 @@
                                          i18n-label="@@label.large"
                                          [icon]="localUi.icons.large"
                                          [key]="ui.size.large"></jnt-select-option>
+                    </jnt-select>
+                  </jnt-form-control>
+                </jnt-form-item>
+
+                <jnt-form-item>
+                  <jnt-form-label for="align"
+                                  i18n="@@label.align">Align
+                  </jnt-form-label>
+                  <jnt-form-control>
+                    <jnt-select formControlName="align"
+                                placeholder="Start"
+                                i18n-placeholder="@@label.start"
+                                [features]="[ui.feature.allowEmpty]">
+                      <jnt-select-option label="Start"
+                                         i18n-label="@@label.start"
+                                         [icon]="localUi.icons.start"
+                                         [key]="ui.align.start"></jnt-select-option>
+                      <jnt-select-option label="Center"
+                                         i18n-label="@@label.center"
+                                         [icon]="localUi.icons.center"
+                                         [key]="ui.align.center"></jnt-select-option>
+                      <jnt-select-option label="End"
+                                         i18n-label="@@label.end"
+                                         [icon]="localUi.icons.end"
+                                         [key]="ui.align.end"></jnt-select-option>
+                      <jnt-select-option label="Stretch"
+                                         i18n-label="@@label.scretch"
+                                         [icon]="localUi.icons.stretch"
+                                         [key]="ui.align.stretch"></jnt-select-option>
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
@@ -131,7 +226,6 @@
                                 label="Disabled"
                                 i18n-label="@@label.disabled"></jnt-checkbox>
                 </jnt-form-item>
-
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -140,7 +234,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>
@@ -158,42 +252,43 @@
             <ng-template #accordionContentTemplate>
               <app-code-highlight file="switch-test.component.html">
                 <!-- @formatter:off-->
-<![CDATA[
-<jnt-switch
-]]>
-  <ng-container *ngIf="sizeControl.value">
-    <![CDATA[
-    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
-  </ng-container>
+                <![CDATA[
+                <jnt-switch
+                  ]]>
+                  <ng-container *ngIf="sizeControl.value">
+                    <![CDATA[
+                    [size]="ui.size.]]>{{sizeControl.value}}<![CDATA["]]>
+                  </ng-container>
 
-  <ng-container *ngIf="!labelControl.value">
-    <![CDATA[
-    label="Are you happy?"]]>
-  </ng-container>
+                  <ng-container *ngIf="!labelControl.value">
+                    <![CDATA[
+                    label="Are you happy?"]]>
+                  </ng-container>
 
-  <ng-container *ngIf="iconsControl.value">
-    <![CDATA[
-    [icons]="{on: ui.icons.checked, off: ui.icons.close}"]]>
-  </ng-container>
+                  <ng-container *ngIf="iconsControl.value">
+                    <![CDATA[
+                    [icons]="{on: ui.icons.checked, off: ui.icons.close}"]]>
+                  </ng-container>
 
-  <ng-container *ngIf="tagsControl.value">
-    <![CDATA[
-    [tags]="{on: 'Yes', off: 'No'}"]]>
-  </ng-container>
+                  <ng-container *ngIf="tagsControl.value">
+                    <![CDATA[
+                    [tags]="{on: 'Yes', off: 'No'}"]]>
+                  </ng-container>
 
-  <![CDATA[>]]>
-  <ng-container *ngIf="labelControl.value">
-    <![CDATA[
-    <ng-template #switchLabelTemplate>
-      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
-        <span>Show heroes</span>
-        <jnt-label label="200 likes"></jnt-label>
-      </jnt-stack>
-    </ng-template>]]>
-  </ng-container>
-  <![CDATA[
-  </jnt-switch>
-  ]]>
+                  <![CDATA[>]]>
+                  <ng-container *ngIf="labelControl.value">
+                    <![CDATA[
+                    <ng-template #switchLabelTemplate>
+                      <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
+                        <span>Show heroes</span>
+                        <jnt-label label="200 likes"></jnt-label>
+                      </jnt-stack>
+                    </ng-template>
+                    ]]>
+                  </ng-container>
+                  <![CDATA[
+                </jnt-switch>
+                ]]>
               </app-code-highlight>
               <app-code-highlight file="switch-test.component.ts"
                                   [language]="language.typescript">
@@ -208,9 +303,9 @@ import { FormBuilder } from '@angular/forms';
                   styleUrls: ['./switch-test.component.scss']
 })
 export class SwitchTestComponent implements OnInit {
-                    switchControl = this.fb.control(false);
+                  switchControl = this.fb.control(false);
 
-  form = this.fb.group({
+form = this.fb.group({
     switch: this.switchControl,
     });
 
@@ -219,7 +314,7 @@ export class SwitchTestComponent implements OnInit {
 
                    ngOnInit() {
                   this.disabledControl.valueChanges.subscribe((disabled) => {
-      disabled ? this.switchControl.disable({emitEvent: false}) : this.switchControl.enable({emitEvent: false});
+                  disabled ? this.switchControl.disable({emitEvent: false}) : this.switchControl.enable({emitEvent: false});
     });
     }
                   }

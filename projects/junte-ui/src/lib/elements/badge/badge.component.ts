@@ -1,4 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { Feature } from '../../core/enums/feature';
+import { UI } from '../../core/enums/ui';
 import { PropertyApi } from '../../core/decorators/api';
 import { Color } from '../../core/enums/color';
 import { Position } from '../../core/enums/position';
@@ -8,6 +10,8 @@ import { Position } from '../../core/enums/position';
   templateUrl: './badge.encapsulated.html'
 })
 export class BadgeComponent {
+
+  ui = UI;
 
   @HostBinding('attr.host') readonly host = 'jnt-badge-host';
 
@@ -32,8 +36,7 @@ export class BadgeComponent {
 
   @PropertyApi({
     description: 'Max count to show',
-    type: 'number',
-    default: '99'
+    type: 'number'
   })
   @Input() set overflow(overflow: number) {
     this._overflow = overflow || null;
@@ -42,6 +45,21 @@ export class BadgeComponent {
   get overflow() {
     return this._overflow;
   }
+
+  @HostBinding('attr.data-has-overflow')
+  get hasOverflow() {
+    return this.value > this.overflow;
+  }
+
+  @PropertyApi({
+    description: 'Features for badge',
+    path: 'ui.feature',
+    options: [Feature.overflow],
+    default: '[Feature.overflow]'
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [Feature.overflow];
 
   @PropertyApi({
     description: 'Badge background color',

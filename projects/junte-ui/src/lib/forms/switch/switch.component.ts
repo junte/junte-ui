@@ -1,10 +1,13 @@
 import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+import { JunteUIConfig } from '../../config';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
+import { FlexAlign } from '../../core/enums/flex';
 import { Size } from '../../core/enums/size';
+import { SwitchStyle } from '../../core/enums/style';
 import { UI } from '../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 
 @Component({
   selector: 'jnt-switch',
@@ -20,9 +23,11 @@ import { UI } from '../../core/enums/ui';
 })
 export class SwitchComponent implements ControlValueAccessor, OnInit {
 
-  @HostBinding('attr.host') readonly host = 'jnt-switch-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-switch-host';
 
   ui = UI;
+  styles = SwitchStyle;
 
   switchControl = this.fb.control(false);
   form = this.fb.group({
@@ -31,6 +36,8 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   @HostBinding('attr.data-size')
   _size: Size = Size.normal;
+
+  _align: FlexAlign = FlexAlign.center;
 
   @HostBinding('attr.data-focused')
   focused = false;
@@ -41,9 +48,10 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
 
   @PropertyApi({
     description: 'Label for switch',
-    type: 'string',
+    type: 'string'
   })
-  @Input() label: string;
+  @Input()
+  label: string;
 
   @PropertyApi({
     description: 'Icons for states',
@@ -65,9 +73,36 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
     default: Size.normal,
     options: [Size.tiny, Size.small, Size.normal, Size.large]
   })
-  @Input() set size(size: Size) {
+  @Input()
+  set size(size: Size) {
     this._size = size || Size.normal;
   }
+
+  @PropertyApi({
+    description: 'Align by vertical for switch',
+    path: 'ui.align',
+    options: [
+      FlexAlign.center,
+      FlexAlign.start,
+      FlexAlign.end
+    ],
+    default: FlexAlign.center
+  })
+  @Input()
+  set align(align: FlexAlign) {
+    this._align = align || FlexAlign.center;
+  }
+
+  get align() {
+    return this._align;
+  }
+
+  @PropertyApi({
+    description: 'Value for checkbox',
+    type: 'any'
+  })
+  @Input()
+  value: any;
 
   @ContentApi({
     selector: '#switchLabelTemplate',
@@ -76,13 +111,22 @@ export class SwitchComponent implements ControlValueAccessor, OnInit {
   @ContentChild('switchLabelTemplate')
   labelTemplate: TemplateRef<any>;
 
+  get onIcon() {
+    return this.icons?.on || this.config.switch.icons.on;
+  }
+
+  get offIcon() {
+    return this.icons?.off || this.config.switch.icons.off;
+  }
+
   onChange: (value: any) => void = () => this.logger.error('value accessor is not registered');
   onTouched: () => void = () => this.logger.error('value accessor is not registered');
   registerOnChange = fn => this.onChange = fn;
   registerOnTouched = fn => this.onTouched = fn;
   @HostListener('blur') onBlur = () => this.onTouched();
 
-  constructor(private logger: NGXLogger,
+  constructor(public config: JunteUIConfig,
+              private logger: NGXLogger,
               private fb: FormBuilder) {
   }
 

@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ImageCropperComponent, TabComponent, UI } from 'junte-ui';
+import { ImageCropperComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -10,7 +10,7 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './image-cropper-test.component.html',
   styleUrls: ['./image-cropper-test.component.scss']
 })
-export class ImageCropperTestComponent {
+export class ImageCropperTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -19,7 +19,7 @@ export class ImageCropperTestComponent {
 
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/forms/image-cropper';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   urlControl = this.fb.control('assets/images/elon.jpeg');
   shapeControl = this.fb.control(UI.shape.circle);
@@ -31,7 +31,7 @@ export class ImageCropperTestComponent {
     shape: this.shapeControl,
     min: this.minControl,
     max: this.maxControl,
-    step: this.stepControl,
+    step: this.stepControl
   });
 
   cropperControl = this.fb.control(null);
@@ -45,7 +45,7 @@ export class ImageCropperTestComponent {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   imageLoaded() {
@@ -55,10 +55,10 @@ export class ImageCropperTestComponent {
   load(event: any) {
     if (!!event && !!event.target && !!event.target.files && !!event.target.files.length) {
       const fileReader = new FileReader();
-      let file = event.target.files[0];
-      fileReader.onload = (event: any) => {
+      const file = event.target.files[0];
+      fileReader.onload = (e: any) => {
         if (/image\/(png|jpg|jpeg|bmp|gif|tiff|webp|svg)/.test(file.type)) {
-          this.urlControl.setValue(this.sanitizer.bypassSecurityTrustResourceUrl(event.target.result));
+          this.urlControl.setValue(this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result));
         } else {
           this.urlControl.setValue('');
         }

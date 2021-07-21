@@ -5,16 +5,9 @@ import { UI } from '../../core/enums/ui';
 import { UrlMatching } from '../../core/enums/url';
 import { BadgeComponent } from '../../elements/badge/badge.component';
 
-interface Link {
-  source: string | any[];
-  fragment: string;
-}
-
 export abstract class AbstractMenuItem {
 
   ui = UI;
-
-  link: Link;
 
   _matching: UrlMatching = UrlMatching.fullMatch;
 
@@ -41,7 +34,8 @@ export abstract class AbstractMenuItem {
     type: 'boolean',
     default: 'false'
   })
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @PropertyApi({
     description: 'Menu item title',
@@ -53,13 +47,10 @@ export abstract class AbstractMenuItem {
   @PropertyApi({
     name: 'link',
     description: 'Menu item source',
-    type: 'string | string[] | Link'
+    type: 'string | any[]'
   })
-  @Input('link')
-  set __link__(link: string | string[] | Link) {
-    this.link = (typeof (link) === 'string' || link instanceof Array
-      ? {source: link, position: null} : link) as Link;
-  }
+  @Input()
+  link: string | (string | { [key: string]: string | number })[];
 
   @PropertyApi({
     description: 'Menu item target',
@@ -85,14 +76,14 @@ export abstract class AbstractMenuItem {
     type: 'boolean'
   })
   @Input()
-  active: boolean;
+  active = false;
 
   @PropertyApi({
     description: 'Menu item query params',
     type: '{[k: string]: any}'
   })
   @Input()
-  queryParams: {[k: string]: any};
+  queryParams: { [k: string]: any };
 
   @PropertyApi({
     description: 'Fragment for link #anchor',

@@ -18,7 +18,7 @@ $jnt-primary-background-dark: #241741;
 
   @include for-mobile() {
     @include jnt-lp-header((
-      background: $jnt-secondary-background-dark
+      background: (default: $jnt-secondary-background-dark)
     ));
   }
 
@@ -54,9 +54,8 @@ $jnt-primary-background-dark: #241741;
 
 :host {
   display: block;
+  @include jnt-lp-header((position: absolute));
 }
-
-@include jnt-lp-header((position: absolute), null)
 
 [data-partners]{
   background-color: $jnt-secondary-background;
@@ -67,6 +66,7 @@ $jnt-primary-background-dark: #241741;
     margin-top: $jnt-gutter-huge;
     position: relative;
     padding-bottom: 48px;
+    z-index: 1;
 
     span {
       color: $jnt-primary-light-color;
@@ -186,7 +186,7 @@ $jnt-primary-background-dark: #241741;
 
 @include for-mobile() {
   @include jnt-lp-header((
-    background: $jnt-secondary-background
+    background: (default: $jnt-secondary-background)
   ), null);
 }
 

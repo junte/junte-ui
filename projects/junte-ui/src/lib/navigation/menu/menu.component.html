@@ -1,14 +1,15 @@
 <jnt-stack [orientation]="style === ui.menu.style.tabs ? ui.orientation.horizontal : orientation"
-           [gutter]="spacing"
+           [gutter]="gutter"
            [align]="ui.align.stretch"
-           [wrap]="ui.wrap.wrap">
+           [spacing]="spacing"
+           [wrap]="wrap">
   <ng-container *ngFor="let item of items">
     <div data-top>
       <div data-item [attr.data-active]="item.opened && orientation === ui.orientation.vertical"
                       (click)="!item.disabled ? toggle(item) : null"
            [jntPopover]="{
               context: this.context,
-              contentTemplate: submenuTemplate,
+              contentTemplate: submenuPopoverTemplate,
               position: orientation === ui.orientation.vertical
                 ? ui.position.right
                 : ui.position.bottom,
@@ -29,9 +30,10 @@
                   [opened]="item.opened && orientation === ui.orientation.vertical"
                   [title]="!collapsed ? item.title : null"
                   [icon]="item.icon"
-                  [context]="ui.context.box"
+                  [active]="item.active"
+                  [context]="style === ui.menu.style.tabs ? ui.context.menu : ui.context.box"
                   [matching]="item.matching"
-                  [source]="!item.submenu ? item.link?.source : null"
+                  [source]="item.link"
                   [fragment]="item.fragment"
                   [queryParams]="item.queryParams"
                   [outline]="ui.outline.transparent"
@@ -43,6 +45,8 @@
                        [value]="badge.value"
                        [text]="badge.text"
                        [position]="badge.position"
+                       [overflow]="badge.overflow"
+                       [features]="badge.features"
                        [color]="badge.color">
             </jnt-badge>
         </jnt-link>
@@ -50,23 +54,29 @@
 
       <ng-container *ngIf="!collapsed && orientation === ui.orientation.vertical">
         <div data-sub-animate *ngIf="item.opened" [@collapse]="item.opened">
-          <ng-container *ngTemplateOutlet="submenuTemplate;context: {headless: true}"></ng-container>
+          <ng-container *ngTemplateOutlet="submenuTemplate;context: {features: []}"></ng-container>
         </div>
       </ng-container>
 
-      <ng-template #submenuTemplate let-headless=headless>
+      <ng-template #submenuPopoverTemplate>
+        <ng-container *ngTemplateOutlet="submenuTemplate;context: {features: item.submenu.features}"></ng-container>
+      </ng-template>
+
+      <ng-template #submenuTemplate let-features=features>
         <div data-sub
              [attr.data-opened]="item.opened"
              [attr.data-orientation]="orientation"
              [attr.data-collapsed]="collapsed">
           <ng-container *ngIf="!!item.submenu">
-            <div data-section *ngIf="!headless">
+            <div data-section *ngIf="features | includes : ui.feature.title">
               <jnt-stack [orientation]="ui.orientation.horizontal" [align]="ui.align.center">
                 <span>{{item.title}}</span>
                 <jnt-badge *ngFor="let badge of item.badges"
                            [value]="badge.value"
                            [text]="badge.text"
                            [position]="ui.position.inline"
+                           [features]="badge.features"
+                           [overflow]="badge.overflow"
                            [color]="badge.color">
                 </jnt-badge>
               </jnt-stack>
@@ -79,8 +89,9 @@
                         [context]="ui.context.box"
                         [title]="subItem.title"
                         [icon]="subItem.icon"
+                        [active]="subItem.active"
                         [matching]="subItem.matching"
-                        [source]="subItem.link?.source"
+                        [source]="subItem.link"
                         [fragment]="subItem.fragment"
                         [queryParams]="subItem.queryParams"
                         [disabled]="subItem.disabled"
@@ -89,6 +100,8 @@
                 <jnt-badge *ngFor="let badge of subItem.badges"
                            [value]="badge.value"
                            [text]="badge.text"
+                           [features]="badge.features"
+                           [overflow]="badge.overflow"
                            [position]="ui.position.inline"
                            [color]="badge.color">
                 </jnt-badge>

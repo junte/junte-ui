@@ -16,7 +16,7 @@ import { State } from '../../core/enums/state';
 import { UI } from '../../core/enums/ui';
 import { LOGGER_PROVIDERS } from '../../core/logger/providers';
 import { isEqual } from '../../core/utils/equal';
-import { ChartIndicatorComponent } from './chart-indicator';
+import { ChartIndicatorDirective } from './chart-indicator.directive';
 
 @Component({
   selector: 'jnt-chart',
@@ -63,8 +63,8 @@ export class ChartComponent implements ControlValueAccessor {
   @Input()
   state: State;
 
-  @ContentChildren(ChartIndicatorComponent)
-  indicators: QueryList<ChartIndicatorComponent>;
+  @ContentChildren(ChartIndicatorDirective)
+  indicators: QueryList<ChartIndicatorDirective>;
 
   @Input()
   heightIndicator = 55;

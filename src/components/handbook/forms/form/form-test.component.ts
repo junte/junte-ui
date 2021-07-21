@@ -6,7 +6,7 @@ import {
   FormItemComponent,
   FormLabelComponent,
   FormMessageComponent,
-  TabComponent,
+  TabsComponent,
   UI
 } from 'junte-ui';
 import { Benchmark } from 'src/components/handbook/shared/benchmark/benchmark';
@@ -48,8 +48,7 @@ export class FormTestComponent implements OnInit {
   pets: string[] = ['cat', 'dog', 'fish', 'parrot'];
   status: string[] = ['married', 'not married', 'is actively looking'];
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   @ViewChild('example')
   example: ElementRef;
@@ -98,7 +97,7 @@ export class FormTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   selected(active: number) {

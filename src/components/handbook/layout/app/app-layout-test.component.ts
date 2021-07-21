@@ -3,7 +3,6 @@ import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import { FormBuilder } from '@angular/forms';
 import {
-  TabComponent,
   AppLayoutComponent,
   AppHeaderComponent,
   AppHeaderActionsComponent,
@@ -12,7 +11,8 @@ import {
   AppAsideComponent,
   AppHeaderUserbarComponent,
   UI, BreakpointService,
-  AppPageHeaderComponent
+  AppPageHeaderComponent,
+  TabsComponent
 } from 'junte-ui';
 import {Language} from '../../../../enums/language';
 
@@ -42,7 +42,7 @@ export class AppLayoutTestComponent implements OnInit {
     pageHeader: AppPageHeaderComponent
   };
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   busynessControl = this.fb.control(true);
   headerControl = this.fb.control(true);
@@ -75,7 +75,7 @@ export class AppLayoutTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

@@ -1,6 +1,6 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { LinkComponent, TabComponent, UI } from 'junte-ui';
+import { LinkComponent, UI, TabsComponent } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
@@ -46,7 +46,7 @@ export class LinkTestComponent implements OnInit {
     position: this.positionControl
   });
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder,
               @Inject(LOCALE_ID) public locale: string) {
@@ -54,7 +54,7 @@ export class LinkTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

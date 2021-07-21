@@ -1,16 +1,16 @@
 import { Component, ComponentFactoryResolver, Injector, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ModalComponent, ModalOptions, ModalService, TabComponent, UI } from 'junte-ui';
+import { ModalComponent, ModalOptions, ModalService, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { ModalTestFactoryComponent } from './test.component';
 import { Language } from '../../shared/code-highlight/enum';
 import { LocalUI } from 'src/enums/local-ui';
 
 export enum Size {
-  tiny = 200,
-  small = 400,
-  normal = 600,
-  large = 700
+  tiny = '200px',
+  small = '400px',
+  normal = '600px',
+  large = '700px'
 }
 
 export enum ContentType {
@@ -37,7 +37,7 @@ export class ModalTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/overlays/modal';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=1709%3A3466';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   widthControl = this.fb.control(Size.large);
   heightControl = this.fb.control(Size.normal);
@@ -84,7 +84,7 @@ export class ModalTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   openModal() {

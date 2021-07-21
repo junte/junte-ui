@@ -4,6 +4,8 @@
 @import 'elements/badge/badge';
 @import 'elements/icon/icon';
 
+$tab-marker-height: 4px;
+
 @mixin jnt-link($passed: (), $context: null, $strategy: 'changes') {
   $defs: (
     corner: $jnt-corner-small,
@@ -17,6 +19,7 @@
     height: null,
     border: null,
     color: $jnt-primary-color,
+    background: null,
     inverse-color: $jnt-white-color,
     hover-color: $jnt-primary-dark-color,
     focus: (
@@ -36,10 +39,12 @@
       size: 18px
     ),
     badge: (
-      margin-left: $jnt-gutter-small
+      margin-left: $jnt-gutter-small,
+      color: null,
+      background: null
     ),
     outlines: (
-      transparent: (
+      'transparent': (
         padding: 0,
         color: null,
         hover: (
@@ -56,8 +61,13 @@
           divider: (
             display: false,
             divider-width: null,
+            divider-height: 100%,
             divider-corner: null,
             divider-color: null
+          ),
+          badge: (
+            color: null,
+            background: null
           )
         ),
         orphan: (
@@ -74,7 +84,7 @@
       fill: (
         padding: $jnt-gutter-tiny $jnt-gutter-small
       )
-    ),
+    )
   );
 
   $vars: $passed;
@@ -114,10 +124,6 @@
         width: 100%;
         position: relative;
 
-        &:focus {
-          outline: none;
-        }
-
         [data-title] {
           [data-icon], span {
             transition: color .2s;
@@ -137,7 +143,7 @@
         }
       }
 
-      &[data-context='box'] {
+      &[data-context='box'], &[data-context='menu'] {
         #{$wrapper} [data-link] {
           display: flex;
           align-items: center;
@@ -150,6 +156,33 @@
             [data-icon] {
               line-height: 1;
             }
+          }
+        }
+      }
+
+      &[data-context='menu'][data-outline='transparent'] {
+        [data-link][data-active=true], [data-link][data-orphan='false'].active {
+          [data-title] span {
+            border-bottom: none;
+          }
+          [data-line] {
+            display: block !important;
+          }
+        }
+      }
+    }
+
+    &[data-outline='transparent']:not([data-context='menu']) {
+      [data-link]:focus {
+        @if map-has-key($vars, focus) {
+          $focus: map-get($vars, focus);
+          @if map-get($focus, outline) != null {
+            outline: map-get($focus, outline);
+            outline-offset: map-get($focus, outline-offset);
+          }
+          @if map-get($focus, shadow) != null {
+            outline: 0;
+            box-shadow: map-get($focus, shadow);
           }
         }
       }
@@ -187,7 +220,7 @@
           box-shadow: 0 1px 5px map-get($vars, color);
         }
 
-        &[data-active='true'] {
+        &[data-active='true'], &.active[data-orphan='false'] {
           [data-title] {
             span {
               border-bottom: 1px solid map-get($vars, inverse-color);
@@ -229,7 +262,7 @@
             ), '&');
           }
 
-          &[data-active='true'] {
+          &[data-active='true'], &.active[data-orphan='false'] {
             [data-title] {
               span {
                 border-bottom: 1px solid map-get($vars, inverse-color);
@@ -242,7 +275,7 @@
           box-shadow: 0 1px 5px #{map-get($vars, color)};
         }
 
-        &[data-active='true'] {
+        &[data-active='true'], &.active[data-orphan='false'] {
           [data-title] {
             span {
               border-bottom: 1px solid map-get($vars, color);
@@ -275,31 +308,15 @@
           }
         }
 
-        &:focus {
-          @if map-has-key($vars, focus) {
-            $focus: map-get($vars, focus);
-            @if map-get($focus, outline) != null {
-              outline: map-get($focus, outline);
-              outline-offset: map-get($focus, outline-offset);
-            }
-            @if map-get($focus, shadow) != null {
-              outline: 0;
-              box-shadow: map-get($focus, shadow);
-            }
-          }
-        }
-
-        &[data-active='true'] {
-          [data-title] {
-            @if map-has-key($vars, active) {
-              $active: map-get($vars, active);
-              span {
-                @if map-get($active, underline) == true {
-                  border-bottom: 1px solid map-get($active, underline-color);
-                }
-                @if map-get($active, underline) == false {
-                  border: none;
-                }
+        &[data-active='true'] [data-title], &[data-orphan='false'].active [data-title] {
+          @if map-has-key($vars, active) {
+            $active: map-get($vars, active);
+            span {
+              @if map-get($active, underline) == true {
+                border-bottom: 1px solid map-get($active, underline-color);
+              }
+              @if map-get($active, underline) == false {
+                border: none;
               }
             }
           }
@@ -342,15 +359,13 @@
 
           @if map-has-key($map, hover) {
             $hover: map-get($map, hover);
-            &[data-active='false'] {
-              #{$wrapper} [data-link] {
-                &:hover {
-                  color: map-get($hover, color);
-                  background-color: map-get($hover, background-color);
+            #{$wrapper} [data-link][data-active='false']:not(.active), [data-link][data-orphan='true'][data-active='false'] {
+              &:hover {
+                color: map-get($hover, color);
+                background-color: map-get($hover, background-color);
 
-                  [data-icon] {
-                    @include jnt-icon((color: map-get($hover, color)), '&');
-                  }
+                [data-icon] {
+                  @include jnt-icon((color: map-get($hover, color)), '&');
                 }
               }
             }
@@ -370,41 +385,48 @@
                     width: map-get($divider, divider-width);
                     border-radius: map-get($divider, divider-corner);
                     background-color: map-get($divider, divider-color);
-                    height: 100%;
+                    height: map-get($divider, divider-height);
                     display: none;
                   }
                 }
               }
             }
-            &[data-active='true'] {
-              #{$wrapper} [data-link] {
-                background-color: map-get($active, background-color);
-                box-shadow: map-get($active, shadow);
+            #{$wrapper} [data-link][data-active='true'], [data-link][data-orphan='false'].active {
+              background-color: map-get($active, background-color);
+              box-shadow: map-get($active, shadow);
 
-                @if map-has-key($active, divider) {
-                  $divider: map-get($active, divider);
-                  @if map-get($divider, display) == true {
-                    &:after {
-                      display: block;
-                    }
+              @if map-has-key($active, divider) {
+                $divider: map-get($active, divider);
+                @if map-get($divider, display) == true {
+                  &:after {
+                    display: block;
                   }
                 }
+              }
 
-                [data-title] {
-                  color: map-get($active, color);
+              [data-title] {
+                color: map-get($active, color);
 
-                  [data-icon] {
-                    @include jnt-icon((color: map-get($active, color)), '&');
+                [data-icon] {
+                  @include jnt-icon((color: map-get($active, color)), '&');
+                }
+
+                span {
+                  @if map-get($active, underline) == true {
+                    border-bottom: 1px solid map-get($active, underline-color);
                   }
-
-                  span {
-                    @if map-get($active, underline) == true {
-                      border-bottom: 1px solid map-get($active, underline-color);
-                    }
-                    @if map-get($active, underline) == false {
-                      border: none;
-                    }
+                  @if map-get($active, underline) == false {
+                    border: none;
                   }
+                }
+              }
+              @if map-has-key($active, badge) {
+                $badge: map-get($active, badge);
+                [data-badge] {
+                  @include jnt-badge((
+                    background: map-get($badge, background),
+                    color: map-get($badge, color)
+                  ), '&');
                 }
               }
             }
@@ -445,6 +467,7 @@
     text-transform: map-get($vars, text-transform);
     text-decoration: map-get($vars, text-decoration);
     text-align: map-get($vars, text-align);
+    background: map-get($vars, background);
     border: if(map-get($vars, border), map-get($vars, border) !important, null);
 
     [data-title] {
@@ -477,7 +500,21 @@
       $badge: map-get($vars, badge);
       [data-badge] {
         margin-left: map-get($badge, margin-left);
+        @include jnt-badge((
+          color: if(map-get($badge, color), map-get($badge, color)!important, null),
+          background: if(map-get($badge, background), map-get($badge, background)!important, null)), '&');
       }
+    }
+
+    [data-line] {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: $tab-marker-height;
+      border-radius: 5px;
+      background-color: $jnt-primary-light-color;
+      display: none;
     }
   }
 }

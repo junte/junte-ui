@@ -5,7 +5,7 @@ import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { ResponsiveModule } from '../../layout/responsive/responsive.module';
 import { StackModule } from '../../layout/stack/stack.module';
-import { TabComponent } from './tab.component';
+import { TabDirective } from './tab.directive';
 import { TabsComponent } from './tabs.component';
 
 @NgModule({
@@ -19,15 +19,14 @@ import { TabsComponent } from './tabs.component';
   ],
   declarations: [
     TabsComponent,
-    TabComponent
+    TabDirective
   ],
   entryComponents: [
-    TabsComponent,
-    TabComponent
+    TabsComponent
   ],
   exports: [
     TabsComponent,
-    TabComponent
+    TabDirective
   ]
 })
 export class TabsModule {

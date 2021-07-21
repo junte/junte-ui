@@ -6,6 +6,7 @@
 @import 'navigation/link/link';
 @import 'elements/icon/icon';
 @import 'forms/button/button';
+@import 'layout/responsive/responsive';
 
 @mixin jnt-app-header($passed: (), $context: null, $strategy: 'changes') {
 
@@ -39,20 +40,6 @@
       left: 0;
       right: 0;
       z-index: 3;
-
-      @include jnt-link((
-        color: $jnt-white-color,
-        inverse-color: $jnt-white-color,
-        hover-color: $jnt-white-color,
-        corner: $jnt-corner-small,
-        active: (
-          color: $jnt-white-color,
-          underline: true,
-          underline-color: $jnt-white-color,
-          background-color: transparent,
-          shadow: none
-        ),
-      ));
     }
     background-color: map-get($vars, background);
     padding: map-get($vars, padding);
@@ -63,31 +50,36 @@
       @if $declare {
         display: flex;
         align-items: center;
-        @include jnt-menu((
-          top: (
-            item: (
-              corner: $jnt-corner-small,
-              color: $jnt-white-color,
-              active: (
-                color: $jnt-white-color,
-                underline: true,
-                underline-color: $jnt-white-color,
-                background-color: transparent,
-                shadow: none
-              ),
-              icon: (
-                color: $jnt-white-color
-              ),
-              padding: $jnt-gutter-small,
-              hover: (
-                color: $jnt-white-color,
-                background-color: rgba($jnt-primary-light-color, .5)
-              )
-            )
-          )
-        ));
       }
     }
+
+    @include min-for-desktop() {
+      @include jnt-link((color: $jnt-white-color, hover-color: $jnt-white-color, inverse-color: $jnt-primary-color));
+    }
+
+    @include jnt-menu((
+      top: (
+        item: (
+          corner: $jnt-corner-small,
+          color: $jnt-white-color,
+          active: (
+            color: $jnt-white-color,
+            underline: true,
+            underline-color: $jnt-white-color,
+            background-color: transparent,
+            shadow: none
+          ),
+          icon: (
+            color: $jnt-white-color
+          ),
+          padding: $jnt-gutter-small,
+          hover: (
+            color: $jnt-white-color,
+            background-color: rgba($jnt-primary-light-color, .5)
+          )
+        )
+      )
+    ));
   }
 
   hr {
@@ -95,7 +87,7 @@
       width: 100%;
       border: none;
       height: 1px;
-      background: $jnt-secondary-color;
+      background: $jnt-secondary-background;
     }
   }
 

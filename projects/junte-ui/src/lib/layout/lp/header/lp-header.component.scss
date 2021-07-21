@@ -11,7 +11,10 @@
 
   $defs: (
     position: fixed,
-    background: transparent,
+    background: (
+      default: transparent,
+      onScroll: $jnt-white-color
+    ),
     padding: $jnt-gutter-large 0 $jnt-gutter-huge 0,
     mobile-padding: $jnt-gutter-big 0,
     height: $lp-header-height,
@@ -26,16 +29,17 @@
             text-transform: uppercase,
             font-weight: $jnt-font-weight-semi-bold,
             active: (
-              color: $jnt-white-color
+              color: $jnt-primary-light-color,
+              underline: false
             ),
             padding: $jnt-gutter-small,
             hover: (
-              background-color: rgba($jnt-secondary-dark-color, .5)
+              background-color: rgba($jnt-highlight-background, .5)
             )
           )
         )
       ),
-      tablet: (
+      mobile: (
         top: (
           item: (
             color: $jnt-primary-color,
@@ -80,8 +84,21 @@
       left: 0;
       right: 0;
       z-index: 3;
+      transition: background-color .5s ease;
     }
-    background-color: map-get($vars, background);
+    @if map-has-key($vars, background) {
+      $bg: map-get($vars, background);
+      background-color: map-get($bg, default);
+    }
+
+    @if map-get($vars, position) == fixed {
+      &[data-scrolled=true] {
+        @if map-has-key($vars, background) {
+          $bg: map-get($vars, background);
+          background-color: map-get($bg, onScroll);
+        }
+      }
+    }
     padding: map-get($vars, padding);
     min-height: map-get($vars, height);
     height: map-get($vars, height);
@@ -95,11 +112,12 @@
   }
 
   #{$context} #{$wrapper} [data-container] {
-    @include jnt-grid-container((width: map-get($vars, container-width)), '&', true) {
+    @include jnt-grid-container((width: map-get($vars, container-width)), '&') {
       display: flex;
       justify-content: space-between;
     }
-  ;
+
+    @include jnt-menu((top: (item: (color: $jnt-primary-color, text-transform: uppercase))));
 
     &[data-desktop] {
       [data-menu] {
@@ -116,7 +134,7 @@
       }
     }
 
-    &[data-tablet] {
+    &[data-mobile] {
       [data-menu] {
         @if $declare {
           display: flex;
@@ -125,7 +143,7 @@
         @if map-has-key($vars, menu) {
           $menu: map-get($vars, menu);
           @include jnt-menu((
-            map-get($menu, tablet)
+            map-get($menu, mobile)
           ), '&');
         }
       }

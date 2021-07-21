@@ -3,3 +3,8 @@ export enum MenuStyle {
   tabs = 'tabs',
   tags = 'tags'
 }
+
+export enum SwitchStyle {
+  default = 'default',
+  hipster = 'hipster'
+}

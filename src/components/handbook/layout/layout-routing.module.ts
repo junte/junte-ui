@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutResolver } from 'src/components/handbook/layout/app/app-layout-test.resolvers';
-import { LayoutTestComponent } from './layout-test.component';
 import { AppLayoutTestComponent } from './app/app-layout-test.component';
 import { BlockTestComponent } from './block/block-test.component';
 import { CardTestComponent } from './card/card-test.component';
 import { CollapsibleTestComponent } from './collapsible/collapsible-test.component';
 import { GridTestComponent } from './grid/grid-test.component';
 import { InformerTestComponent } from './informer/informer-test.component';
+import { LayoutTestComponent } from './layout-test.component';
 import { ResponsiveTestComponent } from './responsive/responsive-test.component';
 import { SkeletonTestComponent } from './skeleton/skeleton-test.component';
 import { SpinnerTestComponent } from './spinner/spinner-test.component';
 import { StackTestComponent } from './stack/stack-test.component';
+
+export function getTitleLabel({data}: { data }) {
+  return {title: data?.title};
+}
 
 export const routes: Routes = [
   {
@@ -21,6 +25,7 @@ export const routes: Routes = [
       {
         path: '',
         component: LayoutTestComponent,
+        data: {title: 'Layout', meta: getTitleLabel}
       },
       {
         path: 'grid',

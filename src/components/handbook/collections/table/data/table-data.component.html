@@ -15,7 +15,7 @@
         </ng-template>
 
         <ng-template *ngIf="(sections |includes: tableSections.filter)" #tableFiltersTemplate>
-          <jnt-select data-search formControlName="ability"
+          <jnt-select formControlName="ability"
                       placeholder="Select ability"
                       i18n-placeholder="@@label.select_ability"
                       [features]="[ui.feature.allowEmpty]">
@@ -56,7 +56,7 @@
 
         <ng-template *ngIf="(sections |includes: tableSections.rowActions)"
                      #tableRowActionsTemplate let-row="row" let-hide="hide">
-          <jnt-menu [orientation]="ui.orientation.vertical" [spacing]="ui.gutter.small">
+          <jnt-menu [orientation]="ui.orientation.vertical" [gutter]="ui.gutter.small">
             <jnt-menu-item title="Edit"
                            i18n-title="@@action.edit"
                            (click)="hide()"></jnt-menu-item>

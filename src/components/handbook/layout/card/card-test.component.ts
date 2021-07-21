@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import sdk from '@stackblitz/sdk';
-import {CardComponent, TabComponent, UI} from 'junte-ui';
+import { CardComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK, HEROES } from 'src/consts';
 import {LocalUI} from 'src/enums/local-ui';
 
@@ -27,8 +27,7 @@ export class CardTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/card';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI-v1?node-id=9210%3A0';
 
-  @ViewChild('code')
-  code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   @ViewChild('example')
   example: ElementRef;
@@ -48,6 +47,7 @@ export class CardTestComponent implements OnInit {
   pictureControl = this.fb.control(null);
   colorControl = this.fb.control(null);
   positionControl = this.fb.control(null);
+  orientationControl = this.fb.control(null);
 
   builder = this.fb.group({
     padding: this.paddingControl,
@@ -62,7 +62,8 @@ export class CardTestComponent implements OnInit {
     actions: this.actionsControl,
     color: this.colorControl,
     picture: this.pictureControl,
-    position: this.positionControl
+    position: this.positionControl,
+    orientation: this.orientationControl
   });
 
   constructor(private fb: FormBuilder) {
@@ -70,7 +71,7 @@ export class CardTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
   selected(active: number) {

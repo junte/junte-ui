@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PopoverComponent, Position, TabComponent, Triggers, UI } from 'junte-ui';
+import { PopoverComponent, Position, TabsComponent, Triggers, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -14,7 +14,7 @@ export enum ContentType {
   templateUrl: './popover-test.component.html',
   styleUrls: ['./popover-test.component.scss']
 })
-export class PopoverTestComponent {
+export class PopoverTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -41,8 +41,13 @@ export class PopoverTestComponent {
     dropdown: this.dropdownControl
   });
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
   }
 }

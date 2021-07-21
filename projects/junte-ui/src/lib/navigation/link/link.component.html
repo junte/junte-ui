@@ -1,6 +1,8 @@
-<ng-container *ngIf="externalLink; else internalLinkTemplate">
+<ng-container *ngIf="external; else internalLinkTemplate">
   <ng-container *ngIf="!!source; else emptySourceTemplate">
-    <a data-link [href]="source" [target]="'_' + target">
+    <a data-link [href]="source"
+       [target]="'_' + target"
+       [attr.data-active]="active">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-container>
@@ -11,8 +13,18 @@
   </ng-template>
 </ng-container>
 
+<ng-template #internalOrphanTemplate>
+  <a data-link [attr.data-active]="active"
+     [attr.data-orphan]="true">
+    <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
+  </a>
+</ng-template>
+
 <ng-template #internalLinkTemplate>
-  <a data-link #link="routerLinkActive" routerLinkActive [attr.data-active]="link.isActive"
+  <a data-link *ngIf="!!source;else internalOrphanTemplate"
+     routerLinkActive="active"
+     [attr.data-active]="active"
+     [attr.data-orphan]="false"
      [routerLink]="source"
      [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
      [queryParams]="queryParams"
@@ -21,19 +33,27 @@
   </a>
 </ng-template>
 
+<ng-template #defaultTitleTemplate>
+  <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
+</ng-template>
+
 <ng-template #linkTemplate>
-  <span data-title *ngIf="!!icon || !!title">
+  <span data-title *ngIf="!!icon || !!title || !!contentTemplate">
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.left" [icon]="icon?.icon"></jnt-icon>
-    <span *ngIf="!!title" [innerHTML]="title | sanitizeHtml"></span>
+    <span *ngIf="!!contentTemplate; else defaultTitleTemplate">
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </span>
     <jnt-icon *ngIf="!!icon && icon.position === ui.position.right" [icon]="icon?.icon"></jnt-icon>
   </span>
   <div data-empty *ngIf="collapsed && !icon"></div>
-  <ng-container *ngIf="!!badges.length">
+  <ng-container *ngIf="badges.length > 0">
     <jnt-badge data-badge *ngFor="let badge of badges"
                [attr.data-collapsed]="collapsed"
                [color]="badge.color"
                [value]="badge.value"
                [text]="badge.text"
+               [overflow]="badge.overflow"
+               [features]="badge.features"
                [position]="collapsed ? ui.position.rightTop : ui.position.inline">
     </jnt-badge>
   </ng-container>
@@ -42,4 +62,5 @@
             [attr.data-opened]="opened"
             [icon]="ui.icons.selectClose" data-toggle>
   </jnt-icon>
+  <div data-line></div>
 </ng-template>

@@ -144,7 +144,7 @@
           @if map-has-key($switch, active) {
             $active: map-get($switch, active);
             @if $declare {
-              box-shadow: $jnt-outline-shadow-normal $jnt-secondary-dark-color;
+              box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
             }
           }
         }
@@ -200,6 +200,10 @@
     label {
       user-select: none;
       flex: 1;
+    }
+
+    [data-label] {
+      flex: 1;
       @if map-has-key($vars, label) {
         $label: map-get($vars, label);
         color: map-get($label, color);
@@ -209,10 +213,6 @@
           text-overflow: ellipsis;
         }
       }
-    }
-
-    [data-label] {
-      flex: 1;
     }
   }
 }

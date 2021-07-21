@@ -4,6 +4,7 @@
 @import 'jnt-hosts';
 @import 'elements/icon/icon';
 @import 'layout/responsive/responsive';
+@import 'layout/block/block';
 
 @keyframes jnt-scale-in {
   0% {
@@ -26,6 +27,15 @@
 @mixin jnt-modal($passed: (), $context: null, $strategy: 'changes') {
 
   $defs: (
+    padding: (
+      top: $jnt-gutter-normal,
+      left: $jnt-gutter-normal,
+      right: $jnt-gutter-normal,
+      bottom: $jnt-gutter-normal
+    ),
+    title: (
+      padding: $jnt-gutter-normal
+    ),
     z-index: (
       overlay: 1,
       modal: 2
@@ -49,9 +59,21 @@
     @if $declare {
       @include reset-default();
       display: block;
+      @include min-for-tablet() {
+        &:not([data-device-tags*='firefox']) {
+          [data-modal] [data-content] {
+            @if map-has-key($vars, padding) {
+              $padding: map-get($vars, padding);
+              padding-right: map-get($padding, right) - $jnt-scrollbar-width;
+            }
+          }
+        }
+      }
+
       @include for-mobile() {
         position: fixed;
-        z-index: 2;
+        top: 0;
+        z-index: 100;
         width: 100%;
         max-width: 100%;
         max-height: 100vh;
@@ -59,8 +81,40 @@
         padding: $jnt-gutter-small;
         box-sizing: border-box;
 
-        &[data-windows='true'] {
+        &[data-device-tags*='window'] {
           @include jnt-scrollbar();
+        }
+      }
+
+
+      &[data-scheme='ghost'] {
+        @include jnt-block((background: transparent, shadow: none));
+
+        [data-header] {
+          background-color: transparent !important;
+          padding: 0 !important;
+
+          [data-title] {
+            visibility: hidden;
+          }
+
+          button {
+            margin-bottom: $jnt-gutter-base;
+            width: 28px;
+            border-radius: 50% !important;
+            background-color: $jnt-primary-background !important;
+            color: $jnt-primary-color !important;
+          }
+        }
+
+        [data-content] {
+          background-color: $jnt-primary-background;
+          border-radius: $jnt-corner-normal;
+          box-shadow: $jnt-shadow-normal;
+
+          &::-webkit-scrollbar, &::-webkit-scrollbar-track {
+            border-radius: $jnt-corner-normal;
+          }
         }
       }
     }
@@ -88,7 +142,7 @@
     @if $declare {
       transform: scale(1);
       position: fixed;
-      min-width: max-content;
+      min-width: min-content;
       max-width: 100%;
       max-height: 100%;
       top: 100%;
@@ -109,11 +163,15 @@
       }
     }
 
-    [data-title] {
+    [data-header] {
+      @if map-has-key($vars, title) {
+        $title: map-get($vars, title);
+        padding: map-get($title, padding);
+      }
+
       @if $declare {
         border-top-left-radius: $jnt-corner-normal;
         border-top-right-radius: $jnt-corner-normal;
-        padding: $jnt-gutter-normal;
         background-color: $jnt-page-background;
         font-size: 18px;
 
@@ -121,15 +179,26 @@
           color: $jnt-primary-text-color;
           font-weight: $jnt-font-weight-bold;
         }
+
+        button {
+          @include button-default();
+        }
       }
     }
 
     [data-content] {
+      @if map-has-key($vars, padding) {
+        $padding: map-get($vars, padding);
+        padding-top: map-get($padding, top);
+        padding-left: map-get($padding, left);
+        padding-bottom: map-get($padding, bottom);
+        padding-right: map-get($padding, right);
+      }
       @if $declare {
-        padding: $jnt-gutter-normal;
         font-size: $jnt-font-size-base;
         box-sizing: border-box;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         @include jnt-scrollbar();
         @include for-mobile() {
           overflow: visible;

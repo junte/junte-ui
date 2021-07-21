@@ -1,13 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
+import { FlexWrap } from '../../core/enums/flex';
 import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
 import { Placement } from '../../core/enums/placement';
 import { MenuStyle } from '../../core/enums/style';
 import { UI } from '../../core/enums/ui';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
-import { MenuItemComponent } from './menu-item.component';
+import { MenuItemDirective } from './menu-item.directive';
 
 @Component({
   selector: 'jnt-menu',
@@ -26,6 +27,7 @@ export class MenuComponent {
 
   ui = UI;
 
+  private _gutter: Gutter = Gutter.none;
   private _spacing: Gutter = Gutter.none;
   private _placement: Placement = Placement.absolute;
 
@@ -36,6 +38,9 @@ export class MenuComponent {
 
   @HostBinding('attr.data-orientation')
   _orientation: Orientation = Orientation.horizontal;
+
+  @HostBinding('attr.data-wrap')
+  _wrap: FlexWrap = FlexWrap.wrap;
 
   @HostBinding('attr.data-collapsed')
   @Input()
@@ -50,6 +55,10 @@ export class MenuComponent {
   @Input()
   set style(style: MenuStyle) {
     this._style = style || MenuStyle.default;
+  }
+
+  get style() {
+    return this._style;
   }
 
   @PropertyApi({
@@ -68,6 +77,21 @@ export class MenuComponent {
   }
 
   @PropertyApi({
+    description: 'Menu items wrap',
+    path: 'ui.wrap',
+    default: FlexWrap.wrap,
+    options: [FlexWrap.wrap, FlexWrap.noWrap]
+  })
+  @Input()
+  set wrap(wrap: FlexWrap) {
+    this._wrap = wrap || FlexWrap.wrap;
+  }
+
+  get wrap() {
+    return this._wrap;
+  }
+
+  @PropertyApi({
     description: 'Menu popover placement',
     path: 'ui.placement',
     default: Placement.absolute,
@@ -83,7 +107,22 @@ export class MenuComponent {
   }
 
   @PropertyApi({
-    description: 'Size of spacing between menu items',
+    description: 'Size of gutter between menu items',
+    path: 'ui.gutter',
+    default: Gutter.none,
+    options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
+  })
+  @Input()
+  set gutter(gutter: Gutter) {
+    this._gutter = gutter || Gutter.none;
+  }
+
+  get gutter() {
+    return this._gutter;
+  }
+
+  @PropertyApi({
+    description: 'Size of spacing between menu items then wrapping',
     path: 'ui.gutter',
     default: Gutter.none,
     options: [Gutter.none, Gutter.tiny, Gutter.small, Gutter.normal, Gutter.large, Gutter.big, Gutter.huge]
@@ -101,12 +140,12 @@ export class MenuComponent {
   context: string;
 
   @Output()
-  selected = new EventEmitter<MenuItemComponent>();
+  selected = new EventEmitter<MenuItemDirective>();
 
-  @ContentChildren(MenuItemComponent)
-  items: QueryList<MenuItemComponent>;
+  @ContentChildren(MenuItemDirective)
+  items: QueryList<MenuItemDirective>;
 
-  toggle(item: MenuItemComponent) {
+  toggle(item: MenuItemDirective) {
     if (!!item.submenu) {
       this.items.forEach(i => i.opened = i === item ? !item.opened : false);
     }

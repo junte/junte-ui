@@ -13,5 +13,8 @@ export enum Feature {
   marks = 'marks',
   multiline = 'multiline',
   pulse = 'pulse',
-  copy = 'copy'
+  copy = 'copy',
+  pageTitle = 'page-title',
+  title = 'title',
+  overflow = 'overflow'
 }

@@ -13,7 +13,7 @@ import {
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { Color } from '../../core/enums/color';
 import { UI } from '../../core/enums/ui';
-import { ProgressLineComponent } from './line/progress-line.component';
+import { ProgressLineDirective } from './line/progress-line.directive';
 
 @Component({
   selector: 'jnt-progress-bar',
@@ -58,8 +58,8 @@ export class ProgressBarComponent implements AfterViewInit {
   @Input()
   color: string = Color.purple;
 
-  @ContentChildren(ProgressLineComponent)
-  lines: QueryList<ProgressLineComponent>;
+  @ContentChildren(ProgressLineDirective)
+  lines: QueryList<ProgressLineDirective>;
 
   constructor(private cd: ChangeDetectorRef) {
   }

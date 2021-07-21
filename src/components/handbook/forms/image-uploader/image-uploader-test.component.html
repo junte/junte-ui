@@ -24,7 +24,7 @@
     </ng-template>
   </jnt-app-page-header>
 
-  <jnt-tabs [features]="[ui.feature.adapted]">
+  <jnt-tabs #tabs [features]="[ui.feature.adapted]">
     <jnt-tab title="Preview"
              i18n-title="@@label.preview"
              [icon]="localUi.icons.preview">
@@ -37,6 +37,10 @@
                   <jnt-stack [orientation]="ui.orientation.horizontal">
                     <jnt-image-uploader formControlName="avatar"
                                         [shape]="shapeControl.value"
+                                        [min]="minControl.value"
+                                        [max]="maxControl.value"
+                                        [step]="stepControl.value"
+                                        [area]="area"
                                         [uploader]="uploadAvatar()">
                       <ng-template #imageTemplate let-image="image">
                         <jnt-avatar [size]="ui.size.large" [image]="image"></jnt-avatar>
@@ -82,6 +86,94 @@
                     </jnt-select>
                   </jnt-form-control>
                 </jnt-form-item>
+
+                <jnt-row>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="min"
+                                      i18n="@@label.min">Min
+                      </jnt-form-label>
+                      <jnt-form-control name="min">
+                        <jnt-input formControlName="min" placeholder="Min"
+                                   i18n-placeholder="@@label.min"
+                                   [type]="ui.input.type.number"
+                                   [min]="0.01"
+                                   [max]="maxControl.value"
+                                   [step]="0.01">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="max"
+                                      i18n="@@label.max">Max
+                      </jnt-form-label>
+                      <jnt-form-control name="max">
+                        <jnt-input formControlName="max" placeholder="Max"
+                                   i18n-placeholder="@@label.max"
+                                   [type]="ui.input.type.number"
+                                   [min]="minControl.value"
+                                   [step]="0.5">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
+                <jnt-row>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="step"
+                                      i18n="@@label.step">Step
+                      </jnt-form-label>
+                      <jnt-form-control name="step">
+                        <jnt-input formControlName="step" placeholder="Step"
+                                   i18n-placeholder="@@label.step"
+                                   [type]="ui.input.type.number"
+                                   [min]="0.01"
+                                   [max]="maxControl.value"
+                                   [step]="0.01">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
+
+                <jnt-row>
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="areaWidth"
+                                      i18n="@@label.area_width">Area Width
+                      </jnt-form-label>
+                      <jnt-form-control name="areaWidth">
+                        <jnt-input formControlName="areaWidth" placeholder="Area Width"
+                                   i18n-placeholder="@@label.area_width"
+                                   [type]="ui.input.type.number"
+                                   [min]="100"
+                                   [max]="500">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+
+                  <jnt-col [span]="6">
+                    <jnt-form-item>
+                      <jnt-form-label for="areaHeight"
+                                      i18n="@@label.area_height">Area Height
+                      </jnt-form-label>
+                      <jnt-form-control name="areaHeight">
+                        <jnt-input formControlName="areaHeight" placeholder="Area Height"
+                                   i18n-placeholder="@@label.area_height "
+                                   [type]="ui.input.type.number"
+                                   [min]="100"
+                                   [max]="500">
+                        </jnt-input>
+                      </jnt-form-control>
+                    </jnt-form-item>
+                  </jnt-col>
+                </jnt-row>
               </jnt-stack>
             </jnt-form>
           </jnt-col>
@@ -89,7 +181,7 @@
       </ng-template>
     </jnt-tab>
 
-    <jnt-tab #code title="Code"
+    <jnt-tab title="Code"
              i18n-title="@@label.code"
              [icon]="localUi.icons.code">
       <ng-template #tabContentTemplate>

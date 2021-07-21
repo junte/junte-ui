@@ -1,8 +1,16 @@
 @import 'jnt-variables';
 @import 'jnt-functions';
+@import 'jnt-hosts';
+@import 'forms/image-cropper';
 
 @mixin jnt-image-uploader($passed: (), $context: null, $strategy: 'changes') {
-  $defs: ();
+
+  $defs: (
+    cropper: (
+      min-height: 300px,
+      min-width: 200px
+    )
+  );
 
   $vars: $passed;
   $declare: false;
@@ -48,5 +56,13 @@
     @if $declare {
       flex: 1;
     }
+  }
+
+  #{if($context, $context, $jnt-image-uploader-host)} {
+    $cropper: map-get($vars, cropper);
+    @include jnt-image-cropper((
+      min-height: map-get($cropper, min-height),
+      min-width: map-get($cropper, min-width)
+    ), '&');
   }
 }

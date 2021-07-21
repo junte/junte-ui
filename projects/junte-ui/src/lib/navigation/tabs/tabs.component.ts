@@ -14,7 +14,9 @@ import {
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
 import { UI } from '../../core/enums/ui';
-import { TabComponent } from './tab.component';
+import { TabDirective } from './tab.directive';
+
+const CHECK_INTERVAL = 300;
 
 // @ts-ignore
 @Component({
@@ -46,7 +48,7 @@ export class TabsComponent {
   @Input()
   set active(active: number) {
     this._active = active;
-    this.distance = this.links?.toArray()[this.active].nativeElement.offsetLeft;
+    setTimeout(() => this.distance = this.links?.toArray()[this.active].nativeElement.offsetLeft);
   }
 
   get active() {
@@ -68,8 +70,8 @@ export class TabsComponent {
   @Input()
   features: Feature[] = [];
 
-  @ContentChildren(TabComponent)
-  tabs: QueryList<TabComponent>;
+  @ContentChildren(TabDirective)
+  tabs: QueryList<TabDirective>;
 
   @ViewChildren('links')
   links: QueryList<ElementRef>;
@@ -80,8 +82,21 @@ export class TabsComponent {
   setWidth(active: number) {
     const tab = this.links.toArray()[active];
     if (!!tab) {
-      this.renderer.setStyle(this.lineRef.nativeElement, 'width', tab.nativeElement.offsetWidth + 'px');
+      let check: () => void;
+      check = () => {
+        if (!!tab.nativeElement.offsetParent) {
+          this.renderer.setStyle(this.lineRef.nativeElement, 'width', tab.nativeElement.offsetWidth + 'px');
+        } else {
+          setTimeout(() => check(), CHECK_INTERVAL);
+        }
+      }
+      check();
     }
   }
 
+  flash(index: number) {
+    const tab = this.tabs.toArray()[index];
+    tab.state.flash = true;
+    setTimeout(() => tab.state.flash = false, 700);
+  }
 }

@@ -4,7 +4,7 @@ import { IconModule } from '../../elements/icon/icon.module';
 import { SpinnerModule } from '../../layout/spinner/spinner.module';
 import { StackModule } from '../../layout/stack/stack.module';
 import { AccordionComponent } from './accordion.component';
-import { AccordionSectionComponent } from './section/accordion-section.component';
+import { AccordionSectionDirective } from './section/accordion-section.directive';
 
 @NgModule({
   imports: [
@@ -15,14 +15,11 @@ import { AccordionSectionComponent } from './section/accordion-section.component
   ],
   declarations: [
     AccordionComponent,
-    AccordionSectionComponent
-  ],
-  entryComponents: [
-    AccordionSectionComponent
+    AccordionSectionDirective
   ],
   exports: [
     AccordionComponent,
-    AccordionSectionComponent
+    AccordionSectionDirective
   ]
 })
 export class AccordionModule {

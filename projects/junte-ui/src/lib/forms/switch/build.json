@@ -4,7 +4,8 @@
     "pathFrom": "../../assets/styles",
     "pathTo": "../../../../../../dist/junte-ui/lib/assets/styles",
     "from": [
-      "switch/_switch.scss"
+      "switch/_switch.scss",
+      "switch/switch-group/_switch-group.scss"
     ],
     "to": "_switch.scss"
   },
@@ -18,6 +19,17 @@
       "scss": {
         "from": "switch.component.scss",
         "to": "../../assets/styles/forms/switch/_switch.scss"
+      }
+    },
+    {
+      "host": "jnt-switch-group-host",
+      "html": {
+        "from": "switch-group/switch-group.component.html",
+        "to": "switch-group/switch-group.encapsulated.html"
+      },
+      "scss": {
+        "from": "switch-group/switch-group.component.scss",
+        "to": "../../assets/styles/forms/switch/switch-group/_switch-group.scss"
       }
     }
   ]

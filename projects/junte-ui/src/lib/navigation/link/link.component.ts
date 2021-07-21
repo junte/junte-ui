@@ -1,6 +1,14 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, ContentChildren, HostBinding, Input, QueryList, ViewChild } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ContentChildren,
+  HostBinding,
+  Input,
+  QueryList,
+  TemplateRef
+} from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
 import { Context } from '../../core/enums/context';
 import { Feature } from '../../core/enums/feature';
@@ -16,9 +24,12 @@ interface Icon {
   position: Position;
 }
 
+type LinkSource = string | (string | { [key: string]: string | number })[];
+
 @Component({
   selector: 'jnt-link',
   templateUrl: './link.encapsulated.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('rotate', [
       state('opened', style({transform: 'rotate(-180deg)'})),
@@ -34,11 +45,11 @@ export class LinkComponent {
   ui = UI;
   icon: Icon;
 
-  private _source: string | any[];
+  private _source: LinkSource;
   private _target: LinkTarget = LinkTarget.self;
   private _matching: UrlMatching = UrlMatching.fullMatch;
 
-  externalLink = true;
+  external = false;
 
   @HostBinding('attr.data-context')
   _context: Context = Context.text;
@@ -51,14 +62,14 @@ export class LinkComponent {
     return !!this.title;
   }
 
-  @Input() collapsed: boolean;
-  @Input() opened: boolean;
+  @Input()
+  collapsed: boolean;
 
-  // TODO: we must find better solution
-  @HostBinding('attr.data-active')
-  get linkActive(): boolean {
-    return !!this.linkRef ? this.linkRef.isActive : false;
-  }
+  @Input()
+  opened: boolean;
+
+  @Input()
+  active = false;
 
   @PropertyApi({
     description: 'Disable link',
@@ -66,7 +77,8 @@ export class LinkComponent {
     default: 'false'
   })
   @HostBinding('attr.data-disabled')
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @PropertyApi({
     description: 'Link outline',
@@ -76,7 +88,8 @@ export class LinkComponent {
       Outline.ghost,
       Outline.fill]
   })
-  @Input() set outline(outline: Outline) {
+  @Input()
+  set outline(outline: Outline) {
     this._outline = outline || Outline.transparent;
   }
 
@@ -91,7 +104,8 @@ export class LinkComponent {
       ? {icon: icon, position: Position.left} : icon) as Icon;
   }
 
-  @HostBinding('attr.data-position') get position() {
+  @HostBinding('attr.data-position')
+  get position() {
     return !!this.icon ? this.icon.position : null;
   }
 
@@ -106,18 +120,20 @@ export class LinkComponent {
     type: '{[k: string]: any}'
   })
   @Input()
-  queryParams: {[k: string]: any};
+  queryParams: { [k: string]: any };
 
   @PropertyApi({
     description: 'Link source',
-    type: 'string | string[]'
+    type: 'string | (string | { [key: string]: string | number })[]'
   })
   @Input()
-  set source(source: string | string[]) {
+  set source(source: LinkSource) {
+    this._source = source;
     if (!!source) {
-      this.externalLink = !Array.isArray(source);
-      this._source = source;
+      this.external = !Array.isArray(source);
+      this._orphan = false;
     } else {
+      this.external = false;
       this._orphan = true;
     }
   }
@@ -189,9 +205,9 @@ export class LinkComponent {
     this._context = context || Context.text;
   }
 
-  @ViewChild(RouterLinkActive)
-  linkRef: RouterLinkActive;
-
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
+
+  @ContentChild('linkContentTemplate')
+  contentTemplate: TemplateRef<any>;
 }

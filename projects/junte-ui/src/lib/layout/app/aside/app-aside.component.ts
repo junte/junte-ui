@@ -33,11 +33,18 @@ export class AppAsideComponent implements OnInit {
   }
 
   @ContentApi({
-    selector: '#asideContentTemplate',
+    selector: '#asideHeaderTemplate',
     description: 'Aside content template'
   })
-  @ContentChild('asideContentTemplate', {static: false})
-  contentTemplate: TemplateRef<any>;
+  @ContentChild('asideHeaderTemplate', {static: false})
+  headerTemplate: TemplateRef<any>;
+
+  @ContentApi({
+    selector: '#asideFooterTemplate',
+    description: 'Aside footer template'
+  })
+  @ContentChild('asideFooterTemplate', {static: false})
+  footerTemplate: TemplateRef<any>;
 
   @ContentChild(MenuComponent, {static: false})
   menu: MenuComponent;

@@ -12,14 +12,14 @@ class AnalitycsConfig {
  */
 
 @Directive({
-  selector: '[analytics]'
+  selector: '[appAnalytics]'
 })
 
 export class AnalyticsDirective {
 
   private _config: AnalitycsConfig;
 
-  @Input('analytics')
+  @Input('appAnalytics')
   set config(config: AnalitycsConfig) {
     this._config = config;
   }

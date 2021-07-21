@@ -1,4 +1,5 @@
 import { Component, ContentChild, EventEmitter, HostBinding, Input, Output, TemplateRef } from '@angular/core';
+import { Orientation } from '../../core/enums/orientation';
 import { Height } from '../../core/enums/height';
 import { Breakpoint } from '../../core/enums/breakpoint';
 import { BreakpointService } from '../responsive/breakpoint.service';
@@ -35,6 +36,10 @@ export class CardComponent {
 
   picture: Picture;
   popover: PopoverComponent;
+  focused = false;
+
+  @HostBinding('attr.data-orientation')
+  _orientation: Orientation = Orientation.horizontal;
 
   @HostBinding('attr.data-height')
   _height: Height = Height.default;
@@ -82,6 +87,28 @@ export class CardComponent {
       this.picture = null;
     }
   }
+
+  @PropertyApi({
+    description: 'Card orientation',
+    path: 'ui.orientation',
+    default: Orientation.horizontal,
+    options: [Orientation.horizontal, Orientation.vertical]
+  })
+  @Input()
+  set orientation(type: Orientation) {
+    this._orientation = type || Orientation.horizontal;
+  }
+
+  get orientation() {
+    return this._orientation;
+  }
+
+  @ContentApi({
+    selector: '#cardDragTemplate',
+    description: 'Card drag template'
+  })
+  @ContentChild('cardDragTemplate')
+  dragTemplate: TemplateRef<any>;
 
   @ContentApi({
     selector: '#cardHeaderTemplate',

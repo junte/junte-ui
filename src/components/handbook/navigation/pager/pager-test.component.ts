@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TabComponent, UI } from 'junte-ui';
+import { TabsComponent, UI } from 'junte-ui';
 import { PagerComponent } from 'junte-ui';
 import { LocalUI } from 'src/enums/local-ui';
 import { HANDBOOK } from 'src/consts';
@@ -38,14 +38,14 @@ export class PagerTestComponent implements OnInit {
     page: this.pageControl
   });
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.builder.valueChanges.subscribe(() => {
-      this.code.flash();
+      this.tabs.flash(1);
       this.offsetControl.patchValue(0);
       this.pageControl.patchValue(1);
     });

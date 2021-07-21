@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { DatePeriodComponent, UI } from 'junte-ui';
+import { DatePeriodComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 
@@ -9,7 +9,7 @@ import { LocalUI } from 'src/enums/local-ui';
   templateUrl: './date-period-test.component.html',
   styleUrls: ['./date-period-test.component.scss']
 })
-export class DatePeriodTestComponent {
+export class DatePeriodTestComponent implements OnInit {
 
   ui = UI;
   localUi = LocalUI;
@@ -24,6 +24,8 @@ export class DatePeriodTestComponent {
   endControl = this.fb.control(new Date);
   currentControl = this.fb.control(null);
 
+  @ViewChild('tabs') tabs: TabsComponent;
+
   builder = this.fb.group({
     start: this.startControl,
     end: this.endControl,
@@ -31,6 +33,11 @@ export class DatePeriodTestComponent {
   });
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.builder.valueChanges
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }

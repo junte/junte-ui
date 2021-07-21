@@ -4,6 +4,8 @@ import { ActivatedRoute, NavigationEnd, Router, RouterState } from '@angular/rou
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
+import { Feature } from '../../core/enums/feature';
+import { FlexWrap } from '../../core/enums/flex';
 import { UI } from '../../core/enums/ui';
 import { AppAsideComponent } from '../../layout/app/aside/app-aside.component';
 
@@ -12,7 +14,7 @@ class Breadcrumb {
   route: ActivatedRoute;
   title = null;
   disabled = false;
-  url = '.';
+  url = ['.'];
 
   constructor(defs = null) {
     Object.assign(this, defs);
@@ -42,8 +44,13 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     return !!this.aside;
   }
 
-  @HostBinding('style.display') get display() {
-    return this.breadcrumbs.length > 0 ? 'block' : 'none';
+  @Input()
+  @HostBinding('attr.data-wrap')
+  wrap: FlexWrap = FlexWrap.wrap;
+
+  @HostBinding('style.display')
+  get display() {
+    return this.breadcrumbs.length > 1 ? 'flex' : 'none';
   }
 
   @PropertyApi({
@@ -52,6 +59,14 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
   })
   @Input()
   aside: AppAsideComponent;
+
+  @PropertyApi({
+    description: 'Set page title based on breadcrumb title',
+    path: 'ui.feature',
+    options: [Feature.pageTitle]
+  })
+  @Input()
+  features: Feature[] = [Feature.pageTitle];
 
   constructor(public router: Router,
               private titleService: Title,
@@ -89,11 +104,16 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 case 'object': {
                   const title = typeof crumb.label === 'string'
                     ? crumb.label : crumb.label(route.snapshot.data, route.snapshot);
+                  let url = ['.'];
+                  if (!!crumb.url) {
+                    url = Array.isArray(crumb.url)
+                      ? crumb.url : crumb.url(route.snapshot.data, route.snapshot);
+                  }
                   if (!!title) {
                     breadcrumbs.push(new Breadcrumb({
                       route,
                       title,
-                      url: crumb.url,
+                      url,
                       disabled: crumb.disabled
                     }));
                   }
@@ -118,7 +138,15 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.breadcrumbs = breadcrumbs;
 
     const metaTitle = this.breadcrumbs.map(crumb => crumb.title).join(' · ');
-    this.titleService.setTitle(metaTitle);
-    this.metaService.updateTag({name: 'description', content: metaTitle});
+    if (this.features.includes(UI.feature.pageTitle)) {
+      this.titleService.setTitle(metaTitle);
+      this.metaService.updateTag({name: 'description', content: metaTitle});
+    }
+  }
+
+  go(crumb: Breadcrumb, event: MouseEvent) {
+    event.preventDefault();
+    this.router.navigate(crumb.url, {relativeTo: crumb.route})
+      .then();
   }
 }

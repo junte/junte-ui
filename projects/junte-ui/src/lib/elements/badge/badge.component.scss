@@ -19,6 +19,7 @@
     background: $jnt-primary-color,
     border: null,
     font-size: 12px,
+    padding: 0 3px,
     corner: $jnt-corner-small,
     positions: (
       rightTop: (
@@ -79,7 +80,6 @@
     @if $declare {
       display: inline-block;
       text-align: center;
-      padding: 0 3px;
       box-sizing: border-box;
       white-space: nowrap;
     }
@@ -91,6 +91,7 @@
     min-height: map-get($vars, size);
     height: map-get($vars, size);
     border-radius: map-get($vars, corner);
+    padding: map-get($vars, padding);
   }
 }
 

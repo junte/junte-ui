@@ -1,7 +1,6 @@
 import {Component, Inject, LOCALE_ID, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SkeletonComponent, UI } from 'junte-ui';
-import { TabComponent } from 'junte-ui';
+import { SkeletonComponent, TabsComponent, UI } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
 import {Language} from '../../../../enums/language';
@@ -30,7 +29,7 @@ export class SkeletonTestComponent implements OnInit {
   gitlab = 'https://gitlab.com/junte/junte-ui/-/tree/master/projects/junte-ui/src/lib/layout/skeleton';
   figma = 'https://www.figma.com/file/EIUNwZCXL9Nm5BKQKl43mfDr/Junte-UI?node-id=1270%3A539';
 
-  @ViewChild('code') code: TabComponent;
+  @ViewChild('tabs') tabs: TabsComponent;
 
   sketchControl = this.fb.control(Sketch.User);
   animationControl = this.fb.control(true);
@@ -46,7 +45,7 @@ export class SkeletonTestComponent implements OnInit {
 
   ngOnInit() {
     this.builder.valueChanges
-      .subscribe(() => this.code.flash());
+      .subscribe(() => this.tabs.flash(1));
   }
 
 }
