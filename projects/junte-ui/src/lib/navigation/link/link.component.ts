@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren,
+  ContentChildren, ElementRef,
   HostBinding,
   Input,
-  QueryList,
+  QueryList, Renderer2,
   TemplateRef
 } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
@@ -205,9 +205,19 @@ export class LinkComponent {
     this._context = context || Context.text;
   }
 
+  @Input()
+  set attributes(attributes: { [key: string]: string }) {
+    Object.keys(attributes || {}).forEach(name => this.renderer
+      .setAttribute(this.hostRef.nativeElement, name, attributes[name]));
+  }
+
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
   @ContentChild('linkContentTemplate')
   contentTemplate: TemplateRef<any>;
+
+  constructor(private hostRef: ElementRef,
+              private renderer: Renderer2) {
+  }
 }

@@ -57,6 +57,7 @@
                                 [target]="targetControl.value"
                                 [source]="sourceControl.value == sourceType.external ? 'https://google.com' :
                                           sourceControl.value == sourceType.local ? ['./', {param: 1}] : null"
+                                [attributes]="{'data-test': 'hero'}"
                                 title="Link here"
                                 i18n-title="@@label.link_here">
                         <jnt-badge *ngIf="badgeControl.value" [value]="5"></jnt-badge>

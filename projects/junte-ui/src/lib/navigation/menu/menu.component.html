@@ -40,6 +40,7 @@
                   [target]="item.target"
                   [disabled]="item.disabled"
                   [features]="!!item.submenu ? [ui.feature.dropdown] : null"
+                  [attributes]="item.attributes"
                   (click)="item.click.emit(); !item.submenu ? selected.emit(item) : null">
             <jnt-badge *ngFor="let badge of item.badges"
                        [value]="badge.value"
@@ -96,6 +97,7 @@
                         [queryParams]="subItem.queryParams"
                         [disabled]="subItem.disabled"
                         [target]="subItem.target"
+                        [attributes]="subItem.attributes"
                         (click)="selected.emit(subItem); subItem.click.emit(); reference.popover?.hide();">
                 <jnt-badge *ngFor="let badge of subItem.badges"
                            [value]="badge.value"

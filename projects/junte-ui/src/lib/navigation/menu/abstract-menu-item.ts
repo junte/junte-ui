@@ -98,6 +98,9 @@ export abstract class AbstractMenuItem {
   @Output()
   click = new EventEmitter<any>();
 
+  @Input()
+  attributes: { [key: string]: string };
+
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
 
