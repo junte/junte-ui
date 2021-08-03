@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DynamicTestComponent } from './dynamic-test.component';
+import { CarouselTestComponent } from 'src/components/handbook/dynamic/carousel/carousel-test.component';
 import { ChartTestComponent } from './chart/chart-test.component';
 import { CircleBarTestComponent } from './circle-bar/circle-bar-test.component';
 import { DatePeriodTestComponent } from './date-period/date-period-test.component';
+import { DynamicTestComponent } from './dynamic-test.component';
 import { ProgressBarTestComponent } from './progress-bar/progress-bar-test.component';
 import { TimerTestComponent } from './timer/timer-test.component';
 
@@ -14,7 +15,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: DynamicTestComponent,
+        component: DynamicTestComponent
       },
       {
         path: 'progress-bar',
@@ -41,6 +42,11 @@ export const routes: Routes = [
         component: TimerTestComponent,
         data: {breadcrumb: 'Timer', animation: 'Timer'}
       },
+      {
+        path: 'carousel',
+        component: CarouselTestComponent,
+        data: {breadcrumb: 'Carousel', animation: 'Carousel'}
+      }
     ]
   }
 ];
