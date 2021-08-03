@@ -1,0 +1,130 @@
+@import 'jnt-variables';
+@import 'jnt-utils';
+@import 'jnt-functions';
+@import 'jnt-hosts';
+
+@mixin jnt-carousel($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: ();
+  $vars: $passed;
+  $declare: false;
+
+  $wrapper: null;
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-carousel-host)} {
+    @if $declare {
+      flex: 1;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0.5em;
+    }
+  }
+
+  #{$context} [data-item] {
+    @if $declare {
+      height: 100%;
+      width: 100%;
+      background: $jnt-primary-background;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  #{$context} [data-arrow] {
+    @if $declare {
+      border: none;
+      background-color: transparent;
+      outline: 0;
+      position: absolute;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5em;
+      color: white;
+      font-weight: bold;
+      font-size: 3em;
+      user-select: none;
+      height: 100%;
+      opacity: .8;
+
+      &:hover, &:focus {
+        opacity: 1;
+      }
+
+      &[data-next] {
+        right: 0;
+      }
+
+      &[data-prev] {
+        left: 0;
+      }
+
+      span {
+        display: block;
+        border-left: 0.1em solid white;
+        border-bottom: 0.1em solid white;
+        width: 0.5em;
+        height: 0.5em;
+
+        &[data-left] {
+          transform: rotate(45deg);
+        }
+
+        &[data-right] {
+          transform: rotate(225deg);
+        }
+      }
+    }
+  }
+
+  #{$context} [data-dots] {
+    @if $declare {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+
+      [data-dot] {
+        height: 10px;
+        width: 10px;
+        border-radius: 5px;
+        background: $jnt-primary-background;
+        opacity: .6;
+        margin: 0 4px;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@if $jnt-debug {
+  @debug 'carousel compiled';
+}

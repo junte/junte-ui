@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppLayoutModule, GridModule } from 'junte-ui';
+import { CarouselTestModule } from 'src/components/handbook/dynamic/carousel/carousel-test.module';
 import { SectionModule } from '../shared/section/section.module';
 import { ChartTestModule } from './chart/chart-test.module';
 import { CircleBarTestModule } from './circle-bar/circle-bar-test.module';
@@ -24,6 +25,7 @@ import { TimerTestModule } from './timer/timer-test.module';
     DatePeriodTestModule,
     ProgressBarTestModule,
     TimerTestModule,
+    CarouselTestModule,
     DynamicTestComponent
   ],
   declarations: [

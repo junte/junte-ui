@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CarouselModule } from './carousel/carousel.module';
 import { ChartModule } from './chart/chart.module';
 import { CircleBarModule } from './circle-bar/circle-bar.module';
 import { DatePeriodModule } from './date-period/date-period.module';
@@ -11,7 +12,8 @@ import { TimerModule } from './timer/timer.module';
     CircleBarModule,
     DatePeriodModule,
     ProgressBarModule,
-    TimerModule
+    TimerModule,
+    CarouselModule
   ]
 })
 export class DynamicModule {

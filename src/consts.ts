@@ -368,6 +368,12 @@ export const HANDBOOK = {
         icon: LocalUI.icons.timer,
         link: 'timer',
         teaser: $localize`:@@message.timer_teaser:time countdown`
+      },
+      carousel: {
+        name: 'Carousel',
+        icon: LocalUI.icons.carousel,
+        link: 'carousel',
+        teaser: $localize`:@@message.carousel_teaser:slider carousel`
       }
     }
   },

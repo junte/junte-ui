@@ -1,4 +1,5 @@
 import { GanttTypes } from '../../collections/gantt/enums';
+import { CarouselOrientation } from '../../dynamic/carousel/carousel.enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
 import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/enums';
@@ -73,6 +74,7 @@ export const UI = {
   input: {type: InputType, scheme: InputScheme, autocomplete: InputAutocomplete},
   select: {mode: SelectMode, autocomplete: InputAutocomplete},
   button: {type: ButtonType},
+  carousel: {orientation: CarouselOrientation},
   gantt: {type: GanttTypes},
   menu: {style: MenuStyle},
   keyboard: {key: Key, modifier: Modifier},
