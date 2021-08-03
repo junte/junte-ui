@@ -6,6 +6,7 @@ import { Gutter } from '../../core/enums/gutter';
 import { Orientation } from '../../core/enums/orientation';
 import { Placement } from '../../core/enums/placement';
 import { MenuStyle } from '../../core/enums/style';
+import { Triggers } from '../../core/enums/triggers';
 import { UI } from '../../core/enums/ui';
 import { PopoverInstance } from '../../overlays/popover/popover.service';
 import { MenuItemDirective } from './menu-item.directive';
@@ -41,6 +42,8 @@ export class MenuComponent {
 
   @HostBinding('attr.data-wrap')
   _wrap: FlexWrap = FlexWrap.wrap;
+
+  _trigger: Triggers = Triggers.click;
 
   @HostBinding('attr.data-collapsed')
   @Input()
@@ -134,6 +137,21 @@ export class MenuComponent {
 
   get spacing() {
     return this._spacing;
+  }
+
+  @PropertyApi({
+    description: 'Trigger for open dropdown menu',
+    path: 'ui.trigger',
+    default: Triggers.click,
+    options: [Triggers.click, Triggers.hover]
+  })
+  @Input()
+  set trigger(trigger: Triggers) {
+    this._trigger = trigger || Triggers.click;
+  }
+
+  get trigger() {
+    return this._trigger;
   }
 
   @Input()
