@@ -20,7 +20,6 @@ export type UploadImageData = {
   file: File;
 }
 
-
 enum Pages {
   view = 1,
   crop = 2
