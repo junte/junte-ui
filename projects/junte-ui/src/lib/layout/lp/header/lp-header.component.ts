@@ -1,24 +1,25 @@
 import { ViewportScroller } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
   HostBinding,
-  NgZone,
   OnInit,
   Renderer2,
   TemplateRef
 } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { UI } from '../../../core/enums/ui';
+import { LOGGER_PROVIDERS } from '../../../core/logger/providers';
 import { MenuComponent } from '../../../navigation/menu/menu.component';
 import { PopoverInstance } from '../../../overlays/popover/popover.service';
 
 @Component({
   selector: 'jnt-lp-header',
   templateUrl: './lp-header.encapsulated.html',
-  providers: [...LOGGER_PROVIDERS]
+  providers: [...LOGGER_PROVIDERS],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LpHeaderComponent implements OnInit {
 
@@ -51,27 +52,24 @@ export class LpHeaderComponent implements OnInit {
   constructor(private logger: NGXLogger,
               public cd: ChangeDetectorRef,
               private scroller: ViewportScroller,
-              private renderer: Renderer2,
-              private zone: NgZone) {
+              private renderer: Renderer2) {
   }
 
   ngOnInit() {
-    this.zone.runOutsideAngular(() => {
-      this.listeners.push(this.renderer.listen('window', 'scroll', () => {
-        const [, scrollY] = this.scroller.getScrollPosition();
-        if (scrollY > 0) {
-          if (!this.scrolled) {
-            this.scrolled = true;
-            this.cd.markForCheck();
-          }
-        } else {
-          if (this.scrolled) {
-            this.scrolled = false;
-            this.cd.markForCheck();
-          }
+    this.listeners.push(this.renderer.listen('window', 'scroll', () => {
+      const [, scrollY] = this.scroller.getScrollPosition();
+      if (scrollY > 0) {
+        if (!this.scrolled) {
+          this.scrolled = true;
+          this.cd.detectChanges();
         }
-      }));
-    });
+      } else {
+        if (this.scrolled) {
+          this.scrolled = false;
+          this.cd.detectChanges();
+        }
+      }
+    }));
   }
 
 
