@@ -29,7 +29,7 @@ import { Shape } from './shape';
 import { Size } from './size';
 import { State } from './state';
 import { Stroke } from './stroke';
-import { MenuStyle, SwitchStyle } from './style';
+import { CheckboxStyle, MenuStyle, SwitchStyle } from './style';
 import { TextAlign, TextTransform } from './text';
 import { Theme } from './theme';
 import { Triggers } from './triggers';
@@ -80,6 +80,7 @@ export const UI = {
   keyboard: {key: Key, modifier: Modifier},
   icon: {modifier: IconModifier},
   switch: {style: SwitchStyle},
+  checkbox: {style: CheckboxStyle},
   modal: {scheme: ModalScheme, closedReason: ModalClosedReason},
   viewport: {type: ViewportType}
 };

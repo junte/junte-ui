@@ -10,9 +10,13 @@
     min-height: map-get($size, indicator);
     height: map-get($size, indicator);
 
-    [data-icon] {
+    [data-check] {
       width: map-get($size, icon);
       height: map-get($size, icon);
+    }
+
+    [data-icon] {
+      @include jnt-icon((size: map-get($size, icon)), '&');
     }
   }
   #{$wrapper} input {
@@ -58,7 +62,22 @@
       background: $jnt-control-background,
       border-color: $jnt-control-border-color,
       active: (
-        color: $jnt-primary-color
+        border-color: $jnt-primary-color,
+        icon: (
+          color: $jnt-secondary-color
+        )
+      ),
+      hover: (
+        border-color: $jnt-primary-color
+      ),
+      focus: (
+        shadow: $jnt-outline-shadow-normal $jnt-highlight-background
+      ),
+      disabled: (
+        border-color: $jnt-control-disabled-border-color,
+        background: $jnt-control-disabled-background,
+        icon-color: $jnt-control-disabled-indicator-icon-color,
+        label-color: $jnt-control-disabled-label-color
       )
     )
   );
@@ -114,7 +133,10 @@
         $switch: map-get($vars, switch);
         @if map-has-key($switch, active) {
           $active: map-get($switch, active);
-          border-color: map-get($active, color);
+          border-color: map-get($active, border-color);
+          [data-icon] {
+            @include jnt-icon((color: map-get($active, color)), '&');
+          }
         }
       }
     }
@@ -123,15 +145,25 @@
       @if $declare {
         cursor: default;
         pointer-events: none;
-        & ~ [data-checkbox] > label {
-          color: $jnt-control-disabled-label-color;
-        }
-        & + [data-checkbox] > [data-switch] {
-          background-color: $jnt-control-disabled-background;
-          border-color: $jnt-control-disabled-border-color;
+        @if map-has-key($vars, switch) {
+          $switch: map-get($vars, switch);
+          @if map-has-key($switch, disabled) {
+            $disabled: map-get($switch, disabled);
+            & ~ [data-checkbox] > label {
+              color: map-get($disabled, label-color);
+            }
+            & + [data-checkbox] > [data-switch] {
+              background-color: map-get($disabled, background);
+              border-color: map-get($disabled, border-color);
 
-          & > [data-icon] {
-            background-color: $jnt-control-disabled-indicator-icon-color;
+              & > [data-check] {
+                background-color: map-get($disabled, icon-color);
+              }
+
+              & > [data-icon] {
+                @include jnt-icon((color: map-get($disabled, icon-color)), '&');
+              }
+            }
           }
         }
       }
@@ -141,10 +173,10 @@
       & + [data-checkbox] > [data-switch] {
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
-          @if map-has-key($switch, active) {
-            $active: map-get($switch, active);
+          @if map-has-key($switch, focus) {
+            $focus: map-get($switch, focus);
             @if $declare {
-              box-shadow: $jnt-outline-shadow-normal $jnt-highlight-background;
+              box-shadow: map-get($focus, shadow);
             }
           }
         }
@@ -155,9 +187,9 @@
       & + [data-checkbox] > [data-switch] {
         @if map-has-key($vars, switch) {
           $switch: map-get($vars, switch);
-          @if map-has-key($switch, active) {
-            $active: map-get($switch, active);
-            border-color: map-get($active, color);
+          @if map-has-key($switch, hover) {
+            $hover: map-get($switch, hover);
+            border-color: map-get($hover, border-color);
           }
         }
       }
@@ -178,17 +210,12 @@
       $switch: map-get($vars, switch);
       border: 1px solid map-get($switch, border-color);
       background-color: map-get($switch, background);
-      [data-icon] {
-        @if map-has-key($switch, active) {
-          $active: map-get($switch, active);
-          background-color: map-get($active, color);
-        }
-      }
     }
 
-    [data-icon] {
+    [data-check] {
       @if $declare {
         border-radius: 2px;
+        background-color: $jnt-primary-color;
       }
     }
   }
