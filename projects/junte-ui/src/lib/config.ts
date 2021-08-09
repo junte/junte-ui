@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { format, Locale } from 'date-fns';
 import { enUS as dfnsEnUS } from 'date-fns/locale';
 import { NgxLoggerLevel } from 'ngx-logger';
-import { SwitchStyle } from './core/enums/style';
+import { CheckboxStyle, SwitchStyle } from './core/enums/style';
 import { i18nEn } from './core/i18n/en';
 import { localeEnUs as jntEn } from './core/locale/en';
 
@@ -25,6 +25,10 @@ export class JunteUIConfig {
     style?: SwitchStyle,
     icons?: { on: string, off: string }
   };
+  checkbox?: {
+    style?: CheckboxStyle,
+    icon?: string
+  };
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   locale?: {
     ui?: LocaleUI,
@@ -41,6 +45,10 @@ export const JUNTE_DEFAULT_CONFIG = {
   switch: {
     style: SwitchStyle.default,
     icons: { on: null, off: null }
+  },
+  checkbox: {
+    style: CheckboxStyle.default,
+    icon: null
   },
   weekStartsOn: 0,
   locale: {

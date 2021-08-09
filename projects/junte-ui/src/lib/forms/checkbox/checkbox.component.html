@@ -8,7 +8,14 @@
              [gutter]="ui.gutter.small"
              [align]="align">
     <div data-switch>
-      <div *ngIf="checkboxControl.value" data-icon [@scale]="animate"></div>
+      <ng-template #defaultTemplate>
+        <div data-check [@scale]="animate"></div>
+      </ng-template>
+
+      <ng-container *ngIf="checkboxControl.value">
+        <jnt-icon *ngIf="config.checkbox.style === ui.checkbox.style.vintage && !!config.checkbox.icon; else defaultTemplate"
+                  [icon]="config.checkbox.icon"></jnt-icon>
+      </ng-container>
     </div>
     <div data-label>
       <ng-container *ngTemplateOutlet="!!labelTemplate ? labelTemplate : labelDefaultTemplate"></ng-container>

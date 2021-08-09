@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, ContentChild, forwardRef, HostBinding, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { JunteUIConfig } from '../../config';
 import { PropertyApi } from '../../core/decorators/api';
 import { FlexAlign } from '../../core/enums/flex';
 import { Size } from '../../core/enums/size';
@@ -118,7 +119,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @HostListener('blur') onBlur = () => this.onTouched();
 
   constructor(private fb: FormBuilder,
-              private logger: NGXLogger) {
+              private logger: NGXLogger,
+              public config: JunteUIConfig) {
   }
 
   ngOnInit() {
