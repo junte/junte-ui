@@ -134,8 +134,11 @@
         @if map-has-key($switch, active) {
           $active: map-get($switch, active);
           border-color: map-get($active, border-color);
-          [data-icon] {
-            @include jnt-icon((color: map-get($active, color)), '&');
+          @if map-has-key($active, icon) {
+            $icon: map-get($active, icon);
+            [data-icon] {
+              @include jnt-icon((color: map-get($icon, color)), '&');
+            }
           }
         }
       }
