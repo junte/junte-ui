@@ -62,6 +62,11 @@ export class LinkComponent {
     return !!this.title;
   }
 
+  @HostBinding('attr.data-has-badge')
+  get hasBadge() {
+    return !!this.badges.length;
+  }
+
   @Input()
   collapsed: boolean;
 

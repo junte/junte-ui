@@ -65,6 +65,7 @@ $tab-marker-height: 4px;
         styles: (
           tags: (
             padding: $jnt-gutter-tiny $jnt-gutter-normal,
+            padding-without-badge: $jnt-gutter-tiny $jnt-gutter-normal,
             color: $jnt-primary-light-color,
             corner: 19px,
             border: 1px solid $jnt-white-color,
@@ -359,6 +360,7 @@ $tab-marker-height: 4px;
               $tags: map-get($styles, tags);
               @include jnt-link((
                 padding: map-get($tags, padding),
+                padding-without-badge: map-get($tags, padding-without-badge),
                 color: map-get($tags, color),
                 border: map-get($tags, border),
                 corner: map-get($tags, corner),
