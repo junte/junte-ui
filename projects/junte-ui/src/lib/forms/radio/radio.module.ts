@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ArrayPipesModule } from '../../core/pipes/array-pipes.module';
 import { MathPipesModule } from '../../core/pipes/math-pipes.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { GridModule } from '../../layout/grid/grid.module';
@@ -15,7 +16,8 @@ import { RadioComponent } from './radio.component';
     StackModule,
     IconModule,
     GridModule,
-    MathPipesModule
+    MathPipesModule,
+    ArrayPipesModule
   ],
   exports: [
     RadioComponent,
