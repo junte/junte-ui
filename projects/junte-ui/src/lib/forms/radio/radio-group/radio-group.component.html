@@ -3,6 +3,7 @@
     <ng-template #radiosTemplate let-item="item" let-i="i">
       <jnt-radio [formControlName]="i"
                  [size]="size"
+                 [features]="features"
                  [label]="item.label"
                  [value]="item.value">
         <ng-template *ngIf="!!item.labelTemplate" #radioLabelTemplate>

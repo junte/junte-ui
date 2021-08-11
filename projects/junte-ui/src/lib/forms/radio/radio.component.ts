@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
+import { Feature } from '../../core/enums/feature';
 import { PropertyApi } from '../../core/decorators/api';
 import { Size } from '../../core/enums/size';
 import { UI } from '../../core/enums/ui';
@@ -100,6 +101,15 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
   @Input()
   value: any;
 
+  @PropertyApi({
+    description: 'Allow empty for radio',
+    path: 'ui.feature',
+    options: [Feature.allowEmpty]
+  })
+  @HostBinding('attr.data-features')
+  @Input()
+  features: Feature[] = [];
+
   @ContentChild('radioLabelTemplate')
   labelTemplate: TemplateRef<any>;
 
@@ -118,7 +128,7 @@ export class RadioComponent implements ControlValueAccessor, OnInit {
       .subscribe(checked => {
         this.animate = checked ? AnimationState.checked : AnimationState.unchecked;
         // TODO: check this
-        this.onChange(true);
+        this.onChange(this.features.includes(Feature.allowEmpty) ? (checked || null) : true);
       });
   }
 

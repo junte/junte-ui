@@ -129,9 +129,9 @@ export class RadioGroupComponent implements AfterViewInit, ControlValueAccessor 
   }
 
   @PropertyApi({
-    description: 'Adapted radio group on mobile view',
+    description: 'Adapted radio group on mobile view; Allow empty for radio',
     path: 'ui.feature',
-    options: [Feature.adapted]
+    options: [Feature.adapted, Feature.allowEmpty]
   })
   @HostBinding('attr.data-features')
   @Input()

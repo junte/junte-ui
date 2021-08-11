@@ -3,7 +3,13 @@
 </ng-template>
 
 <ng-container [formGroup]="form">
-  <input formControlName="radio" type="radio" [attr.custom]="!!labelTemplate">
+  <ng-template #radioTemplate>
+    <input formControlName="radio" type="radio" [attr.custom]="!!labelTemplate">
+  </ng-template>
+  <input *ngIf="!!features && (features | includes: ui.feature.allowEmpty); else radioTemplate"
+         formControlName="radio"
+         type="checkbox"
+         [attr.custom]="!!labelTemplate">
   <div data-switch><span data-indicator *ngIf="radioControl.value"
                          [@scale]="animate"></span></div>
   <div data-label>
