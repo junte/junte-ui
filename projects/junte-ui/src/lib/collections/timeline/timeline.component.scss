@@ -52,7 +52,9 @@
         min-width: map-get($sizes, mark);
         max-width: map-get($sizes, mark);
       }
-
+      [data-content] {
+        max-width: calc(100% - #{map-get($sizes, mark)} - #{$jnt-gutter-normal});
+      }
     }
 
     [data-mark] {
