@@ -501,6 +501,9 @@ $tab-marker-height: 4px;
         max-width: 100%;
         white-space: nowrap;
       }
+      @if map-get($vars, overflow) == false {
+        word-break: break-word;
+      }
     }
 
     @if map-has-key($vars, badge) {
