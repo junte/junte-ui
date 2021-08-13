@@ -42,7 +42,7 @@
                   <jnt-block title="Button"
                              i18n-title="@@label.button"
                              [width]="ui.width.fluid">
-                    <jnt-button [text]="textControl.value ? 'Button' : null"
+                    <jnt-button [text]="featuresControl.value.includes('text') ? 'Button' : null"
                                 [scheme]="schemeControl.value"
                                 [size]="sizeControl.value"
                                 [outline]="outlineControl.value"
@@ -51,10 +51,10 @@
                                 [loading]="loadingControl.value"
                                 [disabled]="disabledControl.value"
                                 [shape]="shapeControl.value"
-                                [icon]="iconControl.value ? {icon: ui.icons.user,
+                                [icon]="featuresControl.value.includes('icon') ? {icon: ui.icons.user,
                                         position: positionControl.value === ui.position.right
                                           ? ui.position.right : ui.position.left} : null">
-                      <jnt-badge *ngIf="badgeControl.value"
+                      <jnt-badge *ngIf="featuresControl.value.includes('badge')"
                                  [value]="5"></jnt-badge>
                     </jnt-button>
                   </jnt-block>
@@ -65,31 +65,31 @@
                                       [size]="sizeControl.value"
                                       [outline]="outlineControl.value"
                                       [width]="widthControl.value">
-                      <jnt-button [text]="textControl.value ? 'Button' : null"
+                      <jnt-button [text]="featuresControl.value.includes('text') ? 'Button' : null"
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? {icon: ui.icons.user,
+                                  [icon]="featuresControl.value.includes('icon') ? {icon: ui.icons.user,
                                           position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
-                        <jnt-badge *ngIf="badgeControl.value"
+                        <jnt-badge *ngIf="featuresControl.value.includes('badge')"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
-                      <jnt-button [text]="textControl.value ? 'Button' : null"
+                      <jnt-button [text]="featuresControl.value.includes('text') ? 'Button' : null"
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? {icon: ui.icons.gitlab,
+                                  [icon]="featuresControl.value.includes('icon') ? {icon: ui.icons.gitlab,
                                           position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
-                        <jnt-badge *ngIf="badgeControl.value"
+                        <jnt-badge *ngIf="featuresControl.value.includes('badge')"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
-                      <jnt-button [text]="textControl.value ? 'Button' : null"
+                      <jnt-button [text]="featuresControl.value.includes('text') ? 'Button' : null"
                                   [type]="typeControl.value"
                                   [loading]="loadingControl.value"
                                   [disabled]="disabledControl.value"
-                                  [icon]="iconControl.value ? {icon: ui.icons.figma,
+                                  [icon]="featuresControl.value.includes('icon') ? {icon: ui.icons.figma,
                                           position: positionControl.value === ui.position.right ? ui.position.right : ui.position.left} : null">
-                        <jnt-badge *ngIf="badgeControl.value"
+                        <jnt-badge *ngIf="featuresControl.value.includes('badge')"
                                    [value]="5"></jnt-badge>
                       </jnt-button>
                     </jnt-button-group>
@@ -286,23 +286,17 @@
                                   i18n="@@label.features">Features
                   </jnt-form-label>
 
-                  <jnt-row>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="text"
-                                    label="Text"
+                  <jnt-checkbox-group formControlName="features" [cols]="3">
+                      <jnt-checkbox label="Text"
+                                    value="text"
                                     i18n-label="@@label.text"></jnt-checkbox>
-                    </jnt-col>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="icon"
-                                    label="Icon"
+                      <jnt-checkbox label="Icon"
+                                    value="icon"
                                     i18n-label="@@label.icon"></jnt-checkbox>
-                    </jnt-col>
-                    <jnt-col [span]="4">
-                      <jnt-checkbox formControlName="badge"
-                                    label="Badge"
+                      <jnt-checkbox label="Badge"
+                                    value="badge"
                                     i18n-label="@@label.badge"></jnt-checkbox>
-                    </jnt-col>
-                  </jnt-row>
+                  </jnt-checkbox-group>
                 </jnt-form-item>
 
               </jnt-stack>
@@ -333,7 +327,7 @@
 <![CDATA[
 <jnt-button
   ]]>
-  <ng-container *ngIf="textControl.value">
+  <ng-container *ngIf="featuresControl.value.includes('text')">
     <![CDATA[
     text="Button"]]>
   </ng-container>
@@ -369,16 +363,16 @@
     <![CDATA[
     [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
   </ng-container>
-  <ng-container *ngIf="iconControl.value && !positionControl.value">
+  <ng-container *ngIf="featuresControl.value.includes('icon') && !positionControl.value">
     <![CDATA[
     [icon]="ui.icons.user"]]>
   </ng-container>
-  <ng-container *ngIf="iconControl.value && !!positionControl.value">
+  <ng-container *ngIf="featuresControl.value.includes('icon') && !!positionControl.value">
     <![CDATA[
     [icon]="{icon: ui.icons.user, position: ]]>{{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}<![CDATA[}"]]>
   </ng-container>
   <![CDATA[>]]>
-  <ng-container *ngIf="badgeControl.value">
+  <ng-container *ngIf="featuresControl.value.includes('badge')">
     <![CDATA[
     <jnt-badge [value]="5"></jnt-badge>
       ]]>
@@ -420,7 +414,7 @@
     <![CDATA[
     <jnt-button
       ]]>
-      <ng-container *ngIf="textControl.value">
+      <ng-container *ngIf="featuresControl.value.includes('text')">
         <![CDATA[
         text="Button"]]>
       </ng-container>
@@ -436,18 +430,18 @@
         <![CDATA[
         [disabled]="]]>{{disabledControl.value}}<![CDATA["]]>
       </ng-container>
-      <ng-container *ngIf="iconControl.value && !positionControl.value">
+      <ng-container *ngIf="featuresControl.value.includes('icon') && !positionControl.value">
         <![CDATA[
         [icon]="ui.icons.user"]]>
       </ng-container>
-      <ng-container *ngIf="iconControl.value && !!positionControl.value">
+      <ng-container *ngIf="featuresControl.value.includes('icon') && !!positionControl.value">
         <![CDATA[
         [icon]="{icon: ui.icons.user, position: ]]>
         {{positionControl.value === ui.position.right ? 'ui.position.right' : 'ui.position.left'}}
         <![CDATA[}"]]>
       </ng-container>
       <![CDATA[>]]>
-      <ng-container *ngIf="badgeControl.value">
+      <ng-container *ngIf="featuresControl.value.includes('badge')">
         <![CDATA[
         <jnt-badge [value]="5"></jnt-badge>
         ]]>
