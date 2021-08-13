@@ -142,7 +142,7 @@ export class ButtonComponent {
 
   @HostBinding('attr.data-with-text')
   get withText() {
-    return !!this.text;
+    return !!this.text || this.badges.length > 0;
   }
 
   @PropertyApi({

@@ -28,11 +28,9 @@ export class ButtonTestComponent implements OnInit {
   typeControl = this.fb.control(null);
   loadingControl = this.fb.control(false);
   disabledControl = this.fb.control(false);
-  textControl = this.fb.control(true);
-  iconControl = this.fb.control(true);
-  badgeControl = this.fb.control(true);
   positionControl = this.fb.control(null);
   shapeControl = this.fb.control(null);
+  featuresControl = this.fb.control(['text', 'icon', 'badge']);
 
   builder = this.fb.group({
     scheme: this.schemeControl,
@@ -42,11 +40,9 @@ export class ButtonTestComponent implements OnInit {
     type: this.typeControl,
     loading: this.loadingControl,
     disabled: this.disabledControl,
-    text: this.textControl,
-    icon: this.iconControl,
-    badge: this.badgeControl,
     position: this.positionControl,
-    shape: this.shapeControl
+    shape: this.shapeControl,
+    features: this.featuresControl
   });
 
   constructor(private fb: FormBuilder) {
@@ -55,5 +51,11 @@ export class ButtonTestComponent implements OnInit {
   ngOnInit() {
     this.builder.valueChanges
       .subscribe(() => this.tabs.flash(1));
+
+    this.shapeControl.disable();
+
+    this.featuresControl.valueChanges
+      .subscribe(value => value.includes('text') || value.includes('badge') ?
+        this.shapeControl.disable() : this.shapeControl.enable());
   }
 }
