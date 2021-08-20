@@ -6,5 +6,6 @@ export enum TextAlign {
 export enum TextTransform {
   capitalize = 'capitalize',
   uppercase = 'uppercase',
-  lowercase = 'lowercase'
+  lowercase = 'lowercase',
+  ranks = 'ranks'
 }

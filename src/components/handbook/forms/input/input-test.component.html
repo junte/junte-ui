@@ -197,21 +197,30 @@
                   <jnt-form-label for="transform"
                                   i18n="@@label.text_align">Text transform
                   </jnt-form-label>
-                  <jnt-switcher formControlName="transform"
-                                [features]="ui.feature.allowEmpty">
-                    <jnt-switcher-option label="Capitalize"
+                  <jnt-select formControlName="transform"
+                              placeholder="Transform"
+                              i18n-placeholder="@@label.transform"
+                              [features]="[ui.feature.allowEmpty]">
+                    <jnt-select-option label="Capitalize"
                                          i18n-label="@@label.capitalize"
                                          [icon]="localUi.icons.capitalize"
-                                         [value]="ui.text.transform.capitalize"></jnt-switcher-option>
-                    <jnt-switcher-option label="Uppercase"
+                                         [key]="ui.text.transform.capitalize">
+                    </jnt-select-option>
+                    <jnt-select-option label="Uppercase"
                                          i18n-label="@@label.capitalize"
                                          [icon]="localUi.icons.uppercase"
-                                         [value]="ui.text.transform.uppercase"></jnt-switcher-option>
-                    <jnt-switcher-option label="Lowercase"
+                                         [key]="ui.text.transform.uppercase">
+                    </jnt-select-option>
+                    <jnt-select-option label="Lowercase"
                                          i18n-label="@@label.capitalize"
                                          [icon]="localUi.icons.lowercase"
-                                         [value]="ui.text.transform.lowercase"></jnt-switcher-option>
-                  </jnt-switcher>
+                                         [key]="ui.text.transform.lowercase">
+                    </jnt-select-option>
+                    <jnt-select-option label="Ranks"
+                                         i18n-label="@@label.ranks"
+                                         [key]="ui.text.transform.ranks">
+                    </jnt-select-option>
+                  </jnt-select>
                 </jnt-form-item>
 
                 <jnt-form-item>

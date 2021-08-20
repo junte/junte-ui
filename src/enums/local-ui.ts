@@ -134,6 +134,7 @@ export class LocalUI {
     capitalize: 'capitalize:svg:layout:stroked',
     uppercase: 'uppercase:svg:layout:stroked',
     lowercase: 'lowercase:svg:layout:stroked',
+    currency: 'currency:svg:layout:stroked',
     position: {
       leftTop: 'left-top:svg:layout:stroked',
       rightTop: 'right-top:svg:layout:stroked',
