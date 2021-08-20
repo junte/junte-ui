@@ -1,11 +1,10 @@
 import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { InputComponent, TabsComponent, UI } from 'junte-ui';
-import { InputType } from 'projects/junte-ui/src/lib/forms/input/enums';
+import { InputComponent, TabsComponent, UI, InputType } from 'junte-ui';
 import { HANDBOOK } from 'src/consts';
 import { LocalUI } from 'src/enums/local-ui';
-import { Language as HighlightLanguage } from '../../shared/code-highlight/enum';
-import { Language } from '../../../../enums/language';
+import { Language as HighlightLanguage } from 'src/components/handbook/shared/code-highlight/enum';
+import { Language } from 'src/enums/language';
 
 @Component({
   selector: 'app-input-test',

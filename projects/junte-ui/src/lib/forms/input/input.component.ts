@@ -1,5 +1,6 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -13,17 +14,17 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
-import { filter, map, distinctUntilChanged } from 'rxjs/operators';
-import { LOGGER_PROVIDERS } from '../../core/logger/providers';
-import { Key } from '../../core/enums/keyboard';
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { PropertyApi } from '../../core/decorators/api';
 import { Feature } from '../../core/enums/feature';
+import { Key } from '../../core/enums/keyboard';
 import { Size } from '../../core/enums/size';
 import { State } from '../../core/enums/state';
 import { TextAlign, TextTransform } from '../../core/enums/text';
 import { UI } from '../../core/enums/ui';
 import { Width } from '../../core/enums/width';
-import { InputAutocomplete, InputScheme, InputType } from './enums';
+import { LOGGER_PROVIDERS } from '../../core/logger/providers';
+import { InputAutocomplete, InputScheme, InputType } from './input.enums';
 
 const DIGIT_MASK_CHAR = '_';
 const DIGIT_KEYS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -48,10 +49,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   readonly host = 'jnt-input-host';
 
   ui = UI;
+  textTransform = TextTransform;
   view = {password: {display: false}};
   copied = false;
 
-  private _mask: string;
+  private _mask = '';
   private _type: InputType = InputType.text;
   private _placeholder = '';
 
@@ -84,14 +86,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Icon for input',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   icon: string;
 
   @PropertyApi({
     description: 'Label for input',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   label: string;
@@ -106,7 +108,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @PropertyApi({
     description: 'Text transform for input',
     path: 'ui.text.transform',
-    options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase]
+    options: [TextTransform.capitalize, TextTransform.uppercase, TextTransform.lowercase, TextTransform.ranks]
   })
   @Input()
   transform: TextTransform;
@@ -131,21 +133,21 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Minimum number value that can be entered. For input with typeControl = number',
-    type: 'number',
+    type: 'number'
   })
   @Input()
   min: number = null;
 
   @PropertyApi({
     description: 'Maximum number value that can be entered. For input with typeControl = number',
-    type: 'number',
+    type: 'number'
   })
   @Input()
   max: number = null;
 
   @PropertyApi({
     description: 'Step for entered value. For input with typeControl = number',
-    type: 'number',
+    type: 'number'
   })
   @Input()
   step = 1;
@@ -171,7 +173,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @PropertyApi({
     description: 'Input placeholder',
-    type: 'string',
+    type: 'string'
   })
   @Input()
   set placeholder(placeholder: string) {
@@ -230,7 +232,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @PropertyApi({
     description: 'Max rows for multiline mode',
     type: 'number',
-    default: 5,
+    default: 5
   })
   @Input()
   rows = 5;
@@ -242,7 +244,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   })
   @Input()
   set mask(mask: string) {
-    this._mask = mask;
+    this._mask = mask || '';
     if (!!mask) {
       this.form.setValue(this.masking(this.inputControl.value || ''));
     }
@@ -257,7 +259,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @PropertyApi({
     description: 'Button for reset input; Allow multiple lines in input; Copy button',
     path: 'ui.feature',
-    options: [Feature.allowEmpty, Feature.multiline, Feature.copy],
+    options: [Feature.allowEmpty, Feature.multiline, Feature.copy]
   })
   @HostBinding('attr.data-features')
   @Input()
@@ -302,7 +304,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.formattedControl.valueChanges.pipe(
       distinctUntilChanged(),
       filter(() => !!this.maskedRef),
-      map(formatted => !!formatted ? formatted : this.mask)
+      map(formatted => formatted || this.mask)
     ).subscribe(formatted => {
       const position = formatted.indexOf(DIGIT_MASK_CHAR);
       this.maskedRef.nativeElement.setSelectionRange(position, position);
@@ -314,7 +316,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
           break;
         }
       }
-      if (cleared.input !== this.inputControl.value || cleared.formatted !== this.formattedControl.value) {
+      if (cleared.input !== this.inputControl.value
+        || cleared.formatted !== this.formattedControl.value) {
         this.form.setValue(cleared);
       }
       this.cd.markForCheck();
@@ -348,11 +351,23 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   keydownMask(event: KeyboardEvent) {
     const value = this.inputControl.value || '';
-    let data;
+    let data = {
+      input: '',
+      formatted: ''
+    };
 
     if (DIGIT_KEYS.includes(event.key)) {
+      if (this.transform === TextTransform.ranks) {
+        this._mask = (value + event.key)
+          .replace(/\d/g, '_')
+          .replace(/(.{3})/g, '$1 ')
+          .trim();
+      }
       data = this.masking(value + event.key);
     } else if (event.key === Key.backspace) {
+      if (this.transform === TextTransform.ranks) {
+        this._mask = this.mask.substr(0, this.mask.length - 1).trim();
+      }
       data = this.masking(value.substr(0, value.length - 1));
     } else if (event.key === Key.tab
       || event.key === Key.arrowLeft

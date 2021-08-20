@@ -2,7 +2,7 @@ import { GanttTypes } from '../../collections/gantt/enums';
 import { CarouselOrientation } from '../../dynamic/carousel/carousel.enums';
 import { ButtonType } from '../../forms/button/button.enums';
 import { DatePickerType } from '../../forms/date-picker/enums';
-import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/enums';
+import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/input.enums';
 import { SelectMode } from '../../forms/select/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
 import { LinkTarget } from '../../navigation/link/enums';

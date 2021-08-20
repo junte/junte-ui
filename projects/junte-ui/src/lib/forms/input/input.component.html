@@ -6,7 +6,7 @@
               [icon]="icon">
     </jnt-icon>
 
-    <input #maskedRef *ngIf="!!mask; else inputTemplate"
+    <input #maskedRef *ngIf="!!mask || transform === textTransform.ranks; else inputTemplate"
            formControlName="formatted"
            type="tel"
            [name]="name"
