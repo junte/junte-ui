@@ -21,7 +21,6 @@
 
   #{if($context, $context, $jnt-carousel-host)} {
     @if $declare {
-      flex: 1;
       position: relative;
       height: 100%;
       width: 100%;
@@ -32,7 +31,7 @@
 
   #{$context} [data-item] {
     @if $declare {
-      height: 100%;
+      height: fit-content;
       width: 100%;
       background: $jnt-primary-background;
       position: absolute;
@@ -43,6 +42,10 @@
       align-items: center;
       justify-content: center;
     }
+  }
+
+  #{$context} [data-raw] {
+    display: none;
   }
 
   #{$context} [data-arrow] {

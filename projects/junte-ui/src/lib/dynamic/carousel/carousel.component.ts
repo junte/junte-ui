@@ -1,4 +1,17 @@
-import { Component, ContentChildren, EventEmitter, HostBinding, HostListener, Input, Output, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
@@ -14,9 +27,10 @@ const DEFAULT_AUTOSPEED = 1500;
 @Component({
   selector: 'jnt-carousel',
   templateUrl: './carousel.encapsulated.html',
-  animations: [CAROUSEL_ANIMATION]
+  animations: [CAROUSEL_ANIMATION],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CarouselComponent {
+export class CarouselComponent implements AfterViewInit {
 
   ui = UI;
   carouselOrientation = CarouselOrientation;
@@ -153,12 +167,15 @@ export class CarouselComponent {
     this.play();
   }
 
+  constructor(private cd: ChangeDetectorRef) {
+  }
+
   ngAfterViewInit() {
     if (this.carouselItems && this.carouselItems.length > 0) {
       if (!this.height) {
-        let height = 0;
-        this.carouselItems.forEach(item => height = Math.max(height, item.nativeElement.clientHeight));
+        let height = Math.max.apply(null, this.carouselItems.map(item => item.nativeElement.clientHeight));
         this.height = `${height}px` || `${DEFAULT_HEIGHT}px`;
+        this.cd.detectChanges();
       }
     }
 
@@ -186,6 +203,7 @@ export class CarouselComponent {
 
     this.current = index < 0 ? this.items.length - 1
       : (index === this.items.length ? 0 : index);
+    this.cd.detectChanges();
   }
 
   private play() {

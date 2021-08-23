@@ -1,14 +1,12 @@
-<div>
-  <ng-container *ngFor="let item of items; let i = index">
-    <div data-item #carouselItem
-         [@visibility]="{
+<ng-container *ngFor="let item of items; let i = index">
+  <div data-item #carouselItem
+       [@visibility]="{
            value: (current === i ? carouselVisibility.visible : carouselVisibility.hidden) + '-' + currentOrientation,
            params: {speed: speed}
          }">
-      <ng-container *ngTemplateOutlet="item.content"></ng-container>
-    </div>
-  </ng-container>
-</div>
+    <ng-container *ngTemplateOutlet="item.content"></ng-container>
+  </div>
+</ng-container>
 
 <ng-container *ngIf="arrows && items.length > 1">
   <button data-arrow data-prev (click)="slide = current - 1">
