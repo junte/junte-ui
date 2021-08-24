@@ -1,7 +1,7 @@
 export const localeDe = {
   masks: {
-    date: '____.__.__.',
+    date: '__.__.____',
     time: '__:__',
-    datetime: '____.__.__, __:__'
+    datetime: '__.__.____, __:__'
   }
 }
