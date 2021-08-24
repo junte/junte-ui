@@ -193,7 +193,7 @@ export class CarouselComponent implements AfterViewInit {
     this.play();
   }
 
-  private go(index: number, orientation: CarouselOrientation = null) {
+  go(index: number, orientation: CarouselOrientation = null) {
     if ((this.current <= 0 || this.current >= this.items.length - 1) && !this.infinite) {
       return;
     }
