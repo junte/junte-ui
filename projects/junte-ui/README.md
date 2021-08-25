@@ -28,7 +28,7 @@ Install `Junte UI` package
 ```bash
 npm install @junte/ui  --save-dev
 ```
-Import `Junte UI` & `Browser Animations` modules into your app module in `src/app/app.module.ts`
+Import `Junte UI` & `Browser Animations` modules into your app module in `src/app/app.cms.module.ts`
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
