@@ -173,9 +173,28 @@ export class CarouselComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (this.carouselItems && this.carouselItems.length > 0) {
       if (!this.height) {
-        let height = Math.max.apply(null, this.carouselItems.map(item => item.nativeElement.clientHeight));
-        this.height = `${height}px` || `${DEFAULT_HEIGHT}px`;
-        this.cd.detectChanges();
+        let timer = null;
+        const mutators = [];
+        this.carouselItems.forEach(item => {
+          const mutator = new MutationObserver(() => {
+            let height = Math.max.apply(null, this.carouselItems.map(item => item.nativeElement.clientHeight));
+            clearTimeout(timer);
+            timer = setTimeout(() => mutators.forEach(mutator => {
+              if (this.height === `${height || DEFAULT_HEIGHT}px`) {
+                mutator.disconnect();
+              }
+            }), 1000);
+            this.height = `${height || DEFAULT_HEIGHT}px`;
+            this.cd.detectChanges();
+          });
+          mutator.observe(item.nativeElement, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+          mutators.push(mutator);
+        });
       }
     }
 
@@ -194,12 +213,14 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   go(index: number, orientation: CarouselOrientation = null) {
-    if ((this.current <= 0 || this.current >= this.items.length - 1) && !this.infinite) {
-      return;
-    }
-
     this.currentOrientation = orientation || (index < this.current
       ? CarouselOrientation.left : CarouselOrientation.right);
+
+    if (((this.current <= 0 && this.currentOrientation === CarouselOrientation.left)
+      || (this.current >= this.items.length - 1) && this.currentOrientation === CarouselOrientation.right)
+      && !this.infinite) {
+      return;
+    }
 
     this.current = index < 0 ? this.items.length - 1
       : (index === this.items.length ? 0 : index);
