@@ -11,7 +11,8 @@ export class MessageComponent {
 
   ui = UI;
 
-  @HostBinding('attr.host') readonly host = 'jnt-message-host';
+  @HostBinding('attr.host')
+  readonly host = 'jnt-message-host';
 
   @HostBinding('attr.data-scheme')
   _scheme = Scheme.primary;
