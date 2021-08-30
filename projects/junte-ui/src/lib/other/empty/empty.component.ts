@@ -1,15 +1,17 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, TemplateRef } from '@angular/core';
 import { ContentApi, PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 
 @Component({
   selector: 'jnt-empty',
-  templateUrl: './empty.component.html',
-  styleUrls: ['./empty.component.scss']
+  templateUrl: './empty.encapsulated.html'
 })
 export class EmptyComponent {
 
   ui = UI;
+
+  @HostBinding('attr.host')
+  readonly host = 'jnt-empty-host';
 
   @PropertyApi({
     description: 'Message about empty data',

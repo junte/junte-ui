@@ -1,11 +1,52 @@
 @import 'jnt-variables';
 @import 'jnt-hosts';
+@import 'jnt-functions';
 
-[data-message] {
-  color: $jnt-primary-light-color;
-  font-weight: $jnt-font-weight-semi-bold;
-  font-size: $jnt-font-size-normal;
-}
-[data-description] {
-  color: $jnt-primary-text-light-color;
+@mixin jnt-empty($passed: (), $context: null, $strategy: 'changes') {
+
+  $defs: (
+    message: (
+      color: $jnt-primary-light-color,
+      font-weight: $jnt-font-weight-semi-bold,
+      font-size: $jnt-font-size-normal
+    ),
+    description: (
+      color: $jnt-primary-text-light-color
+    )
+  );
+
+  $vars: $passed;
+  $declare: false;
+  $wrapper: null;
+
+  @if $jnt-ng-deep {
+    $wrapper: '::ng-deep';
+  }
+
+  @if $passed == () or $strategy == 'merge' {
+    $vars: recursive-map-merge($defs, $passed);
+    $declare: true;
+  }
+
+  #{if($context, $context, $jnt-empty-host)} {
+    @if $declare {
+      display: block;
+    }
+  }
+
+  #{$context} #{$wrapper} [data-message] {
+    @if map-has-key($vars, message) {
+      $message: map-get($vars, message);
+      color: map-get($message, color);
+      font-weight: map-get($message, font-weight);
+      font-size: map-get($message, font-size);
+    }
+  }
+
+  #{$context} #{$wrapper} [data-description] {
+    @if map-has-key($vars, description) {
+      $description: map-get($vars, description);
+      color: map-get($description, color);
+    }
+  }
 }
