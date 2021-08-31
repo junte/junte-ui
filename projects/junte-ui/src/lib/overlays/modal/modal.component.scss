@@ -87,12 +87,10 @@
       }
 
 
-      &[data-scheme='ghost'] {
-        @include jnt-block((background: transparent, shadow: none));
+      &[data-scheme='ghost'] [data-modal] {
 
         [data-header] {
-          background-color: transparent !important;
-          padding: 0 !important;
+          padding: 0;
 
           [data-title] {
             visibility: hidden;
@@ -101,9 +99,9 @@
           button {
             margin-bottom: $jnt-gutter-base;
             width: 28px;
-            border-radius: 50% !important;
-            background-color: $jnt-primary-background !important;
-            color: $jnt-primary-color !important;
+            border-radius: 50%;
+            background-color: $jnt-primary-background;
+            color: $jnt-primary-color;
           }
         }
 
@@ -172,7 +170,6 @@
       @if $declare {
         border-top-left-radius: $jnt-corner-normal;
         border-top-right-radius: $jnt-corner-normal;
-        background-color: $jnt-page-background;
         font-size: 18px;
 
         [data-text] {

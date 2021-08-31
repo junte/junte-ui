@@ -1,8 +1,4 @@
-<jnt-block [padding]="ui.gutter.none" data-modal
-           [@.disabled]="mobile"
-           [@move]="opened ? 'visible' : 'hidden'"
-           (@move.start)='start($event)'
-           (@move.done)='done($event)'>
+<ng-template #modalContentTemplate>
   <jnt-stack data-header
              [orientation]="ui.orientation.horizontal"
              [justify]="ui.justify.between"
@@ -20,7 +16,6 @@
       <jnt-icon [icon]="ui.icons.close"></jnt-icon>
     </button>
   </jnt-stack>
-
   <div data-content
        [ngStyle]="{
          'max-height': options.maxHeight,
@@ -40,8 +35,28 @@
   <ng-container *ngIf="!!options.footer">
     <ng-container *ngTemplateOutlet="options.footer"></ng-container>
   </ng-container>
+</ng-template>
 
-</jnt-block>
+<ng-container [ngSwitch]="options?.scheme">
+  <div data-modal *ngSwitchCase="ui.modal.scheme.ghost"
+       [@.disabled]="mobile"
+       [@move]="opened ? 'visible' : 'hidden'"
+       (@move.start)='start($event)'
+       (@move.done)='done($event)'>
+    <ng-container *ngTemplateOutlet="modalContentTemplate"></ng-container>
+  </div>
+
+  <ng-container *ngSwitchDefault>
+    <jnt-block [padding]="ui.gutter.none" data-modal
+               [@.disabled]="mobile"
+               [@move]="opened ? 'visible' : 'hidden'"
+               (@move.start)='start($event)'
+               (@move.done)='done($event)'>
+      <ng-container *ngTemplateOutlet="modalContentTemplate"></ng-container>
+    </jnt-block>
+  </ng-container>
+</ng-container>
+
 <div *ngIf="!!opened" #backdrop data-overlay
      (click)="!options.hold && options.closeOutside ? close(modalClosedReason.user) : null"
      [@.disabled]="mobile"
