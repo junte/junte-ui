@@ -48,7 +48,7 @@ export class BadgeComponent {
 
   @HostBinding('attr.data-has-overflow')
   get hasOverflow() {
-    return this.value > this.overflow;
+    return !!this.overflow ? this.value > this.overflow : null;
   }
 
   @PropertyApi({
