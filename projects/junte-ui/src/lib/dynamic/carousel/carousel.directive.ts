@@ -59,13 +59,13 @@ export class SwiperDirective {
   }
 
   @HostListener('touchstart', ['$event'])
-  onTouchStart(event: TouchEvent) {
+  onTouchStart(event: any) {
     let touch = event.touches[0] || event.changedTouches[0];
     this.swipeStart(touch.clientX);
   }
 
   @HostListener('touchmove', ['$event'])
-  onTouchMove(event: TouchEvent) {
+  onTouchMove(event: any) {
     if (!SwiperDirective.canISwipe) {
       return;
     }
