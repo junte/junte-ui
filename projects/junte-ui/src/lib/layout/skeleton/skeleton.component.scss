@@ -32,6 +32,8 @@
       corner: $jnt-corner-normal
     ),
     avatar: (
+      width: null,
+      height: null,
       sizes: (
         tiny: 24px,
         small: 40px,
@@ -63,10 +65,20 @@
       display: block;
     }
     @if map-has-key($vars, avatar) {
-      $sizes: map-get(map-get($vars, avatar), sizes);
-      @each $size, $map in $sizes {
-        &[data-size = '#{$size}'] {
-          @include skeleton-size($map);
+      $avatar: map-get($vars, avatar);
+      @if map-get($avatar, width) or map-get($avatar, height) {
+        [data-avatar] {
+          width: map-get($avatar, width);
+          min-width: map-get($avatar, min-width);
+          height: map-get($avatar, height);
+          min-height: map-get($avatar, min-height);
+        }
+      } @else {
+        $sizes: map-get($avatar, sizes);
+        @each $size, $map in $sizes {
+          &[data-size = '#{$size}'] {
+            @include skeleton-size($map);
+          }
         }
       }
     }
