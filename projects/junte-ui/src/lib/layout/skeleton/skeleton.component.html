@@ -1,9 +1,23 @@
-<jnt-stack *ngIf="type == ui.skeleton.type.text" [gutter]="ui.gutter.big">
-  <div data-line *ngFor="let l of lines | mockArray"></div>
-</jnt-stack>
-
-<div data-avatar *ngIf="type === ui.skeleton.type.avatar || type === ui.skeleton.type.image"
-     [attr.data-avatar]="type === ui.skeleton.type.avatar">
-</div>
-
-<div *ngIf="type === ui.skeleton.type.card" data-card></div>
+<ng-template #avatarTemplate>
+  <div data-avatar
+       [ngStyle]="{
+         'height': height,
+         'min-height': height,
+         'width': width,
+         'min-width': width
+       }"
+       [attr.data-avatar]="type === ui.skeleton.type.avatar">
+  </div>
+</ng-template>
+<ng-container [ngSwitch]="type">
+  <jnt-stack *ngSwitchCase="ui.skeleton.type.text" [gutter]="ui.gutter.big">
+    <div data-line *ngFor="let l of lines | mockArray"></div>
+  </jnt-stack>
+  <ng-container *ngSwitchCase="ui.skeleton.type.avatar">
+    <ng-container *ngTemplateOutlet="avatarTemplate"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="ui.skeleton.type.image">
+    <ng-container *ngTemplateOutlet="avatarTemplate"></ng-container>
+  </ng-container>
+  <div *ngSwitchCase="ui.skeleton.type.card" data-card></div>
+</ng-container>

@@ -48,6 +48,18 @@ export class SkeletonComponent {
   }
 
   @PropertyApi({
+    description: 'Avatar/image width',
+    type: 'string'
+  })
+  @Input() width: string;
+
+  @PropertyApi({
+    description: 'Avatar/image height',
+    type: 'string'
+  })
+  @Input() height: string;
+
+  @PropertyApi({
     description: 'Count of text lines',
     type: 'number',
     default: '1'
