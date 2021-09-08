@@ -1,5 +1,6 @@
-import { AnimationEvent } from '@angular/animations';
+import {AnimationEvent} from '@angular/animations';
 import {
+  ChangeDetectorRef,
   Component,
   ComponentRef,
   ElementRef,
@@ -11,17 +12,17 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { filter } from 'rxjs/operators';
-import { JunteUIConfig } from '../../config';
-import { MethodApi } from '../../core/decorators/api';
-import { Breakpoint } from '../../core/enums/breakpoint';
-import { UI } from '../../core/enums/ui';
-import { BreakpointService } from '../../layout/responsive/breakpoint.service';
-import { DeviceService } from '../../layout/responsive/device.service';
-import { MODAL_BLACKOUT, MODAL_MOVE } from './modal.animation';
-import { ModalClosedReason, ModalDisplay, ModalScheme, ModalState } from './modal.enums';
-import { ModalService } from './modal.service';
-import { ModalContent, ModalOptions } from './modal.types';
+import {filter} from 'rxjs/operators';
+import {JunteUIConfig} from '../../config';
+import {MethodApi} from '../../core/decorators/api';
+import {Breakpoint} from '../../core/enums/breakpoint';
+import {UI} from '../../core/enums/ui';
+import {BreakpointService} from '../../layout/responsive/breakpoint.service';
+import {DeviceService} from '../../layout/responsive/device.service';
+import {MODAL_BLACKOUT, MODAL_MOVE} from './modal.animation';
+import {ModalClosedReason, ModalDisplay, ModalScheme, ModalState} from './modal.enums';
+import {ModalService} from './modal.service';
+import {ModalContent, ModalOptions} from './modal.types';
 
 const ANIMATION_CLOSE_DURATION = 300;
 const BACKDROP_FILTER = 'blur(5px)';
@@ -82,7 +83,8 @@ export class ModalComponent implements OnInit {
               public device: DeviceService,
               private renderer: Renderer2,
               private hostRef: ElementRef,
-              private config: JunteUIConfig) {
+              private config: JunteUIConfig,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -117,6 +119,7 @@ export class ModalComponent implements OnInit {
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
     this.opened = true;
+    this.cd.detectChanges();
   }
 
   @MethodApi({description: 'close modal'})
@@ -144,6 +147,7 @@ export class ModalComponent implements OnInit {
       if (!!this.options?.closed) {
         this.options.closed(reason);
       }
+      this.cd.detectChanges();
     };
 
     if (!!this.options?.beforeClose) {
