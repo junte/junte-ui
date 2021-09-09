@@ -104,7 +104,7 @@ export class ModalTestComponent implements OnInit {
 
   openCalendar() {
     const component = this.cfr.resolveComponentFactory(ModalTestFactoryComponent).create(this.injector);
-    const options = new ModalOptions({
+    const options = {
       maxWidth: this.widthControl.value,
       maxHeight: this.heightControl.value,
       hold: this.holdControl.value,
@@ -114,9 +114,11 @@ export class ModalTestComponent implements OnInit {
         icon: this.iconControl.value ? UI.icons.calendar : null
       },
       footer: this.footerControl.value ? this.footer : null
-    });
+    };
     component.instance.footer = this.footerControl.value;
     component.instance.closed.subscribe(() => this.close());
+
+
     this.modalService.open(component, options);
   }
 

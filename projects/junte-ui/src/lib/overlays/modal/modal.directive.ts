@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input, TemplateRef } from '@angular/core';
 import { ModalService } from './modal.service';
 import { ModalOptions } from './modal.types';
 
@@ -9,7 +9,7 @@ import { ModalOptions } from './modal.types';
 export class ModalDirective {
 
   @Input('jntModal')
-  options: Partial<ModalOptions>;
+  options: Partial<ModalOptions> & {content:TemplateRef<any>};
 
   constructor(private modal: ModalService) {
 
@@ -17,7 +17,7 @@ export class ModalDirective {
 
   @HostListener('click')
   click() {
-    this.modal.open(null, this.options);
+    this.modal.open(this.options.content, this.options);
   }
 
 }

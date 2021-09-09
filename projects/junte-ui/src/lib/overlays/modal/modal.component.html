@@ -4,7 +4,7 @@
              [justify]="ui.justify.between"
              [align]="ui.align.center">
     <jnt-stack data-title
-               *ngIf="!!options.title"
+               *ngIf="!!options?.title"
                [orientation]="ui.orientation.horizontal"
                [gutter]="ui.gutter.small">
       <jnt-icon *ngIf="!!options.title.icon"
@@ -27,9 +27,6 @@
       <ng-container *ngIf="!!contentTemplate">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </ng-container>
-      <ng-container *ngIf="!!options.content">
-        <ng-container *ngTemplateOutlet="options.content"></ng-container>
-      </ng-container>
     </ng-container>
   </div>
   <ng-container *ngIf="!!options.footer">
@@ -47,7 +44,7 @@
   </div>
 
   <ng-container *ngSwitchDefault>
-    <jnt-block [padding]="ui.gutter.none" data-modal
+    <jnt-block data-modal [padding]="ui.gutter.none"
                [@.disabled]="mobile"
                [@move]="opened ? 'visible' : 'hidden'"
                (@move.start)='start($event)'
@@ -57,9 +54,8 @@
   </ng-container>
 </ng-container>
 
-<div *ngIf="!!opened" #backdrop data-overlay
+<div #backdrop data-overlay *ngIf="!!opened"
      (click)="!options.hold && options.closeOutside ? close(modalClosedReason.user) : null"
      [@.disabled]="mobile"
      [@blackout]="opened">
 </div>
-

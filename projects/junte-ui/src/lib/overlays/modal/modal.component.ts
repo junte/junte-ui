@@ -1,4 +1,4 @@
-import {AnimationEvent} from '@angular/animations';
+import { AnimationEvent } from '@angular/animations';
 import {
   ChangeDetectorRef,
   Component,
@@ -12,17 +12,17 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {filter} from 'rxjs/operators';
-import {JunteUIConfig} from '../../config';
-import {MethodApi} from '../../core/decorators/api';
-import {Breakpoint} from '../../core/enums/breakpoint';
-import {UI} from '../../core/enums/ui';
-import {BreakpointService} from '../../layout/responsive/breakpoint.service';
-import {DeviceService} from '../../layout/responsive/device.service';
-import {MODAL_BLACKOUT, MODAL_MOVE} from './modal.animation';
-import {ModalClosedReason, ModalDisplay, ModalScheme, ModalState} from './modal.enums';
-import {ModalService} from './modal.service';
-import {ModalContent, ModalOptions} from './modal.types';
+import { filter } from 'rxjs/operators';
+import { JunteUIConfig } from '../../config';
+import { MethodApi } from '../../core/decorators/api';
+import { Breakpoint } from '../../core/enums/breakpoint';
+import { UI } from '../../core/enums/ui';
+import { BreakpointService } from '../../layout/responsive/breakpoint.service';
+import { DeviceService } from '../../layout/responsive/device.service';
+import { MODAL_BLACKOUT, MODAL_MOVE } from './modal.animation';
+import { ModalClosedReason, ModalDisplay, ModalScheme, ModalState } from './modal.enums';
+import { ModalService } from './modal.service';
+import { ModalContent, ModalOptions } from './modal.types';
 
 const ANIMATION_CLOSE_DURATION = 300;
 const BACKDROP_FILTER = 'blur(5px)';
@@ -45,7 +45,7 @@ export class ModalComponent implements OnInit {
   contentTemplate: TemplateRef<any>;
   options = new ModalOptions();
   mobile = this.breakpoint.current === Breakpoint.mobile;
-  animationTimer: any;
+  timers: { animation?: any } = {};
 
   @Input()
   backdrop: ElementRef;
@@ -74,7 +74,7 @@ export class ModalComponent implements OnInit {
     if (content instanceof TemplateRef) {
       this.contentTemplate = content;
     } else if (content instanceof ComponentRef) {
-      this.container.insert(content.hostView, 0);
+      this.container.insert(content.hostView);
     }
   }
 
@@ -106,8 +106,10 @@ export class ModalComponent implements OnInit {
   // TODO: options to type with optionals?.
   @MethodApi({description: 'show modal'})
   open(content: ModalContent, options: Partial<ModalOptions> = {}) {
-    clearTimeout(this.animationTimer);
+    clearTimeout(this.timers.animation);
+    this.opened = true;
     this.options = new ModalOptions(options);
+    this.cd.detectChanges();
     this.content = content;
     if (!!this.backdrop) {
       this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
@@ -118,13 +120,15 @@ export class ModalComponent implements OnInit {
       }
     }
     this.renderer.setStyle(document.body, 'overflow', 'hidden');
-    this.opened = true;
-    this.cd.detectChanges();
   }
 
   @MethodApi({description: 'close modal'})
   close(reason = ModalClosedReason.default) {
     const action = () => {
+      this.opened = false;
+      this.cd.detectChanges();
+
+      this.renderer.setProperty(this.hostRef.nativeElement, 'scrollTop', 0);
       this.renderer.removeStyle(document.body, 'overflow');
       if (!!this.backdrop) {
         this.renderer.removeStyle(this.backdrop.nativeElement, 'filter');
@@ -133,11 +137,8 @@ export class ModalComponent implements OnInit {
             + ANIMATION_CLOSE_DURATION + 'ms cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards');
         }
       }
-      this.opened = false;
-      this.hostRef.nativeElement.scrollTop = 0;
 
-      // TODO: for future `this.timers.animation`
-      this.animationTimer = setTimeout(() => {
+      this.timers.animation = setTimeout(() => {
         this.content = null;
         if (!!this.backdrop) {
           this.renderer.removeStyle(this.backdrop.nativeElement, 'animation');
@@ -147,7 +148,6 @@ export class ModalComponent implements OnInit {
       if (!!this.options?.closed) {
         this.options.closed(reason);
       }
-      this.cd.detectChanges();
     };
 
     if (!!this.options?.beforeClose) {

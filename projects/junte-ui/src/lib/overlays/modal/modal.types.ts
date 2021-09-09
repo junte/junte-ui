@@ -15,7 +15,6 @@ export class ModalOptions {
   closeOutside? = true;
   title?: ModalTitle;
   footer?: TemplateRef<any>;
-  content?: TemplateRef<any>;
   beforeClose?: (reason: ModalClosedReason) => Observable<boolean>;
   closed?: (reason: ModalClosedReason) => void;
   scheme? = ModalScheme.default;
