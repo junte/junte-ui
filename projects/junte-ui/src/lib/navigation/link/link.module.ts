@@ -6,6 +6,7 @@ import { TextPipesModule } from '../../core/pipes/text-pipes.module';
 import { BadgeModule } from '../../elements/badge/badge.module';
 import { IconModule } from '../../elements/icon/icon.module';
 import { StackModule } from '../../layout/stack/stack.module';
+import { AttributesDirective, FakeLinkDirective } from './directives';
 import { LinkComponent } from './link.component';
 
 @NgModule({
@@ -26,7 +27,9 @@ import { LinkComponent } from './link.component';
     LinkComponent
   ],
   declarations: [
-    LinkComponent
+    LinkComponent,
+    AttributesDirective,
+    FakeLinkDirective
   ]
 })
 export class LinkModule {

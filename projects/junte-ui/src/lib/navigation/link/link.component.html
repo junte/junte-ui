@@ -1,21 +1,17 @@
 <ng-container *ngIf="external; else internalLinkTemplate">
-  <ng-container *ngIf="!!source; else emptySourceTemplate">
+  <ng-container>
     <a data-link [href]="source"
        [target]="'_' + target"
        [attr.data-active]="active">
       <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
     </a>
   </ng-container>
-  <ng-template #emptySourceTemplate>
-    <a data-link>
-      <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
-    </a>
-  </ng-template>
 </ng-container>
 
 <ng-template #internalOrphanTemplate>
-  <a data-link [attr.data-active]="active"
-     [attr.data-orphan]="true">
+  <a data-link fakeLink [attr.data-active]="active"
+     [attr.data-orphan]="true"
+     [attributes]="attributes">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>
@@ -28,7 +24,8 @@
      [routerLink]="source"
      [routerLinkActiveOptions]="{exact: matching === ui.matching.fullMatch}"
      [queryParams]="queryParams"
-     [fragment]="fragment">
+     [fragment]="fragment"
+     [attributes]="attributes">
     <ng-container *ngTemplateOutlet="linkTemplate"></ng-container>
   </a>
 </ng-template>

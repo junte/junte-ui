@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ContentChildren, ElementRef,
+  ContentChildren,
   HostBinding,
   Input,
-  QueryList, Renderer2,
+  QueryList,
   TemplateRef
 } from '@angular/core';
 import { PropertyApi } from '../../core/decorators/api';
@@ -136,10 +136,10 @@ export class LinkComponent {
     this._source = source;
     if (!!source) {
       this.external = !Array.isArray(source);
-      this._orphan = false;
+      this.orphan = false;
     } else {
       this.external = false;
-      this._orphan = true;
+      this.orphan = true;
     }
   }
 
@@ -148,7 +148,7 @@ export class LinkComponent {
   }
 
   @HostBinding('attr.data-orphan')
-  _orphan = false;
+  orphan = false;
 
   @PropertyApi({
     description: 'Link target',
@@ -211,10 +211,7 @@ export class LinkComponent {
   }
 
   @Input()
-  set attributes(attributes: { [key: string]: string }) {
-    Object.keys(attributes || {}).forEach(name => this.renderer
-      .setAttribute(this.hostRef.nativeElement, name, attributes[name]));
-  }
+  attributes: { [key: string]: string };
 
   @ContentChildren(BadgeComponent)
   badges: QueryList<BadgeComponent>;
@@ -222,7 +219,4 @@ export class LinkComponent {
   @ContentChild('linkContentTemplate')
   contentTemplate: TemplateRef<any>;
 
-  constructor(private hostRef: ElementRef,
-              private renderer: Renderer2) {
-  }
 }

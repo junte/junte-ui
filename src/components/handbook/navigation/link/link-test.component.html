@@ -49,6 +49,7 @@
                 <ng-template #document>
                   <p [ngSwitch]="locale">
                     <ng-container *ngSwitchDefault>
+                      <jnt-link title="Test" [attributes]="{href: '/super'}"></jnt-link>
                       In this text we try to test link as inline element
                       <jnt-link [outline]="outlineControl.value"
                                 [icon]="iconControl.value ? {icon: ui.icons.link,
