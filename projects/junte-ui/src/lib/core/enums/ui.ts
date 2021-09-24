@@ -5,7 +5,7 @@ import { DatePickerType } from '../../forms/date-picker/enums';
 import { InputAutocomplete, InputScheme, InputType } from '../../forms/input/input.enums';
 import { SelectMode } from '../../forms/select/enums';
 import { SkeletonType } from '../../layout/skeleton/enums';
-import { LinkTarget } from '../../navigation/link/enums';
+import { LinkTarget } from '../../navigation/link/link.enums';
 import { PagerMode } from '../../navigation/pager/enums';
 import { ModalClosedReason, ModalScheme } from '../../overlays/modal/modal.enums';
 import { Behaviour } from './behaviour';
