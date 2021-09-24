@@ -1,5 +1,5 @@
 import { ContentChildren, EventEmitter, HostBinding, Input, Output, QueryList } from '@angular/core';
-import { LinkTarget } from '../link/link.enums';
+import { LinkTarget } from '../link/enums';
 import { PropertyApi } from '../../core/decorators/api';
 import { UI } from '../../core/enums/ui';
 import { UrlMatching } from '../../core/enums/url';
